@@ -1,7 +1,25 @@
 ---
 id: index
-title: Bienvenue
-sidebar_label: Bienvenue
+title: A propos
+sidebar_label: A propos
 ---
 
-Ceci est la page de bienvenue
+Je suis Aleowyne, développeuse ABAP depuis fin 2013.
+
+Sur ce blog, j'ai décidé de partager mes notes sur différents sujets liés au développement informatique.
+N'hésitez pas à fouiller dans les différentes catégories pour récupérer les informations dont vous avez besoin.   
+  
+<br/>
+
+Derniers ajouts :
+
+- [Docusaurus 2](../dev_web/docusaurus) (25/06/2020)
+
+<br/>
+
+A venir :
+
+- Typescript
+- NodeJS
+- PHP/MySQL
+- Lua pour addons WoW

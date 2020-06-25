@@ -35,3 +35,7 @@ html[data-theme='dark'] {
   --ifm-background-color: rgb(21, 32, 43);
   --ifm-color-content: #bbc2cf;
 }
+
+figcaption {
+  font-style: italic;
+}

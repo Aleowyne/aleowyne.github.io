@@ -1,10 +1,10 @@
 module.exports = {
-  sidebar: {
-    "Accueil": [
-      'index',
-    ],
-    "Développement web": ['dev_web/typescript', 'dev_web/javascript', 'dev_web/docusaurus'],
-    "Développement logiciel": [],
-    "SAP": []
-  },
+  docs: [ "index", 
+    { "Développement web": ["dev_web/docusaurus"] },
+    { "Développement logiciel": [] },
+    { "SAP": [] }
+  ],
+  code: [ "code/intro",
+    { "SAP": ["code/abap"] }
+  ]
 };

@@ -10,9 +10,13 @@ module.exports = {
     navbar: {
       title: "Blog-Notes d'Aleowyne",
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Logo',
         src: 'img/logo.jpg',
       },
+      links: [
+        //{to: '/', label: 'Notes', position: 'left'},
+        //{to: '/code/intro', label: 'Bouts de code', position: 'left'},
+      ],
     },
     footer: {
       style: 'dark',
@@ -57,7 +61,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Aleowyne, Inc. Built with <a href="https://v2.docusaurus.io">Docusaurus</a>.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Aleowyne. Built with <a href="https://v2.docusaurus.io">Docusaurus 2</a>.`,
     },
   },
   presets: [
@@ -68,8 +72,8 @@ module.exports = {
           routeBasePath: '/',
           homePageId: 'index',
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/Aleowyne/aleowyne.github.io/edit/master/docs',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -78,3 +82,4 @@ module.exports = {
     ],
   ],
 };
+
