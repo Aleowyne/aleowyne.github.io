@@ -5,7 +5,7 @@ sidebar_label: Docusaurus 2
 ---
 
 
-## Présentation de Docusaurus
+## 1. Présentation de Docusaurus
 Docusaurus 2 est un générateur de site web statique.  
 Il est particulièrement utilisé pour générer des sites de documentation, mais il est possible de créer n'importe quel type de site web statique. Docusaurus est construit avec React et peut être customisé selon les besoins.  
 
@@ -15,7 +15,7 @@ Le [style](https://v2.docusaurus.io/docs/styling-layout/#styling-your-site-with-
 Le support et la gestion des langues sont en cours de développement (i18n => internationalisation). Si vous avez besoin de ces fonctionnalités, vous pouvez utiliser la version 1 de [Docusaurus](https://docusaurus.io/).
 
 
-## Installation d'un nouveau projet Docusaurus
+## 2. Installation d'un nouveau projet Docusaurus
 En prérequis, il faut installer Node.js et Git. Si vous le souhaitez, vous pouvez utiliser Yarn pour la gestion des packages.
 
 Création d'un nouveau projet *"mon_site"* sous le dossier *"mon_site"* avec le template classic proposé par Docusaurus.
@@ -44,13 +44,13 @@ npm run build
 ```
 
 
-## Customisation du projet
-### Configuration globale du projet
+## 3. Customisation du projet
+### 3.1 Configuration globale du projet
 A la création d'un nouveau projet, 3 parties sont disponibles dans le menu du site : la page d'accueil du site, la documentation et le blog.  
 Sur mon blog-notes, la page d'accueil (fichier *"src/pages/index.js"*) et le dossier blog ont été supprimées pour n'avoir que la documentation.
 
 Modification du fichier *"docusaurus.config.js"* pour que la page principale du site pointe vers le contenu du fichier *"index.md"* présent dans les docs :
-```javascript {7-8}
+```javascript {7-8} title="docusaurus.config.js"
   ...
   presets: [
     [
@@ -80,7 +80,7 @@ Modification du fichier *"docusaurus.config.js"* pour que la page principale du 
 </p>
 
 Le code minimal du fichier *"index.md"* :
-```markdown
+```markdown title="docs/index.md"
 ---
 id: index
 title: Bienvenue
@@ -91,12 +91,12 @@ Ceci est la page de bienvenue
 ```
 
 
-### Menu latéral de la documentation
+### 3.2 Menu latéral de la documentation
 Le fichier *"sidebar.js"* permet de gérer le menu latéral de la documentation.
 A noter qu'il peut y avoir plusieurs menus latéraux dans ce fichier. 
 
 Contenu du fichier *"sidebar.js"* :
-```javascript
+```javascript title="sidebar.js"
 module.exports = {
   // Le menu latéral "docs" s'affiche que pour index.md et dev_web/docusaurus.md
   docs: [ 
@@ -118,12 +118,12 @@ module.exports = {
 ```
 
 
-### Modification du fichier de style
+### 3.3 Modification du fichier de style
 Sur le blog-notes, les couleurs primaires du site ont été modifiées pour qu’elles s’orientent sur du bleu plutôt que du vert. Vous pouvez utiliser l'[outil](https://v2.docusaurus.io/docs/styling-layout#styling-your-site-with-infima) proposé sur le site de docusaurus pour générer les couleurs primaires.
 
 Un fond bleu nuit et un texte grisonnant ont également été ajoutés quand le site est avec le thème “Dark”, afin de ne pas agresser les yeux.
 
-```css
+```css title="src/css/custom.css"
 :root {
   --ifm-code-font-size: 95%;
   --ifm-color-primary: #5c8cda;
@@ -153,7 +153,7 @@ figcaption {
 ```
 
 
-## Déploiement du projet avec GitHub Pages
+## 4. Déploiement du projet avec GitHub Pages
 Le dépôt GitHub *"username.github.io"* doit être créé au préalable.
 
 1. Dans le dossier du projet Docusaurus, initialisation d'un dépôt git

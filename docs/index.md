@@ -13,6 +13,7 @@ N'hésitez pas à fouiller dans les différentes catégories pour récupérer le
 
 Derniers ajouts :
 
+- [Javascript](../dev_web/javascript) (en cours de rédaction)
 - [Docusaurus 2](../dev_web/docusaurus) (25/06/2020)
 
 <br/>
