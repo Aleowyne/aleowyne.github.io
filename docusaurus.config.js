@@ -13,7 +13,7 @@ module.exports = {
         alt: 'Logo',
         src: 'img/logo.jpg',
       },
-      links: [
+      items: [
         //{to: '/', label: 'Notes', position: 'left'},
         //{to: '/code/intro', label: 'Bouts de code', position: 'left'},
       ],
