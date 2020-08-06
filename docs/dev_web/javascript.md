@@ -70,27 +70,360 @@ Les fonctions mathématiques :
 Les calculs imprécis :
 ```javascript
 let sum = 0.1 + 0.2;
-console.log(sum); // Affiche 0.30000000000000004
-console.log(+sum.toFixed(2)); // Affiche 0.3
+console.log(sum); // Affiche : 0.30000000000000004
+console.log(+sum.toFixed(2)); // Affiche : 0.3
 ```
 
 La fonction `isNaN(value)` contrôle si une valeur n’est pas un nombre :
 ```javascript
-console.log(isNaN("str")); // True
+console.log(isNaN("str")); // Affiche : true
 ```
 
 La fonction `isFinite(value)` contrôle si une valeur est finie :
 ```javascript
-console.log(isFinite("15")); // True
+console.log(isFinite("15")); // Affiche : true
 ```
 
 La fonction `parseInt(str, base)` prend une chaîne de caractères en paramètre et renvoie un entier dans une base :
 ```javascript
-console.log(parseInt("100px")); // Affiche 100
+console.log(parseInt("100px")); // Affiche : 100
 ```
 La fonction `parseFloat(str)` prend une chaîne de caractères en paramètre et renvoie un nombre à virgule flottant :
 ```javascript
-console.log(parseFloat("12.5em")); // Affiche 12.5
+console.log(parseFloat("12.5em")); // Affiche : 12.5
+```
+
+
+### 2.2 Chaîne de caractères
+Les backticks permettent d’intégrer des variables et des expressions dans une chaîne :
+```javascript
+console.log(`Le résultat est ${1 + 2}` ); // Affiche : Le résultat est 3
+```
+
+Ils permettent également d’écrire une chaîne de caractères sur plusieurs lignes :
+```javascript
+console.log(`ceci
+est
+un message
+sur plusieurs lignes`);
+```
+
+Il est possible d’utiliser les guillemets simples et doubles avec des caractères spéciaux :
+- `\n` : Nouvelle ligne
+- `\r` : Retour chariot. Utilisé avec \n pour sauter une ligne (\r\n).
+- `\'` ou `\"` : Guillemets
+- `\\` : Antislash
+- `\t` : Tabulation
+- `\xNN` : Caractère unicode avec le code hexadécimal NN
+- `\uNNNN` : Symbole unicode avec le code hexadécimal NNNN avec un encodage UTF-16
+- `\u{NNNNNN}` : Symbole unicode avec le code hexadécimal NNNNNN (1 à 6 caractères) avec un encodage UTF-32
+
+Les propriétés et les méthodes :
+- `str.length` : longueur de la chaîne de caractères.
+- `str[index]` ou `str.charAt(index)` : récupération d’un caractère de la chaîne de caractères à l’index donné.
+Si aucun caractère trouvé, `str[index]` renvoie `undefined` et `str.charAt(index)` renvoie une chaîne vide.
+- `str.toUpperCase()` : transforme la chaîne de caractères en majuscules.
+- `str.toLowerCase()` : transforme la chaîne de caractères en minuscules.
+- `str.indexOf(substr, [index])` : renvoie la position de la première occurrence de la sous-chaîne dans la chaîne de caractères à partir d’un index. Si la sous-chaîne n’est pas présente, la fonction renvoie -1.
+- `str.lastIndexOf(substr, [index])` : le même fonctionnement que `indexOf()` mais en partant de la fin de la chaîne.
+- `str.includes(substr, [index])` : renvoie `true` si la sous-chaîne est présente dans la chaîne de caractères à partir d’un index, sinon renvoie `false`.
+- `str.startsWith(substr)` : renvoie `true` si la chaîne de caractères commence par la sous-chaîne, sinon renvoie `false`.
+- `str.endsWith(substr)` : renvoie `true` si la chaîne de caractères finit par la sous-chaîne, sinon renvoie `false`.
+- `str.slice(begin, [end])` : renvoie la sous-chaîne de la chaîne de caractères de l’index begin à l’index end non inclus. Si les index sont négatifs, la récupération se fait à partir de la fin.
+- `str.substring(begin, [end])` : le même fonctionnement que `str.slice()`, mais autorise l’index begin a être supérieur à l’index end. Les index négatifs ne sont pas utilisés.
+- `str.substr(begin, [length])` : renvoie la sous-chaîne de la chaîne de caractères qui commence à l’index begin avec une longueur donnée en paramètre.
+- `str.split([separator, [limit]])` : découpe la chaîne de caractères en fonction du séparateur et renvoie un tableau avec les sous-chaînes. Le paramètre facultatif limit permet de définir le nombre de sous-chaînes maximum pouvant être extraites.
+
+Liste des méthodes : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String
+
+Pour parcourir une chaîne de caractères :
+```javascript
+for (let char of "Hello") {
+  console.log(char); 
+}
+```
+
+
+### 2.3 Objet
+#### 2.3.1 Propriétés
+Pour créer un objet vide :
+```javascript
+let user = new Object();
+let user = {};
+```
+
+Création d’un objet avec des propriétés :
+```javascript
+let user = {
+  name: "John",
+  age: 30,
+  "likes birds": true 
+};
+```
+
+Accès à la valeur d’une des propriétés :
+```javascript
+console.log(user.name); // Affiche : John
+```
+
+Ajout d’une propriété :
+```javascript
+user.isAdmin = true;
+```
+
+Suppression d’une propriété :
+```javascript
+delete user.age;
+```
+
+Pour les propriétés multi-mots : 
+```javascript
+let user = {};
+ 
+// Alimentation de la propriété
+user["likes birds"] = true;
+ 
+// Récupération de la valeur de la propriété
+console.log(user["likes birds"]); // Affiche : true
+ 
+// Suppression de la propriété
+delete user["likes birds"];
+```
+
+Les propriétés calculées :
+```javascript
+let user = {};
+let key = "test";
+user[key] = true; // Affiche : true
+ 
+let fruit = "apple";
+let bag = {
+  [fruit]: 5, 
+};
+
+console.log(bag.apple); // Affiche : 5
+```
+
+Pour vérifier qu’une propriété existe dans un objet :
+```javascript
+let user = { name: "John", age: 30 };
+console.log("age" in user); // Affiche : true
+ 
+let key = "age";
+console.log(key in user); // Affiche : true
+```
+
+#### 2.3.2 Boucler sur les propriétés d'un objet
+- En utilisant `… in …` :
+```javascript
+let user = { name: "John", age: 30 };
+ 
+for (let key in user) {
+  console.log(`${key} : ${user[key]}`);
+}
+```
+```json title="Résultat"
+name : John
+age : 30
+```
+
+- En utilisant `Object.keys(obj)` pour récupérer les clés :
+```javascript
+for (let key of Object.keys(user)) {
+  console.log(`${key} : ${user[key]}`);
+}
+```
+```json title="Résultat"
+name : John
+age : 30
+```
+
+- En utilisant `Object.values(obj)` pour récupérer les valeurs des propriétés :
+```javascript
+for (let value of Object.values(user)) {
+  console.log(value);
+}
+```
+```json title="Résultat"
+John
+30
+```
+
+- En utilisant `Object.entries(obj)` pour récupérer les propriétés avec leurs valeurs :
+```javascript
+for (let [key, value] of Object.entries(user)) {
+  console.log(`${key} : ${value}`);
+}
+```
+```json title="Résultat"
+name : John
+age : 30
+```
+
+#### 2.3.3 Copie
+Copie des propriétés d’un (ou plusieurs) objet(s) vers un autre objet. Si la propriété existe déjà dans l’objet de destination, alors la valeur de cette propriété est remplacée.
+```javascript
+Object.assign(dest, [src1, src2, src3...])
+```
+
+Copie vers un objet vide :
+```javascript
+let clone = Object.assign({}, user);
+```
+
+S’il existe un ou plusieurs objets dans un objet, utiliser la copie en profondeur : https://lodash.com/docs#cloneDeep
+
+
+#### 2.3.4 Chaînage optionnel `?.` 
+La syntaxe `?.` revêt trois formes :
+- `obj?.prop` : retourne `obj.prop` si l'objet existe, sinon `undefined`.
+- `obj?.[prop]` : retourne `obj[prop]` if l'objet existe, sinon `undefined`.
+- `obj?.method()` : exécute `obj.method()` si l'objet existe, sinon retourne `undefined`.
+
+
+#### 2.3.5 Conversion d’un objet vers un type primitif
+Vers une chaîne de caractères :
+```javascript
+let user = {
+  name: "Robert"
+}
+
+console.log(user);
+```
+
+Vers un nombre :
+```javascript
+let delta = date1 - date2;
+let greater = user1 > user2;
+```
+
+Vers un type "default" : Pas sûr du type.  
+Le binaire "+" peut fonctionner à la fois avec des chaînes de caractères et des nombres.  
+Si un objet est comparé à l’aide de "==" avec une chaîne de caractères, un nombre ou un symbole, il est également difficile de savoir quelle conversion doit être effectuée.
+
+Pour choisir son propre traitement de conversion, il faut implémenter la méthode :
+- `toString()` pour une conversion vers une chaîne de caractères
+- `valueOf()` pour une conversion vers un nombre ou un type "default"
+
+
+Il est possible d’utiliser les méthodes des tableaux sur les données d’un objet. Il faut transformer l’objet en tableau, puis effectuer les modifications souhaitées avec les méthodes choisies, puis ensuite re-transformer le tableau en objet.
+```javascript
+let prices = {
+  banane: 1,
+  orange: 2,
+  viande: 4
+};
+ 
+let doublePrices = Object.fromEntries(
+  Object.entries(prices).map(([key, value]) => [key, value * 2])
+);
+```
+
+Quand une méthode d’un objet est appelé comme suit : `object.method()`, le `this` correspond à `object`.
+
+
+#### 2.3.6 Attributs des propriétés
+- `writable` : Si `true`, la valeur peut être modifiée
+- `enumerable` : Si `true`, la propriété peut être listée dans une boucle
+- `configurable` : Si `true`, la propriété peut être supprimée et ses attributs peuvent être modifiés
+
+Les méthodes pour gérer les attributs des propriétés :
+- `Object.getOwnPropertyDescriptor(obj, propertyName)` : permet de récupérer l’information sur les attributs d’une propriété propertyName présente dans un objet.
+```javascript
+let user = {
+  name: "Robert"
+}
+
+console.log(JSON.stringify(Object.getOwnPropertyDescriptor(user, 'name'), null, 2));
+```
+```json title="Résultat"
+{
+  "value": "Robert",
+  "writable": true,
+  "enumerable": true,
+  "configurable": true
+}
+```
+
+- `Object.defineProperty(obj, propertyName, descriptor)` : permet de modifier les attributs d’une propriété propertyName présente dans un objet.
+```javascript
+let user = {
+  name: "Robert",
+  age: 35
+}
+ 
+Object.defineProperty(user, "age", {
+  "writable": false
+});
+ 
+user.age = 13;
+console.log(user); // { name: 'Robert', age: 35 }
+```
+
+- `Object.getOwnPropertyDescriptors(obj)` : permet de récupérer l’information sur les attributs de toutes les propriétés présentes sur un objet.
+```javascript
+let user = {
+  name: "Robert",
+  age: 35
+}
+
+console.log(JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2));
+```
+```json title="Résultat"
+{
+  "name": {
+    "value": "Robert",
+    "writable": true,
+    "enumerable": true,
+    "configurable": true
+  },
+  "age": {
+    "value": 35,
+    "writable": true,
+    "enumerable": true,
+    "configurable": true
+  }
+}
+```
+
+- `Object.defineProperties(obj, descriptors)` : permet de modifier les attributs des propriétés présentes dans un objet.
+```javascript
+let user = {
+  name: "Robert",
+  age: 35
+}
+ 
+Object.defineProperties(user, {
+  name: { writable: false },
+  age: { writable: false },
+});
+ 
+user.name = "Paul";
+user.age = 34;
+console.log(user); // { name: 'Robert', age: 35 }
+```
+
+- `Object.preventExtensions(obj)` : permet d’interdire l’ajout de nouvelles propriétés à un objet.
+- `Object.seal(obj)` : permet d’interdire l’ajout et la suppression de propriétés dans un objet.
+- `Object.freeze(obj)` : permet d’interdire l’ajout, la modification et la suppression des propriétés existantes dans un objet.
+- `Object.isExtensible(obj)` : retourne `false` si l’ajout de nouvelles propriétés est interdite, sinon `true`.
+- `Object.isSealed(obj)` : retourne `true` si l’ajout de nouvelles propriétés et la suppression des propriétés existantes est interdite, sinon `false`.
+- `Object.isFrozen(obj)` : retourne `true` si l’ajout, la modification et la suppression de propriétés est interdite, sinon `false`.
+
+#### 2.3.7 Les getters et setters
+```javascript
+let user = {
+  get name() {
+    return this._name;
+  },
+ 
+  set name(value) {
+    this._name = value;
+  }
+};
+ 
+user.name = "Robert";
+console.log(user.name); // Robert
 ```
 
 <br/>
