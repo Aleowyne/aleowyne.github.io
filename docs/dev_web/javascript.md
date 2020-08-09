@@ -43,20 +43,41 @@ let ms = 1e-6; // 0.000001
 ```
 
 Nombres hexadécimaux, binaires, octaux :
+<table class="code">
+<thead><tr><td>Code</td><td>Résultat</td></tr></thead>
+<tr><td>
+
 ```js
 console.log(0xFF); // Hexadécimal
 console.log(0b11111111); // Binaire
 console.log(0o377); // Octal
 ```
 
+</td> 
+<td>255<br/>255<br/>255</td></tr>
+</table>
+
+<br/>
+
 Utilisation de `toString(base)` :
 - La base va de 2 à 36
 - Si la base choisie est 36, tous les chiffres et les caractères de l’alphabet latin sont utilisés (0-9 et a-z)
 - Deux points après le nombre ou des parenthèse autour du nombre si ce n’est pas une variable qui est utilisée
+
+<table class="code">
+<thead><tr><td>Code</td><td>Résultat</td></tr></thead>
+<tr><td>
+
 ```js
 console.log(123456..toString(36));
 console.log((123456).toString(36));
 ```
+
+</td> 
+<td>2n9c<br/>2n9c</td></tr>
+</table>
+
+<br/>
 
 Les fonctions mathématiques :
 - `Math.floor(n)` : Arrondi à l’entier inférieur
@@ -96,9 +117,17 @@ console.log(parseFloat("12.5em")); // Affiche : 12.5
 
 ### 2.2 Chaîne de caractères
 Les backticks permettent d’intégrer des variables et des expressions dans une chaîne :
+
+<table class="code">
+<thead><tr><td>Code</td><td>Résultat</td></tr></thead>
+<tr><td>
+
 ```js
-console.log(`Le résultat est ${1 + 2}` ); // Affiche : Le résultat est 3
+console.log(`Le résultat est ${1 + 2}` );
 ```
+
+</td><td>Le résultat est 3</td></tr>
+</table>
 
 Ils permettent également d’écrire une chaîne de caractères sur plusieurs lignes :
 ```js
@@ -728,6 +757,176 @@ for (let value of fruits) {
   console.log(value);
 }
 ```
+
+
+### 2.8 WeakMap
+L’objet `WeakMap` représente une collection de couples (clé, valeur) dont les clés sont des objets et pour lesquelles les références sont faibles. Il n’est donc pas possible d’énumérer les clés de ce type d’objet. Si un objet lié à une clé du `WeakMap` est supprimé de la mémoire, alors le couple (clé, valeur) dans l’objet `WeakMap` est supprimé automatiquement.
+
+La création d’un objet `WeakMap` s’effectue de la manière suivante :
+```js
+let weakMap = new WeakMap();
+```
+
+Les méthodes disponibles sont les suivantes :
+- `weakMap.set(key, value)` : Stocke un nouveau couple (clé, valeur)
+```js
+let users = new WeakMap();
+let john = { name : "John" };
+let georges = { name : "Georges" };
+
+users.set(john, 1);
+users.set(georges, 4);
+```
+
+Il est possible de chaîner les appels de la méthode :
+```js
+users.set(john, 1)
+     .set(georges, 4);
+```
+
+- `weakMap.get(key)` : Récupère la valeur à partir d'une clé
+```js
+let usersTwo = new WeakMap();
+console.log(users.get(john)); // Affiche : 1
+console.log(usersTwo.get(john)); // Affiche : undefined
+```
+
+- `weakMap.has(key)` : Retourne `true` si la clé existe, sinon `false`
+```js
+console.log(users.has(john)); // Affiche : true
+console.log(usersTwo.has(john)); // Affiche : false
+```
+
+- `weakMap.delete(key)` : Supprime le couple (clé, valeur) à partir d'une clé
+```js
+users.delete(john);
+console.log(users.has(john)); // Affiche : false
+```
+
+
+### 2.9 WeakSet
+L’objet `WeakSet` permet de créer un ensemble dont les objets, uniques, sont contenus avec des références faibles. Il n’est donc pas possible d’énumérer les objets d’un `WeakSet`. Si un objet lié à un des objets du `WeakSet` est supprimé de la mémoire, alors cet objet est supprimé automatiquement dans le `WeakSet`.
+
+La création d’un objet `WeakSet` s’effectue de la manière suivante :
+```js
+let weakSet = new WeakSet();
+```
+
+Les méthodes disponibles sont les suivantes :
+- `weakSet.add(value)` : Stocke une nouvelle valeur. Elle n’est pas ajoutée si elle existe déjà.
+```js
+let users = new WeakSet();
+let john = { name : "John" };
+let georges = { name : "Georges" };
+ 
+users.add(john);
+users.add(georges);
+```
+
+Il est possible de chaîner les appels de la méthode :
+```js
+users.add(john)
+     .add(georges);
+```
+
+- `weakSet.has(value)` : Retourne `true` si la valeur existe, sinon `false`
+```js
+let usersTwo = new WeakMap();
+console.log(users.has(john)); // Affiche : true
+console.log(usersTwo.has(john)); // Affiche : false
+```
+
+- `weakSet.delete(value)` : Supprime la valeur
+```js
+users.delete(john);
+console.log(users.has(john)); // Affiche : false
+```
+
+
+### 2.10 Déstructuration
+La déstructuration permet d’extraire des données d’un tableau ou d’un objet grâce à une syntaxe dont la forme ressemble à la structure du tableau ou de l’objet.
+
+Exemple avec un tableau :
+```js
+let arr = ["Paul", "Dubois"]
+let [firstname, lastname] = arr;
+console.log(`${firstname} - ${lastname}`); // Affiche : Paul - Dubois
+```
+
+Des éléments peuvent être ignorés :
+```js
+let [firstname, , profession] = ["Paul", "Dubois", "Plombier", "France"];
+console.log(`${firstname} - ${profession}`); // Affiche : Paul - Plombier
+```
+
+La partie droite peut être un itérable :
+```js
+let [a, b, c] = "abc";
+let [one, two, three] = new Set([1, 2, 3]);
+```
+
+La partie gauche peut être n’importe quel type de données assignable :
+```js
+let user = {};
+[user.firstname, user.lastname] = "Paul Dubois".split(' ');
+console.log(user); // Affiche : { firstname: 'Paul', lastname: 'Dubois' }
+```
+
+Le paramètre de reste, représenté par 3 points ```...```, permet de représenter un nombre indéfini d’arguments sous forme d’un tableau :
+```js
+let [firstname, lastname, ...rest] = ["Paul", "Dubois", "Plombier", "France"];
+console.log(rest); // Affiche : [ 'Plombier', 'France' ]
+```
+
+Une valeur par défaut peut être utilisée :
+```js
+let [firstname, lastname, profession, country = "France"] = ["Paul", "Dubois", "Plombier"];
+console.log(country); // Affiche : France
+```
+
+<br/>
+
+Exemple avec un objet :
+```js
+let user = {
+  name: "Paul",
+  age: 30
+};
+ 
+let {name: n, age, country = "France"} = user;
+console.log(`${n} - ${age} - ${country}`); // Affiche : Paul - 30 - France
+ 
+for (let [key, value] of Object.entries(user)) {
+  console.log(`${key} : ${value}`);
+}
+```
+
+Exemple avec un objet `Map` :
+```js
+let user = new Map();
+user.set("name", "Paul")
+    .set("age", "30");
+ 
+for (let [key, value] of user) {
+  console.log(`${key} : ${value}`);
+}
+```
+
+Exemple avec les paramètres d’une fonction :
+```js
+let options = {
+  title: "My menu",
+  items: ["Item1", "Item2"]
+};
+ 
+function showMenu({title = "Untitled", width: w = 200, height: h = 100, items = []}) {
+  console.log(`${title} ${w} ${h}`); // Affiche : My menu 200 100    
+  console.log(items); // Affiche : [ 'Item1', 'Item2' ]
+}
+ 
+showMenu(options);
+```
+
 
 <br/>
 
