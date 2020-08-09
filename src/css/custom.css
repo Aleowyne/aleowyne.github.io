@@ -44,7 +44,17 @@ figcaption {
 table {
   display: table;
 }
+
+table.code {
+  --ifm-table-border-width: 0px;
+  --ifm-table-stripe-background: none;
+}
+
 table.code td {
   width: 50%;
   vertical-align: top;
+}
+
+table.code .token-line {
+  white-space : pre-wrap !important;
 }

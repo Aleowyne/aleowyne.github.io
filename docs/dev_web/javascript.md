@@ -43,41 +43,42 @@ let ms = 1e-6; // 0.000001
 ```
 
 Nombres hexadécimaux, binaires, octaux :
-<table class="code">
-<thead><tr><td>Code</td><td>Résultat</td></tr></thead>
-<tr><td>
+<table class="code"><tr><td>
 
-```js
+```js title="Code"
 console.log(0xFF); // Hexadécimal
 console.log(0b11111111); // Binaire
 console.log(0o377); // Octal
 ```
 
-</td> 
-<td>255<br/>255<br/>255</td></tr>
-</table>
+</td><td>
 
-<br/>
+```txt title="Résultat"
+255
+255
+255
+```
+</td></tr></table>
 
 Utilisation de `toString(base)` :
 - La base va de 2 à 36
 - Si la base choisie est 36, tous les chiffres et les caractères de l’alphabet latin sont utilisés (0-9 et a-z)
 - Deux points après le nombre ou des parenthèse autour du nombre si ce n’est pas une variable qui est utilisée
 
-<table class="code">
-<thead><tr><td>Code</td><td>Résultat</td></tr></thead>
-<tr><td>
+<table class="code"><tr><td>
 
-```js
+```js title="Code"
 console.log(123456..toString(36));
 console.log((123456).toString(36));
 ```
 
-</td> 
-<td>2n9c<br/>2n9c</td></tr>
-</table>
+</td><td>
 
-<br/>
+```txt title="Résultat"
+2n9c
+2n9c
+```
+</td></tr></table>
 
 Les fonctions mathématiques :
 - `Math.floor(n)` : Arrondi à l’entier inférieur
@@ -88,54 +89,117 @@ Les fonctions mathématiques :
 - `Math.max(n1, n2, n3 …)` et `Math.min(n1, n2, n3 …)` : Le maximum et le minimum parmi une liste de nombres
 - `Math.pow(n, p)` : Le nombre n à la puissance p
 
+<br/>
+
 Les calculs imprécis :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let sum = 0.1 + 0.2;
-console.log(sum); // Affiche : 0.30000000000000004
-console.log(+sum.toFixed(2)); // Affiche : 0.3
+console.log(sum);
+console.log(+sum.toFixed(2)); 
 ```
+
+</td><td>
+
+```txt title="Résultat"
+0.30000000000000004
+0.3
+```
+</td></tr></table>
 
 La fonction `isNaN(value)` contrôle si une valeur n’est pas un nombre :
-```js
-console.log(isNaN("str")); // Affiche : true
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(isNaN("str"));
 ```
+
+</td><td>
+
+```txt title="Résultat"
+true
+```
+</td></tr></table>
 
 La fonction `isFinite(value)` contrôle si une valeur est finie :
-```js
-console.log(isFinite("15")); // Affiche : true
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(isFinite("15"));
 ```
 
+</td><td>
+
+```txt title="Résultat"
+true
+```
+</td></tr></table>
+
 La fonction `parseInt(str, base)` prend une chaîne de caractères en paramètre et renvoie un entier dans une base :
-```js
-console.log(parseInt("100px")); // Affiche : 100
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(parseInt("100px"));
 ```
+
+</td><td>
+
+```txt title="Résultat"
+100
+```
+</td></tr></table>
+
 La fonction `parseFloat(str)` prend une chaîne de caractères en paramètre et renvoie un nombre à virgule flottant :
-```js
-console.log(parseFloat("12.5em")); // Affiche : 12.5
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(parseFloat("12.5em"));
 ```
+
+</td><td>
+
+```txt title="Résultat"
+12.5
+```
+</td></tr></table>
 
 
 ### 2.2 Chaîne de caractères
 Les backticks permettent d’intégrer des variables et des expressions dans une chaîne :
 
-<table class="code">
-<thead><tr><td>Code</td><td>Résultat</td></tr></thead>
-<tr><td>
+<table class="code"><tr><td>
 
-```js
+```js title="Code"
 console.log(`Le résultat est ${1 + 2}` );
 ```
 
-</td><td>Le résultat est 3</td></tr>
-</table>
+</td><td>
+
+```txt title="Résultat"
+Le résultat est 3
+```
+</td></tr></table>
 
 Ils permettent également d’écrire une chaîne de caractères sur plusieurs lignes :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 console.log(`ceci
 est
 un message
 sur plusieurs lignes`);
 ```
+
+</td><td>
+
+```txt title="Résultat"
+ceci
+est
+un message
+sur plusieurs lignes
+```
+</td></tr></table>
 
 Il est possible d’utiliser les guillemets simples et doubles avec des caractères spéciaux :
 - `\n` : Nouvelle ligne
@@ -146,6 +210,8 @@ Il est possible d’utiliser les guillemets simples et doubles avec des caractè
 - `\xNN` : Caractère unicode avec le code hexadécimal NN
 - `\uNNNN` : Symbole unicode avec le code hexadécimal NNNN avec un encodage UTF-16
 - `\u{NNNNNN}` : Symbole unicode avec le code hexadécimal NNNNNN (1 à 6 caractères) avec un encodage UTF-32
+
+<br/>
 
 Les propriétés et les méthodes :
 - `str.length` : longueur de la chaîne de caractères.
@@ -166,11 +232,24 @@ Si aucun caractère trouvé, `str[index]` renvoie `undefined` et `str.charAt(ind
 Liste des méthodes : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String
 
 Pour parcourir une chaîne de caractères :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 for (let char of "Hello") {
   console.log(char); 
 }
 ```
+
+</td><td>
+
+```txt title="Résultat"
+H
+e
+l
+l
+o
+```
+</td></tr></table>
 
 
 ### 2.3 Objet
@@ -191,9 +270,18 @@ let user = {
 ```
 
 Accès à la valeur d’une des propriétés :
-```js
-console.log(user.name); // Affiche : John
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(user.name);
 ```
+
+</td><td>
+
+```txt title="Résultat"
+John
+```
+</td></tr></table>
 
 Ajout d’une propriété :
 ```js
@@ -206,88 +294,146 @@ delete user.age;
 ```
 
 Pour les propriétés multi-mots : 
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {};
  
 // Alimentation de la propriété
 user["likes birds"] = true;
  
 // Récupération de la valeur de la propriété
-console.log(user["likes birds"]); // Affiche : true
+console.log(user["likes birds"]);
  
 // Suppression de la propriété
 delete user["likes birds"];
 ```
 
+</td><td>
+
+```txt title="Résultat"
+true
+```
+</td></tr></table>
+
 Les propriétés calculées :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {};
 let key = "test";
-user[key] = true; // Affiche : true
+user[key] = true;
  
 let fruit = "apple";
 let bag = {
   [fruit]: 5, 
 };
 
-console.log(bag.apple); // Affiche : 5
+console.log(bag.apple);
 ```
 
+</td><td>
+
+```txt title="Résultat"
+5
+```
+</td></tr></table>
+
 Pour vérifier qu’une propriété existe dans un objet :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = { name: "John", age: 30 };
-console.log("age" in user); // Affiche : true
+console.log("age" in user);
  
 let key = "age";
-console.log(key in user); // Affiche : true
+console.log(key in user);
 ```
+
+</td><td>
+
+```txt title="Résultat"
+true
+true
+```
+</td></tr></table>
+
 
 #### 2.3.2 Boucler sur les propriétés d'un objet
 - En utilisant `… in …` :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = { name: "John", age: 30 };
  
 for (let key in user) {
   console.log(`${key} : ${user[key]}`);
 }
 ```
-```json title="Résultat"
+
+</td><td>
+
+```txt title="Résultat"
 name : John
 age : 30
 ```
+</td></tr></table>
 
 - En utilisant `Object.keys(obj)` pour récupérer les clés :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 for (let key of Object.keys(user)) {
   console.log(`${key} : ${user[key]}`);
 }
 ```
-```json title="Résultat"
+
+</td><td>
+
+```txt title="Résultat"
 name : John
 age : 30
 ```
+</td></tr></table>
 
 - En utilisant `Object.values(obj)` pour récupérer les valeurs des propriétés :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 for (let value of Object.values(user)) {
   console.log(value);
 }
 ```
-```json title="Résultat"
+
+</td><td>
+
+```txt title="Résultat"
 John
 30
 ```
+</td></tr></table>
 
 - En utilisant `Object.entries(obj)` pour récupérer les propriétés avec leurs valeurs :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 for (let [key, value] of Object.entries(user)) {
   console.log(`${key} : ${value}`);
 }
 ```
-```json title="Résultat"
+
+</td><td>
+
+```txt title="Résultat"
 name : John
 age : 30
 ```
+</td></tr></table>
+
 
 #### 2.3.3 Copie
 Copie des propriétés d’un (ou plusieurs) objet(s) vers un autre objet. Si la propriété existe déjà dans l’objet de destination, alors la valeur de cette propriété est remplacée.
@@ -336,7 +482,9 @@ Pour choisir son propre traitement de conversion, il faut implémenter la métho
 
 
 Il est possible d’utiliser les méthodes des tableaux sur les données d’un objet. Il faut transformer l’objet en tableau, puis effectuer les modifications souhaitées avec les méthodes choisies, puis ensuite re-transformer le tableau en objet.
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let prices = {
   banane: 1,
   orange: 2,
@@ -346,7 +494,15 @@ let prices = {
 let doublePrices = Object.fromEntries(
   Object.entries(prices).map(([key, value]) => [key, value * 2])
 );
+
+console.log(doublePrices);
 ```
+</td><td>
+
+```txt title="Résultat"
+{ banane: 2, orange: 4, viande: 8 }
+```
+</td></tr></table>
 
 Quand une méthode d’un objet est appelé comme suit : `object.method()`, le `this` correspond à `object`.
 
@@ -358,13 +514,22 @@ Quand une méthode d’un objet est appelé comme suit : `object.method()`, le `
 
 Les méthodes pour gérer les attributs des propriétés :
 - `Object.getOwnPropertyDescriptor(obj, propertyName)` : permet de récupérer l’information sur les attributs d’une propriété propertyName présente dans un objet.
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {
   name: "Robert"
 }
 
-console.log(JSON.stringify(Object.getOwnPropertyDescriptor(user, 'name'), null, 2));
+console.log(
+  JSON.stringify(
+    Object.getOwnPropertyDescriptor(user, 'name'), null, 2
+  )
+);
 ```
+</td><td>
+
 ```json title="Résultat"
 {
   "value": "Robert",
@@ -373,9 +538,13 @@ console.log(JSON.stringify(Object.getOwnPropertyDescriptor(user, 'name'), null, 
   "configurable": true
 }
 ```
+</td></tr></table>
 
 - `Object.defineProperty(obj, propertyName, descriptor)` : permet de modifier les attributs d’une propriété propertyName présente dans un objet.
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {
   name: "Robert",
   age: 35
@@ -386,18 +555,33 @@ Object.defineProperty(user, "age", {
 });
  
 user.age = 13;
-console.log(user); // Affiche : { name: 'Robert', age: 35 }
+console.log(user); 
 ```
+</td><td>
+
+```txt title="Résultat"
+{ name: 'Robert', age: 35 }
+```
+</td></tr></table>
 
 - `Object.getOwnPropertyDescriptors(obj)` : permet de récupérer l’information sur les attributs de toutes les propriétés présentes sur un objet.
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {
   name: "Robert",
   age: 35
 }
 
-console.log(JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2));
+console.log(
+  JSON.stringify(
+    Object.getOwnPropertyDescriptors(user), null, 2
+  )
+);
 ```
+</td><td>
+
 ```json title="Résultat"
 {
   "name": {
@@ -414,9 +598,13 @@ console.log(JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2));
   }
 }
 ```
+</td></tr></table>
 
 - `Object.defineProperties(obj, descriptors)` : permet de modifier les attributs des propriétés présentes dans un objet.
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {
   name: "Robert",
   age: 35
@@ -429,8 +617,14 @@ Object.defineProperties(user, {
  
 user.name = "Paul";
 user.age = 34;
-console.log(user); // Affiche : { name: 'Robert', age: 35 }
+console.log(user);
 ```
+</td><td>
+
+```txt title="Résultat"
+{ name: 'Robert', age: 35 }
+```
+</td></tr></table>
 
 - `Object.preventExtensions(obj)` : permet d’interdire l’ajout de nouvelles propriétés à un objet.
 - `Object.seal(obj)` : permet d’interdire l’ajout et la suppression de propriétés dans un objet.
@@ -440,7 +634,10 @@ console.log(user); // Affiche : { name: 'Robert', age: 35 }
 - `Object.isFrozen(obj)` : retourne `true` si l’ajout, la modification et la suppression de propriétés est interdite, sinon `false`.
 
 #### 2.3.7 Les getters et setters
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {
   get name() {
     return this._name;
@@ -452,8 +649,14 @@ let user = {
 };
  
 user.name = "Robert";
-console.log(user.name); // Affiche : Robert
+console.log(user.name);
 ```
+</td><td>
+
+```txt title="Résultat"
+Robert
+```
+</td></tr></table>
 
 
 ### 2.4 Tableau
@@ -473,18 +676,32 @@ Les propriétés et méthodes :
 - `arr.shift()` : renvoie et enlève le premier élément du tableau
 - `arr.toString()` : transforme le tableau en une chaîne de caractères avec tous les éléments séparés par une virgule
 - `arr.splice(start, [deleteCount, [item1, [item2 …]]])` : A partir de l’index `start` du tableau, suppression des `deleteCount` éléments (peut être égal à 0), puis insère les `item1`, `item2` … à leur place. Les index négatifs sont autorisés.
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let arr = new Array(1, 2, 3);
  
-// Ajout
-arr.splice(1, 0, 3, 4); // [1, 3, 4, 2, 3]
+// Ajout de [3, 4] à partir de l'index 1
+arr.splice(1, 0, 3, 4); 
+console.log(arr);
  
-// Suppression
-arr.splice(1, 2); // [1, 2, 3]
+// Suppression de deux valeurs à partir de l'index 1
+arr.splice(1, 2); 
+console.log(arr);
  
-// Suppression + Ajout
-arr.splice(1, 2, 3, 4); // [1, 3, 4]
+// Suppression de deux valeurs à partir de l'index 1 + Ajout de [3,4] à partir de l'index 1
+arr.splice(1, 2, 3, 4); 
+console.log(arr);
 ```
+</td><td>
+
+```txt title="Résultat"
+[ 1, 3, 4, 2, 3 ]
+[ 1, 2, 3 ]
+[ 1, 3, 4 ]
+```
+</td></tr></table>
 
 - `arr.slice([start, [end]])` : 
   - Si au moins un index est renseigné, il copie le tableau de l’index `start` à l’index `end` non inclus. Les index négatifs sont autorisés.
@@ -493,18 +710,24 @@ arr.splice(1, 2, 3, 4); // [1, 3, 4]
 - `arr.concat([value1, [value2 …]])` : Créé un nouveau tableau constitué des éléments du tableau d’origine et des valeurs à ajouter. Le tableau d’origine n’est pas modifié.
 
 - `arr.forEach((item, [index, array]) => { … })` : Exécute une fonction une fois sur chaque élément du tableau.
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let arr = new Array(1, 2, 3);
  
 arr.forEach((item, index, array) => {
   console.log(`${item} is at index ${index} in ${array}`);
 });
 ```
-```js title="Résultat"
+</td><td>
+
+```txt title="Résultat"
 1 is at index 0 in 1,2,3
 2 is at index 1 in 1,2,3
 3 is at index 2 in 1,2,3
 ```
+</td></tr></table>
 
 - `arr.indexOf(item, [index])` : renvoie la position de la première occurrence de l'élément dans le tableau à partir d’un index (paramètre facultatif). Si l’élément n’est pas présent, la fonction renvoie -1.
 - `arr.lastIndexOf(item, [index])` : le même fonctionnement que `indexOf()` mais en partant de la fin du tableau.
