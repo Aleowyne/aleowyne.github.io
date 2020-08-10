@@ -1559,10 +1559,10 @@ console.log(uneDate);
 La méthode `parse(datestring)` a les mêmes paramètres, mais renvoie un timestamp.
 
 - avec `new Date(year, month, [date], [hours], [minutes], [seconds], [ms])` :
-  - year : sur 4 chiffres
-  - month : de 0 (Janvier) à 11 (Décembre)
-  - date : jour du mois. S’il n’est pas renseigné, alors il sera alimenté automatiquement par 1.
-  - hours, minutes, seconds, ms : S’ils ne sont pas renseignés, alors ils seront alimentés par 0.
+  - `year` : sur 4 chiffres
+  - `month` : de 0 (Janvier) à 11 (Décembre)
+  - `date` : jour du mois. S’il n’est pas renseigné, alors il sera alimenté automatiquement par 1.
+  - `hours`, `minutes`, `seconds`, `ms` : S’ils ne sont pas renseignés, alors ils seront alimentés par 0.
 
 <table class="code"><tr><td>
 
@@ -1623,7 +1623,7 @@ Elle peut aussi prendre en paramètre :
 - une donnée de type primitive
 
 Cette méthode a également deux paramètres facultatifs : 
-- replacer : 
+- `replacer` : 
   - Tableau de propriétés qui permet d’encoder seulement les propriétés présentes dans ce tableau
   - Fonction de type `function(key, value)` qui retourne une nouvelle valeur qui remplacera la valeur originale
 
@@ -1646,7 +1646,7 @@ console.log(JSON.stringify(user, (key, value) => {
 ```
 </td></tr></table>
 
-- space : Nombre d’espaces permettant de formater le résultat
+- `space` : Nombre d’espaces permettant de formater le résultat
 
 <table class="code"><tr><td>
 
@@ -1706,7 +1706,7 @@ Paul
 
 
 Cette méthode a également un paramètre facultatif :
-- reviver : Fonction de type `function(key, value)` qui retourne une nouvelle valeur qui remplacera la valeur originale
+- `reviver` : Fonction de type `function(key, value)` qui retourne une nouvelle valeur qui remplacera la valeur originale
 
 <table class="code"><tr><td>
 
@@ -1762,13 +1762,110 @@ Les conversions d'un type vers un autre type sont effectuées avec les instructi
   - Valeur de départ 0, `null`, `undefined`, `NaN`, "" ⇒ Valeur d'arrivée `false`
   - Pour les autres valeurs ⇒ Valeur d'arrivée `true`
 
-<!--
-### 1.4 Fonctions d'interaction
+
+## 3 Fonctions
+### 3.1 Les paramètres
+Paramètre par défaut dans une fonction : 
+```js
+let getName = (id = 1) => { … }
+```
+
+Les fonctions de rappel (callback) sont des fonctions passées en paramètre d’une autre fonction :
+<table class="code"><tr><td>
+
+```js title="Code"
+let ask = (id, yes, no) => {
+  if (id == 1) yes()
+  else no();
+}
+ 
+showOk = () => {
+  console.log( "Validation" );
+}
+ 
+showCancel = () => {
+  console.log( "Annulation" );
+}
+ 
+ask(1, showOk, showCancel);
+```
+</td><td>
+
+```txt title="Résultat"
+Validation
+```
+</td></tr></table>
+
+
+Pour utiliser un nombre indéfini de paramètres sous forme d’un tableau :
+<table class="code"><tr><td>
+
+```js title="Code"
+let total = (...args) => {
+  let sum = 0;
+  for (let arg of args) sum += arg;
+  return sum;
+}
+ 
+console.log(total(1,3,4));
+```
+</td><td>
+
+```txt title="Résultat"
+8
+```
+</td></tr></table>
+
+Le paramètre du reste doit obligatoirement être le dernier paramètre.
+
+L’opérateur de décomposition permet de faire l’opération inverse, à savoir transformer un tableau en une liste d’arguments qui sera passée comme paramètre de fonction :
+<table class="code"><tr><td>
+
+```js title="Code"
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+console.log(Math.max(1, ...arr1, 2, ...arr2, 25));
+```
+</td><td>
+
+```txt title="Résultat"
+25
+```
+</td></tr></table>
+
+
+Il peut aussi être utilisé pour fusionner plusieurs tableaux : 
+<table class="code"><tr><td>
+
+```js title="Code"
+let arr = [3, 5, 1];
+let arr2 = [8, 9, 15];
+let merged = [0, ...arr, 2, ...arr2];
+console.log(merged);
+```
+</td><td>
+
+```txt title="Résultat"
+[ 0, 3, 5, 1, 2, 8, 9, 15 ]
+```
+</td></tr></table>
+
+Et aussi pour copier un objet ou un tableau :
+```js
+let arr = [1, 2, 3];
+let arrCopy = [...arr];
+ 
+let obj = { a: 1, b: 2, c: 3 };
+let objCopy = {...obj};
+```
+
+
+### 3.2 Fonctions d'interaction
 La fonction `alert(message)` affiche une fenêtre modale avec le texte donné en paramètre.
 
-La fonction `prompt(titre, [defaut])` affiche une fenêtre modale avec :
-- un texte donné en paramètre (titre)
-- un champ de saisie dont le contenu peut être pré-alimenté via le paramètre facultatif (defaut)
+La fonction `prompt(title, [default])` affiche une fenêtre modale avec :
+- `title` : un texte donné en paramètre
+-  `default` : un champ de saisie dont le contenu peut être pré-alimenté via le paramètre facultatif
 - deux boutons Ok et Annuler  
 
 Cette fonction renvoie le contenu du champ de saisie.
@@ -1776,7 +1873,51 @@ Cette fonction renvoie le contenu du champ de saisie.
 La fonction `confirm(question)` affiche une fenêtre modale avec une question donnée en paramètre et deux boutons Ok et Annuler. Elle renvoie true ou false en fonction du choix de l’utilisateur.
 
 
--->
+### 3.3 Fonctions de gestion du délai d’exécution
+La fonction `setTimeout(func, [delay], [arg1], [arg2] ...)` permet d’exécuter une fonction ou un bloc de code après une certaine période définie :
+- `func` : la fonction ou le code à exécuter
+- `delay` : le délai avant l’exécution du code, en millisecondes. Par défaut, le délai est égal à 0.
+- `arg1`, `arg2` … : les arguments de la fonction (ne fonctionne pas avec < IE9)
+
+<table class="code"><tr><td>
+
+```js title="Code"
+// Appelle la fonction 6 secondes après l'exécution du code
+let timer = setTimeout(() => {
+  console.log("Un autre texte");
+}, 6000);
+```
+</td><td>
+
+```txt title="Résultat"
+Un autre texte
+```
+</td></tr></table>
+
+La fonction `clearTimeout(timer)` permet d’annuler l’exécution.
+
+La fonction `setInterval(func, [delay], [arg1], [arg2] ...)` permet d’exécuter une fonction ou un bloc de code en boucle selon un intervalle de temps fixe entre chaque appel.
+<table class="code"><tr><td>
+
+```js title="Code"
+// Appelle la fonction toutes les secondes
+let interval = setInterval(() => {
+  console.log("Un intervalle");
+}, 1000);
+```
+</td><td>
+
+```txt title="Résultat"
+Un intervalle
+Un intervalle
+Un intervalle
+Un intervalle
+...
+```
+</td></tr></table>
+
+
+La fonction `clearInterval(interval)` permet d'annuler l’exécution.
 
 <br/>
 
