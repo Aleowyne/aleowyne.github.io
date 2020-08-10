@@ -1508,38 +1508,227 @@ My menu 200 100
 </td></tr></table>
 
 
+### 2.11 Date et heure
+Création d’un nouvel objet `Date` :
+- avec `new Date()` :
 
-<br/>
+<table class="code"><tr><td>
 
-<!--
-### 1.4 Fonctions d'interaction
-La fonction `alert(message)` affiche une fenêtre modale avec le texte donné en paramètre.
+```js title="Code"
+let dateNow = new Date();
+console.log(dateNow);
+```
+</td><td>
 
-La fonction `prompt(titre, [defaut])` affiche une fenêtre modale avec :
-- un texte donné en paramètre (titre)
-- un champ de saisie dont le contenu peut être pré-alimenté via le paramètre facultatif (defaut)
-- deux boutons Ok et Annuler  
+```txt title="Résultat"
+2020-08-10T15:28:36.137Z
+```
+</td></tr></table>
 
-Cette fonction renvoie le contenu du champ de saisie.
+- avec `new Date(millisecondes)` :
 
-La fonction `confirm(question)` affiche une fenêtre modale avec une question donnée en paramètre et deux boutons Ok et Annuler. Elle renvoie true ou false en fonction du choix de l’utilisateur.
+<table class="code"><tr><td>
 
+```js title="Code"
+let uneDate = new Date(24 * 3600 * 1000);
+console.log(uneDate);
+```
+</td><td>
 
-### 1.5 Conversion
-Les conversions d'un type vers un autre type sont effectuées avec les instructions suivantes :
-- vers une chaîne de caractères : `String(valeur)`
-- vers un nombre : `Number(valeur)`
-  - Valeur de départ `undefined` ⇒ Valeur d'arrivée `NaN`
-  - Valeur de départ `null` ⇒ Valeur d'arrivée 0
-  - Valeur de départ `true` ⇒ Valeur d'arrivée 1
-  - Valeur de départ `false` ⇒ Valeur d'arrivée 0
-  - Valeur de départ de type `string` ⇒ Si chaîne vide, alors 0, sinon `NaN`
-- vers un booléen : `Boolean(valeur)`
-  - Valeur de départ 0, `null`, `undefined`, `NaN`, "" ⇒ Valeur d'arrivée `false`
-  - Pour les autres valeurs ⇒ Valeur d'arrivée `true`
+```txt title="Résultat"
+1970-01-02T00:00:00.000Z
+```
+</td></tr></table>
 
 
-### 1.6 Opérateurs
+- avec `new Date(datestring)` :
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let uneDate = new Date("2020-01-01T00:02:00.000Z");
+console.log(uneDate); 
+```
+</td><td>
+
+```txt title="Résultat"
+2020-01-01T00:02:00.000Z
+```
+</td></tr></table>
+
+La méthode `parse(datestring)` a les mêmes paramètres, mais renvoie un timestamp.
+
+- avec `new Date(year, month, [date], [hours], [minutes], [seconds], [ms])` :
+  - year : sur 4 chiffres
+  - month : de 0 (Janvier) à 11 (Décembre)
+  - date : jour du mois. S’il n’est pas renseigné, alors il sera alimenté automatiquement par 1.
+  - hours, minutes, seconds, ms : S’ils ne sont pas renseignés, alors ils seront alimentés par 0.
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let uneDate = new Date(2020,0,2,2);
+console.log(uneDate);
+```
+</td><td>
+
+```txt title="Résultat"
+2020-01-02T01:00:00.000Z
+```
+</td></tr></table>
+
+Les getters :
+- `getFullYear()` : Récupère l’année sur 4 chiffres
+- `getMonth()` : Récupère le mois, de 0 à 11
+- `getDate()` : Récupère le jour du mois
+- `getHours()`, `getMinutes()`, `getSeconds()`, `getMilliseconds()` : Récupère l’heure, les minutes, les secondes et les millisecondes
+- `getDay()` : Récupère le jour de la semaine : de 0 (dimanche) à 6 (samedi)
+- `getUTCFullYear()`, `getUTCMonth()`, `getUTCDate()`, `getUTCHours()`, `getUTCMinutes()`, `getUTCSeconds()`, `getUTCMilliseconds()` : Récupère les données précédentes, mais en fonction du fuseau horaire local
+- `getTime()` : Récupère le timestamp
+- `getTimezoneOffset()` : Retourne la différence en minutes, entre le fuseau horaire local et le fuseau horaire UTC
+
+Les setters :
+- `setFullYear(year, [month], [date])` : Alimente l’année
+- `setMonth(month, [date])` : Alimente le mois
+- `setDate(date)` : Alimente le jour du mois
+- `setHours(hour, [min], [sec], [ms])` : Alimente l’heure
+- `setMinutes(min, [sec], [ms])` : Alimente les minutes
+- `setSeconds(sec, [ms])` : Alimente les secondes
+- `setMilliseconds(ms)` : Alimente les millisecondes
+- `setUTCFullYear()`, `setUTCMonth()`, `setUTCDate()`, `setUTCHours()`, `setUTCMinutes()`, `setUTCSeconds()`, `setUTCMilliseconds()` : Alimente les données précédentes, mais en fonction du fuseau horaire local
+- `setTime(timestamp)` : Alimente la date à partir d’un timestamp
+
+
+### 2.12 Les méthodes JSON
+La méthode `JSON.stringify(value, [replacer], [space])` convertit un objet en JSON :
+<table class="code"><tr><td>
+
+```js title="Code"
+let user = {
+  name: "Paul",
+  age: 30
+};
+ 
+console.log(JSON.stringify(user)); 
+```
+</td><td>
+
+```json title="Résultat"
+{"name":"Paul","age":30}
+```
+</td></tr></table>
+
+Elle peut aussi prendre en paramètre :
+- un tableau
+- une donnée de type primitive
+
+Cette méthode a également deux paramètres facultatifs : 
+- replacer : 
+  - Tableau de propriétés qui permet d’encoder seulement les propriétés présentes dans ce tableau
+  - Fonction de type `function(key, value)` qui retourne une nouvelle valeur qui remplacera la valeur originale
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let user = {
+  name: "Paul",
+  age: 30
+};
+ 
+console.log(JSON.stringify(user, (key, value) => {
+  return (key == 'age') ? undefined : value;
+}));
+```
+</td><td>
+
+```json title="Résultat"
+{"name":"Paul"}
+```
+</td></tr></table>
+
+- space : Nombre d’espaces permettant de formater le résultat
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let user = {
+  name: "Paul",
+  age: 30
+};
+ 
+console.log(JSON.stringify(user, null, 2));
+```
+</td><td>
+
+```json title="Résultat"
+{
+  "name": "Paul",
+  "age": 30
+}
+```
+</td></tr></table>
+
+La méthode `toJSON()` peut être utilisée comme `toString()` :
+<table class="code"><tr><td>
+
+```js title="Code"
+let user = {
+  name: "Paul",
+  age: 30,
+  
+  toJSON() {
+    return this.age;
+  }
+};
+ 
+console.log(JSON.stringify(user));
+```
+</td><td>
+
+```txt title="Résultat"
+30
+```
+</td></tr></table>
+
+La méthode `JSON.parse(str, [reviver])` convertit un JSON en objet :
+<table class="code"><tr><td>
+
+```js title="Code"
+let json = '{"name":"Paul","age":30}';
+console.log(JSON.parse(json).name);
+```
+</td><td>
+
+```txt title="Résultat"
+Paul
+```
+</td></tr></table>
+
+
+Cette méthode a également un paramètre facultatif :
+- reviver : Fonction de type `function(key, value)` qui retourne une nouvelle valeur qui remplacera la valeur originale
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let json = '{"name":"Paul", "age":30, "date":"1990-05-30T12:00:00.000Z"}';
+ 
+console.log(
+  JSON.parse(json, function(key, value) {
+    if (key == 'date') return new Date(value);
+    return value;
+  })
+);
+```
+</td><td>
+
+```json title="Résultat"
+{ name: 'Paul', age: 30, date: 1990-05-30T12:00:00.000Z }
+```
+</td></tr></table>
+
+
+### 2.13 Opérateurs
 L’opérateur "ou" représenté par `||` :
 - Evalue les opérandes de gauche à droite
 - Pour chaque opérande, les convertit en booléen. Si le résultat est vrai, alors la valeur originale de l’opérande est retournée
@@ -1560,7 +1749,36 @@ L’opérateur de coalescence des nuls représenté par `??` :
 - Renvoie son opérande de gauche lorsque son opérande de gauche est `null` ou `undefined`
 - Il ne faut pas utiliser cet opérateur avec les opérateurs `&&` et `||`
 
-<br/>-->
+### 2.14 Conversion
+Les conversions d'un type vers un autre type sont effectuées avec les instructions suivantes :
+- vers une chaîne de caractères : `String(valeur)`
+- vers un nombre : `Number(valeur)`
+  - Valeur de départ `undefined` ⇒ Valeur d'arrivée `NaN`
+  - Valeur de départ `null` ⇒ Valeur d'arrivée 0
+  - Valeur de départ `true` ⇒ Valeur d'arrivée 1
+  - Valeur de départ `false` ⇒ Valeur d'arrivée 0
+  - Valeur de départ de type `string` ⇒ Si chaîne vide, alors 0, sinon `NaN`
+- vers un booléen : `Boolean(valeur)`
+  - Valeur de départ 0, `null`, `undefined`, `NaN`, "" ⇒ Valeur d'arrivée `false`
+  - Pour les autres valeurs ⇒ Valeur d'arrivée `true`
+
+<!--
+### 1.4 Fonctions d'interaction
+La fonction `alert(message)` affiche une fenêtre modale avec le texte donné en paramètre.
+
+La fonction `prompt(titre, [defaut])` affiche une fenêtre modale avec :
+- un texte donné en paramètre (titre)
+- un champ de saisie dont le contenu peut être pré-alimenté via le paramètre facultatif (defaut)
+- deux boutons Ok et Annuler  
+
+Cette fonction renvoie le contenu du champ de saisie.
+
+La fonction `confirm(question)` affiche une fenêtre modale avec une question donnée en paramètre et deux boutons Ok et Annuler. Elle renvoie true ou false en fonction du choix de l’utilisateur.
+
+
+-->
+
+<br/>
 
 :::tip Sources
 https://javascript.info/  
