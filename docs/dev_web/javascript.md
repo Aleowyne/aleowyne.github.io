@@ -751,29 +751,66 @@ Liste des méthodes : https://developer.mozilla.org/fr/docs/Web/JavaScript/Refer
 
 Boucler sur un tableau :
 - Pour avoir accès aux index et aux éléments :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let arr = new Array(1, 2, 3);
+
 for (let i = 0; i < arr.length; i++) {
-  console.log(arr[i]);
+  console.log(`Index ${i} : ${arr[i]}`);
 }
 ```
+</td><td>
+
+```txt title="Résultat"
+Index 0 : 1
+Index 1 : 2
+Index 2 : 3
+```
+</td></tr></table>
 
 - Pour avoir accès seulement aux éléments :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let fruits = new Array("Pomme", "Poire", "Abricot");
+
 for (let fruit of fruits) {
   console.log(fruit);
 }
 ```
+</td><td>
 
+```txt title="Résultat"
+Pomme
+Poire
+Abricot
+```
+</td></tr></table>
 
 ### 2.5 Symbole
 Un symbole est un type de données primitif représentant une donnée unique et inchangeable qui peut être utilisée afin de représenter des identifiants pour des propriétés d'un objet.
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let id = Symbol("12");
-console.log(id.toString()); // Affiche : Symbol(12)
-console.log(id.description); // Affiche : 12
+console.log(id.toString());
+console.log(id.description);
 ```
+</td><td>
+
+```txt title="Résultat"
+Symbol(12)
+12
+```
+</td></tr></table>
+
 Comparaison entre une propriété "id" et un symbole "id" :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let id = Symbol("id");
 let user = { name: "John" };
  
@@ -783,17 +820,32 @@ user[id] = "12";
 // Ajout d'une propriété "id" à l’objet user
 user.id = "Un identifiant";
  
-console.log(user[id]); // Affiche : 12
-console.log(user.id); // Affiche : Un identifiant
+console.log(user[id]);
+console.log(user.id);
 ```
+</td><td>
+
+```txt title="Résultat"
+12
+Un identifiant
+```
+</td></tr></table>
 
 Les symboles ne sont pas pris en compte lors de l'utilisation de la boucle `for … in`, `Object.keys()` et `JSON.stringify()`.
 
 Les symboles globaux :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let sym = Symbol.for("name");
 console.log(Symbol.keyFor(sym)); // Affiche : name
 ```
+</td><td>
+
+```txt title="Résultat"
+name
+```
+</td></tr></table>
 
 Les méthodes pour les symboles globaux : https://tc39.es/ecma262/#sec-well-known-symbols
 
@@ -802,10 +854,12 @@ Les méthodes pour les symboles globaux : https://tc39.es/ecma262/#sec-well-know
 L’objet `Map` permet de stocker des couples (clé, valeur). Les clés peuvent être de n’importe quel type de données.
 
 La création d’un objet `Map` peut se faire ainsi :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 // Initialisation d'un objet Map
 let legumes = new Map();
-console.log(legumes); // Affiche : Map(0) {}
+console.log(legumes);
  
 // Initialisation d'un objet Map à partir d'un Array
 const fruitsArray = [
@@ -815,19 +869,35 @@ const fruitsArray = [
 ];
  
 let fruits = new Map(fruitsArray);
-console.log(fruits); // Affiche : Map(3) { 1 => 'Banane', 2 => 'Poire', 3 => 'Pomme' }
+console.log(fruits);
 ```
+</td><td>
+
+```bash title="Résultat"
+Map(0) {}
+Map(3) { 1 => 'Banane', 2 => 'Poire', 3 => 'Pomme' }
+```
+</td></tr></table>
 
 <br/>
 
 Les méthodes disponibles sont les suivantes :
 - `map.set(key, value)` : Stocke un nouveau couple (clé, valeur)
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let fruits = new Map();
 fruits.set(1, "Pomme");
 fruits.set(2, "Poire");
-console.log(fruits); // Affiche : Map(2) { 1 => 'Pomme', 2 => 'Poire' }
+console.log(fruits);
 ```
+</td><td>
+
+```bash title="Résultat"
+Map(2) { 1 => 'Pomme', 2 => 'Poire' }
+```
+</td></tr></table>
 
 Il est possible de chaîner les appels de la méthode :
 ```js
@@ -835,67 +905,157 @@ fruits.set(1, "Pomme")
       .set(2, "Poire");
 ```
 
+<br/>
+
 - `map.get(key)` : Récupère la valeur à partir d'une clé
-```js
-console.log(fruits.get(1)); // Affiche : Pomme
-console.log(fruits.get(3)); // Affiche : undefined
+
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(fruits.get(1)); 
+console.log(fruits.get(3)); 
 ```
+</td><td>
+
+```txt title="Résultat"
+Pomme
+undefined
+```
+</td></tr></table>
 
 - `map.has(key)` : Retourne `true` si la clé existe, sinon `false`
-```js
-console.log(fruits.has(2)); // Affiche : true
-console.log(fruits.has("Poire")); // Affiche : false
+
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(fruits.has(2));
+console.log(fruits.has("Poire"));
 ```
+</td><td>
+
+```txt title="Résultat"
+true
+false
+```
+</td></tr></table>
 
 - `map.size` : Retourne la taille de l'objet `Map`
-```js
-console.log(fruits.size); // Affiche : 2
+
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(fruits.size);
 ```
+</td><td>
+
+```txt title="Résultat"
+2
+```
+</td></tr></table>
 
 - `map.delete(key)` : Supprime le couple (clé, valeur) à partir d'une clé
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 fruits.delete(1);
-console.log(fruits); // Affiche : Map(1) { 2 => 'Poire' }
+console.log(fruits);
 ```
+</td><td>
+
+```bash title="Résultat"
+Map(1) { 2 => 'Poire' }
+```
+</td></tr></table>
 
 - `map.clear()` : Vide l'objet `Map`
-```js
-fruits.clear();
-console.log(fruits); // Affiche : Map(0) {}
-```
 
-<br/>
+<table class="code"><tr><td>
+
+```js title="Code"
+fruits.clear();
+console.log(fruits);
+```
+</td><td>
+
+```bash title="Résultat"
+Map(0) {}
+```
+</td></tr></table>
 
 L’itération sur un objet `Map` peut se faire de différentes manières :
 - En utilisant `forEach()` :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let fruits = new Map();
+fruits.set(1, "Pomme")
+      .set(2, "Poire");
+
 fruits.forEach((value, key, map) => {
   console.log(`${key} : ${value}`);
 });
 ```
+</td><td>
+
+```txt title="Résultat"
+1 : Pomme
+2 : Poire
+```
+</td></tr></table>
 
 - En utilisant la déstructuration d’`Array` :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 for (let [key, value] of fruits) {
   console.log(`${key} : ${value}`);
 }
 ```
+</td><td>
+
+```txt title="Résultat"
+1 : Pomme
+2 : Poire
+```
+</td></tr></table>
 
 - Boucle sur les clés :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 for (let key of fruits.keys()) {
   console.log(key);
 }
 ```
+</td><td>
+
+```txt title="Résultat"
+1
+2
+```
+</td></tr></table>
 
 - Boucle sur les valeurs :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 for (let value of fruits.values()) {
   console.log(value);
 }
 ```
+</td><td>
 
-<br/>
+```txt title="Résultat"
+Pomme
+Poire
+```
+</td></tr></table>
+
 
 Pour transformer un objet simple vers un objet `Map` :
 ```js
@@ -912,28 +1072,44 @@ let obj = Object.fromEntries(map);
 L’objet `Set` permet de stocker un ensemble de valeurs uniques.
 
 La création d’un objet `Set` peut se faire ainsi :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 // Initialisation d'un objet Set
 let legumes = new Set();
-console.log(legumes); // Affiche : Set(0) {}
+console.log(legumes);
  
 // Initialisation d'un objet Set à partir d'un Array
 const fruitsArray = ['Banane', 'Poire', 'Pomme'];
 let fruits = new Set(fruitsArray);
-console.log(fruits); // Affiche : Set(3) { 'Banane', 'Poire', 'Pomme' }
+console.log(fruits);
 ```
+</td><td>
 
-<br/>
+```bash title="Résultat"
+Set(0) {}
+Set(3) { 'Banane', 'Poire', 'Pomme' }
+```
+</td></tr></table>
 
 Les méthodes disponibles sont les suivantes :
 - `set.add(value)` : Stocke une nouvelle valeur. Elle n’est pas ajoutée si elle existe déjà.
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let fruits = new Set();
 fruits.add("Pomme");
 fruits.add("Poire");
 fruits.add("Pomme");
-console.log(fruits); // Affiche : Set(2) { 'Pomme', 'Poire' }
+console.log(fruits); 
 ```
+</td><td>
+
+```bash title="Résultat"
+Set(2) { 'Pomme', 'Poire' }
+```
+</td></tr></table>
 
 Il est possible de chaîner les appels de la méthode :
 ```js
@@ -941,45 +1117,107 @@ fruits.add("Pomme")
       .add("Poire");
 ```
 
+<br/>
+
 - `set.has(value)` : Retourne `true` si la valeur existe, sinon `false`
-```js
-console.log(fruits.has("Pomme")); // Affiche : true
-console.log(fruits.has("Banane")); // Affiche : false
+
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(fruits.has("Pomme")); 
+console.log(fruits.has("Banane")); 
 ```
+</td><td>
+
+```txt title="Résultat"
+true
+false
+```
+</td></tr></table>
 
 - `set.size` : Retourne la taille de l'objet `Set`
-```js
-console.log(fruits.size); // Affiche : 2
+
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(fruits.size);
 ```
+</td><td>
+
+```txt title="Résultat"
+2
+```
+</td></tr></table>
 
 - `set.delete(value)` : Supprime la valeur
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 fruits.delete("Pomme");
-console.log(fruits); // Affiche : Set(1) { 'Poire' }
+console.log(fruits);
 ```
+</td><td>
+
+```bash title="Résultat"
+Set(1) { 'Poire' }
+```
+</td></tr></table>
 
 - `set.clear()` : Vide l'objet `Set`
-```js
-fruits.clear();
-console.log(fruits); // Affiche : Set(0) {}
-```
 
-<br/>
+<table class="code"><tr><td>
+
+```js title="Code"
+fruits.clear();
+console.log(fruits);
+```
+</td><td>
+
+```txt title="Résultat"
+Set(0) {}
+```
+</td></tr></table>
+
 
 L’itération sur un objet `Set` peut se faire de différentes manières :
 - En utilisant `forEach()` :
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
+let fruits = new Set();
+fruits.add("Pomme")
+      .add("Poire");
+
 fruits.forEach((value, valueAgain, set) => {
   console.log(value);
 })
 ```
+</td><td>
+
+```txt title="Résultat"
+Pomme
+Poire
+```
+</td></tr></table>
 
 - En utilisant `for … of` :
-```js
-for (let value of fruits) {
-  console.log(value);
+
+<table class="code"><tr><td>
+
+```js title="Code"
+for (let fruit of fruits) {
+  console.log(fruit);
 }
 ```
+</td><td>
+
+```txt title="Résultat"
+Pomme
+Poire
+```
+</td></tr></table>
 
 
 ### 2.8 WeakMap
@@ -1008,23 +1246,52 @@ users.set(john, 1)
 ```
 
 - `weakMap.get(key)` : Récupère la valeur à partir d'une clé
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let usersTwo = new WeakMap();
-console.log(users.get(john)); // Affiche : 1
-console.log(usersTwo.get(john)); // Affiche : undefined
+console.log(users.get(john)); 
+console.log(usersTwo.get(john)); 
 ```
+</td><td>
+
+```txt title="Résultat"
+1
+undefined
+```
+</td></tr></table>
 
 - `weakMap.has(key)` : Retourne `true` si la clé existe, sinon `false`
-```js
-console.log(users.has(john)); // Affiche : true
-console.log(usersTwo.has(john)); // Affiche : false
+
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(users.has(john));
+console.log(usersTwo.has(john));
 ```
+</td><td>
+
+```txt title="Résultat"
+true
+false
+```
+</td></tr></table>
 
 - `weakMap.delete(key)` : Supprime le couple (clé, valeur) à partir d'une clé
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 users.delete(john);
-console.log(users.has(john)); // Affiche : false
+console.log(users.has(john)); 
 ```
+</td><td>
+
+```txt title="Résultat"
+false
+```
+</td></tr></table>
 
 
 ### 2.9 WeakSet
@@ -1053,34 +1320,71 @@ users.add(john)
 ```
 
 - `weakSet.has(value)` : Retourne `true` si la valeur existe, sinon `false`
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 let usersTwo = new WeakMap();
-console.log(users.has(john)); // Affiche : true
-console.log(usersTwo.has(john)); // Affiche : false
+console.log(users.has(john));
+console.log(usersTwo.has(john));
 ```
+</td><td>
+
+```txt title="Résultat"
+true
+false
+```
+</td></tr></table>
 
 - `weakSet.delete(value)` : Supprime la valeur
-```js
+
+<table class="code"><tr><td>
+
+```js title="Code"
 users.delete(john);
-console.log(users.has(john)); // Affiche : false
+console.log(users.has(john)); 
 ```
+</td><td>
+
+```txt title="Résultat"
+false
+```
+</td></tr></table>
+
 
 
 ### 2.10 Déstructuration
 La déstructuration permet d’extraire des données d’un tableau ou d’un objet grâce à une syntaxe dont la forme ressemble à la structure du tableau ou de l’objet.
 
 Exemple avec un tableau :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let arr = ["Paul", "Dubois"]
 let [firstname, lastname] = arr;
-console.log(`${firstname} - ${lastname}`); // Affiche : Paul - Dubois
+console.log(`${firstname} - ${lastname}`);
 ```
+</td><td>
+
+```txt title="Résultat"
+Paul - Dubois
+```
+</td></tr></table>
 
 Des éléments peuvent être ignorés :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let [firstname, , profession] = ["Paul", "Dubois", "Plombier", "France"];
-console.log(`${firstname} - ${profession}`); // Affiche : Paul - Plombier
+console.log(`${firstname} - ${profession}`);
 ```
+</td><td>
+
+```txt title="Résultat"
+Paul - Plombier
+```
+</td></tr></table>
+
 
 La partie droite peut être un itérable :
 ```js
@@ -1089,43 +1393,80 @@ let [one, two, three] = new Set([1, 2, 3]);
 ```
 
 La partie gauche peut être n’importe quel type de données assignable :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {};
 [user.firstname, user.lastname] = "Paul Dubois".split(' ');
-console.log(user); // Affiche : { firstname: 'Paul', lastname: 'Dubois' }
+console.log(user); 
 ```
+</td><td>
+
+```bash title="Résultat"
+{ firstname: 'Paul', lastname: 'Dubois' }
+```
+</td></tr></table>
+
 
 Le paramètre de reste, représenté par 3 points ```...```, permet de représenter un nombre indéfini d’arguments sous forme d’un tableau :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let [firstname, lastname, ...rest] = ["Paul", "Dubois", "Plombier", "France"];
-console.log(rest); // Affiche : [ 'Plombier', 'France' ]
+console.log(rest);
 ```
+</td><td>
+
+```bash title="Résultat"
+[ 'Plombier', 'France' ]
+```
+</td></tr></table>
+
 
 Une valeur par défaut peut être utilisée :
-```js
-let [firstname, lastname, profession, country = "France"] = ["Paul", "Dubois", "Plombier"];
-console.log(country); // Affiche : France
-```
+<table class="code"><tr><td>
 
-<br/>
+```js title="Code"
+let [firstname, lastname, profession, country = "France"] = ["Paul", "Dubois", "Plombier"];
+console.log(country);
+```
+</td><td>
+
+```txt title="Résultat"
+France
+```
+</td></tr></table>
+
 
 Exemple avec un objet :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = {
   name: "Paul",
   age: 30
 };
  
 let {name: n, age, country = "France"} = user;
-console.log(`${n} - ${age} - ${country}`); // Affiche : Paul - 30 - France
+console.log(`${n} - ${age} - ${country}`); 
  
 for (let [key, value] of Object.entries(user)) {
   console.log(`${key} : ${value}`);
 }
 ```
+</td><td>
+
+```txt title="Résultat"
+Paul - 30 - France
+name : Paul
+age : 30
+```
+</td></tr></table>
 
 Exemple avec un objet `Map` :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let user = new Map();
 user.set("name", "Paul")
     .set("age", "30");
@@ -1134,9 +1475,18 @@ for (let [key, value] of user) {
   console.log(`${key} : ${value}`);
 }
 ```
+</td><td>
+
+```txt title="Résultat"
+name : Paul
+age : 30
+```
+</td></tr></table>
 
 Exemple avec les paramètres d’une fonction :
-```js
+<table class="code"><tr><td>
+
+```js title="Code"
 let options = {
   title: "My menu",
   items: ["Item1", "Item2"]
@@ -1149,6 +1499,14 @@ function showMenu({title = "Untitled", width: w = 200, height: h = 100, items = 
  
 showMenu(options);
 ```
+</td><td>
+
+```bash title="Résultat"
+My menu 200 100
+[ 'Item1', 'Item2' ]
+```
+</td></tr></table>
+
 
 
 <br/>
