@@ -1916,12 +1916,571 @@ Un intervalle
 ```
 </td></tr></table>
 
-
 La fonction `clearInterval(interval)` permet d'annuler l’exécution.
+
+
+## 4 Prototypes
+Lorsque l'on fait appel à une propriété sur un objet, JavaScript va chercher si la propriété est présente sur l'objet puis sur son prototype, puis sur le prototype de son prototype (et ainsi de suite...). 
+
+Un objet hérite des propriétés et des méthodes de l’objet dit prototype :
+<table class="code"><tr><td>
+
+```js title="Code"
+let animal = {
+  eats: true,
+  walk() {
+    console.log("L'animal marche");
+  },
+  sleep() {
+    this.isSleeping = true;
+  }
+};
+ 
+let rabbit = Object.create(animal, { 
+  jumps : {
+    value: true
+  }
+});
+ 
+console.log(rabbit.jumps);
+console.log(rabbit.eats);
+rabbit.walk();
+ 
+rabbit.walk = () => {
+  console.log("Le lapin marche");
+};
+ 
+rabbit.walk();
+```
+</td><td>
+
+```txt title="Résultat"
+true
+true
+L'animal marche
+Le lapin marche
+```
+</td></tr></table>
+
+La valeur de `this` correspond à l’objet qui appelle la méthode :
+<table class="code"><tr><td>
+
+```js title="Code"
+rabbit.sleep();
+console.log(rabbit.isSleeping);
+console.log(animal.isSleeping);
+```
+</td><td>
+
+```txt title="Résultat"
+true
+undefined
+```
+</td></tr></table>
+
+La méthode `Object.keys(obj)` retourne seulement les propres clés de l’objet.  
+L’utilisation de `for...in` boucle sur les propres clés de l’objet ainsi que sur les clés héritées.
+
+Il est possible de ne pas prendre en compte les clés héritées grâce à la méthode `object.hasOwnProperty(key)`.
+
+
+## 5 Classes
+### 5.1 Syntaxe de base
+Création d’une classe, avec getter et setter, et d’une instance de classe :
+<table class="code"><tr><td>
+
+```js title="Code"
+class User {
+  job = "Plombier";
+ 
+  constructor(name) {
+    this.name = name; // Appelle le setter
+  }
+ 
+  get name() {
+    return this.name;
+  }
+  
+  set name(value) {
+    this.name = value;
+  }
+ 
+  sayName() {
+    console.log(`Je m'appelle ${this.name}`); // Appelle le getter
+  }
+}
+ 
+let user = new User("Robert");
+user.sayName();
+console.log(user.name);
+console.log(user.job);
+```
+</td><td>
+
+```txt title="Résultat"
+Je m'appelle Robert
+Robert
+Plombier
+```
+</td></tr></table>
+
+Dans une classe, nous avons :
+<table class="code"><tr><td>
+
+```js title="Code"
+// Une classe est une fonction
+console.log(typeof User);
+ 
+// La méthode "constructor"
+console.log(User === User.prototype.constructor); 
+ 
+// Les méthodes sont dans le prototype
+console.log(User.prototype.sayName);
+ 
+// Il y a deux méthodes dans le prototype (en plus du constructeur)
+console.log(Object.getOwnPropertyNames(User.prototype));
+```
+</td><td>
+
+```txt title="Résultat"
+function
+true
+[Function: sayName]
+[ 'constructor', 'name', 'sayName' ]
+```
+</td></tr></table>
+
+
+L’instruction `obj instanceof class` permet de déterminer si oui ou non l’objet est une instance de la classe :
+<table class="code"><tr><td>
+
+```js title="Code"
+console.log(user instanceof User);
+```
+</td><td>
+
+```txt title="Résultat"
+true
+```
+</td></tr></table>
+
+### 5.2 Héritage
+Héritage avec surcharge de méthode et du constructeur :
+<table class="code"><tr><td>
+
+```js title="Code"
+class Animal {
+  constructor(name) {
+    this.name = name;
+    this.speed = 0;
+  }
+ 
+  run(speed) {
+    this.speed = speed;
+    console.log(`${this.name} court avec une vitesse de ${this.speed}.`);
+  }
+}
+ 
+class Chicken extends Animal {
+  constructor(name, crest) {
+    super(name);
+    this.crest = crest;
+  }
+ 
+  // La poule court
+  run(speed) {
+    super.run(speed);
+    this.fly();
+  }
+ 
+  // La poule vole
+  fly() {
+    console.log(`${this.name} vole !`);
+  }
+ 
+  // La poule a une crête ?
+  haveCrest() {
+    this.crest ? console.log(`${this.name} a une crête.`) : console.log(`${this.name} n'a pas de crête.`);
+  }
+}
+ 
+let chicken = new Chicken("Sidonie", true);
+chicken.run(10);
+chicken.haveCrest();
+```
+</td><td>
+
+```txt title="Résultat"
+Sidonie court avec une vitesse de 10.
+Sidonie vole !
+Sidonie a une crête.
+```
+</td></tr></table>
+
+### 5.3 Méthodes et propriétés static
+Les méthodes et les propriétés `static` peuvent être exécutées sans passer par une instance. Elles peuvent être utilisées dans les classes héritées d'une classe de base.
+<table class="code"><tr><td>
+
+```js title="Code"
+class User {
+  static planet = "Terre";
+ 
+  static staticMethod() {
+    console.log(this === User);
+  }
+}
+ 
+User.staticMethod(); 
+console.log(User.planet);
+```
+</td><td>
+
+```txt title="Résultat"
+true
+Terre
+```
+</td></tr></table>
+
+### 5.4 Méthodes et propriétés private et protected
+L’utilisation du caractère `#` pour définir une propriété ou une méthode `private` n’est pas encore pris en charge dans les moteurs JavaScript ou partiellement pris en charge via polyfilling.
+
+Une propriété ou méthode `private` n’est accessible qu’à l’intérieur de la classe.
+
+<table class="code"><tr><td>
+
+```js title="Code"
+class User {
+  #country;
+ 
+  constructor(name, country) {
+    this.name = name;
+    this.#country = country;
+  }
+ 
+  live() {
+    console.log(`${this.name} habite en ${this.#country}`);
+  }
+}
+ 
+user = new User("Paul", "France");
+user.live();
+console.log(user.#name);
+
+```
+</td><td>
+
+```txt title="Résultat"
+SyntaxError: Private field '#name' must be declared in an enclosing class
+```
+</td></tr></table>
+
+Une propriété ou méthode `protected` est accessible à l’intérieur de la classe de base et dans les classes héritées. Le caractère `_` est utilisé pour les identifier.
+
+
+### 5.5 Les classes mixin (héritage multiple)
+Une classe mixin est une classe destinée à être composée par héritage multiple avec une autre classe pour lui apporter des fonctionnalités.
+
+Utilisation d’une classe mixin :
+<table class="code"><tr><td>
+
+```js title="Code"
+class Shape {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+}
+ 
+let Drawable = superclass => {
+  return class extends superclass {
+    draw() {
+      console.log(`Dessiner une forme avec les dimensions : ${this.width}, ${this.height}`);
+    }
+  };
+};
+ 
+// Classe qui hérite de Shape et de Drawable
+class DrawableShape extends Drawable(Shape) { }
+ 
+let shapeDraw = new DrawableShape(200,100);
+shapeDraw.draw();
+```
+</td><td>
+
+```txt title="Résultat"
+Dessiner une forme avec les dimensions : 200, 100
+```
+</td></tr></table>
+
+
+Utilisation de plusieurs classes mixins :
+<table class="code"><tr><td>
+
+```js title="Code"
+let Moveable = superclass => {
+  return class extends superclass {
+    move() {
+      console.log('Déplacement de la forme');
+    }
+  };
+};
+ 
+// Fonction permettant d'améliorer l'utilisation de plusieurs classes mixins
+let mix = superclass => {
+  return {
+    with(...mixins) {
+      return mixins.reduce((c, mixin) => mixin(c), superclass || class {});
+    }
+  };
+};
+ 
+// Classe qui hérite de Shape, de Moveable et de Drawable
+class MoveableDrawableShape extends mix(Shape).with(Moveable, Drawable) { }
+ 
+let shapeMoveDraw = new MoveableDrawableShape(300, 200);
+shapeMoveDraw.draw();
+shapeMoveDraw.move();
+```
+</td><td>
+
+```txt title="Résultat"
+Dessiner une forme avec les dimensions : 300, 200
+Déplacement de la forme
+```
+</td></tr></table>
+
+
+## 6 Gestion d'exceptions
+### 6.1 La syntaxe try … catch
+L’utilisation de la syntaxe `try … catch` :
+- Le code à l’intérieur du `try` est exécuté.
+- Si une erreur se produit, l’exécution du code dans `try` est arrêtée et le code à l’intérieur du `catch` est exécuté.
+- S’il n’y a aucune erreur, le code dans `catch` n’est jamais exécuté.
+- Elle ne gère que les erreurs qui se produisent dans du code valide et de manière synchrone.
+- L’objet `err` dans le catch est facultatif.
+
+```js 
+try {
+  // Code exécuté
+}
+catch (err) {
+  // Code exécuté si erreur dans le try
+}
+```
+
+L’objet `err` dans le catch a quelques propriétés principales :
+- `name` : Nom de l’erreur. Par exemple : `ReferenceError`.
+- `message` : Message sur le détail de l’erreur.
+- `stack` : Pile d’appel en cours.
+
+<table class="code"><tr><td>
+
+```js title="Code"
+try {
+  lalala;
+} 
+catch (err) {
+  console.log(err.name); 
+  console.log(err.message); 
+  console.log(err.stack); 
+}
+```
+</td><td>
+
+```txt title="Résultat"
+ReferenceError
+lalala is not defined
+ReferenceError: lalala is not defined
+    at Object.<anonymous> (D:\Projets\test\test.js:2:3)
+    at Module._compile (internal/modules/cjs/loader.js:1200:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+    at Module.load (internal/modules/cjs/loader.js:1049:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+    at internal/main/run_main_module.js:17:47
+```
+</td></tr></table>
+
+### 6.2 Créer ses propres erreurs
+Création d'erreurs avec `SyntaxError, Error, ReferenceError` … :
+<table class="code"><tr><td>
+
+```js title="Code"
+let json = '{ "age": 30 }'; 
+ 
+try {
+  let user = JSON.parse(json); 
+ 
+  // Si la propriété "name" n'est pas dans le JSON
+  if (!user.name) {
+    throw new SyntaxError("Données incomplètes : Pas de name"); 
+  }
+ 
+  console.log(user.name); 
+} 
+catch (err) {
+  console.log("Erreur JSON : " + err.message);
+}
+```
+</td><td>
+
+```txt title="Résultat"
+Erreur JSON : Données incomplètes : Pas de name
+```
+</td></tr></table>
+
+### 6.3 La syntaxe try … catch … finally
+L’utilisation de la syntaxe `try … catch … finally` :
+- Le code à l’intérieur du `try` est exécuté.
+- Si une erreur se produit, l’exécution du code dans `try` est arrêtée et le code à l’intérieur du `catch` est exécuté.
+- S’il n’y a aucune erreur, le code dans `catch` n’est jamais exécuté.
+- Le code à l’intérieur du `finally` est toujours exécuté après le `try` ou le `catch`.
+- Si un return est présent dans `try`, le code dans `finally` est quand même exécuté.
+
+```js
+try {
+  // Code exécuté
+}
+catch (err) {
+  // Code exécuté si erreur dans le try
+}
+finally {
+  // Code toujours exécuté
+}
+```
+
+### 6.4 Le catch global
+Utilisation du catch global dans le cas où une erreur a lieu en dehors d’un `try … catch`.
+:::info Information
+Le code suivant a été testé sur Firefox et les fichiers ont dû être déposés sur un serveur local pour que cela fonctionne (à cause du CORS).
+:::
+<table class="code"><tr><td>
+
+```js title="Code"
+window.onerror = (message, url, line, col, error) => {
+  console.log(`${message}\n A la ligne/colonne ${line}:${col} dans ${url}`);
+};
+ 
+function readData() {
+  unknownFunction(); 
+}
+ 
+readData();
+```
+</td><td>
+
+```txt title="Résultat"
+ ReferenceError: unknownFunction is not defined
+ A la ligne/colonne 6:3 dans http://localhost/test/index.js
+```
+</td></tr></table>
+
+
+### 6.5 Héritage
+Création d’une classe d’erreur spécifique qui hérite d’une classe d’erreur standard :
+<table class="code"><tr><td>
+
+```js title="Code"
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
+}
+ 
+try {
+  throw new ValidationError("Une erreur de validation");
+} 
+catch (err) {
+  if (err instanceof ValidationError) {
+    console.log(err.message);
+    console.log(err.name); 
+    console.log(err.stack);
+  }
+}
+```
+</td><td>
+
+```txt title="Résultat"
+Une erreur de validation
+ValidationError
+ValidationError: Une erreur de validation
+    at Object.<anonymous> (D:\Projets\test\test.js:9:9)
+    at Module._compile (internal/modules/cjs/loader.js:1200:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+    at Module.load (internal/modules/cjs/loader.js:1049:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+    at internal/main/run_main_module.js:17:47
+```
+</td></tr></table>
+
+
+Création d’une classe d’erreur spécifique qui hérite d’une autre classe d’erreur spécifique :
+<table class="code"><tr><td>
+
+```js title="Code"
+// Une classe de base pour initialiser le nom de l'erreur
+class MyError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = this.constructor.name;
+  }
+}
+ 
+// La classe d'erreur pour les validations
+class ValidationError extends MyError {
+  constructor(message) {
+    super(message);
+  }
+}
+ 
+// La classe d'erreur pour les propriétés requises
+class PropertyRequiredError extends ValidationError {
+  constructor(property) {
+    super("Aucune propriété : " + property);
+    this.property = property;
+  }
+}
+ 
+try {
+  let json = '{ "age": 30 }'; 
+  let user = JSON.parse(json);
+ 
+  if (!user.name) {
+    throw new PropertyRequiredError("name");
+  }
+} 
+catch (err) {
+  if (err instanceof ValidationError) {
+    console.log(err.message);
+    console.log(err.name); 
+    console.log(err.stack);
+  }
+}
+```
+</td><td>
+
+```txt title="Résultat"
+Aucune propriété : name
+PropertyRequiredError
+PropertyRequiredError: Aucune propriété : name
+    at Object.<anonymous> (D:\Projets\test\test.js:29:11)
+    at Module._compile (internal/modules/cjs/loader.js:1200:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+    at Module.load (internal/modules/cjs/loader.js:1049:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+    at internal/main/run_main_module.js:17:47
+```
+</td></tr></table>
+
+
 
 <br/>
 
 :::tip Sources
 https://javascript.info/  
-https://developer.mozilla.org/fr/docs/Web/JavaScript
+https://developer.mozilla.org/fr/docs/Web/JavaScript  
+https://www.codeheroes.fr/2017/12/23/javascript-heritage-multiple/
 :::
