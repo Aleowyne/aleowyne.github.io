@@ -58,3 +58,35 @@ table.code td {
 table.code .token-line {
   white-space : pre-wrap !important;
 }
+
+div.container-code {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.code-left {
+  width: 59%;
+}
+
+div.code-right {
+  width: 40%;
+}
+
+div.container-code .token-line {
+  white-space : pre-wrap !important;
+}
+
+@media (max-width: 700px) { 
+  div.container-code {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div.code-left {
+    width: 100%;
+  }
+  
+  div.code-right {
+    width: 100%;
+  }
+}

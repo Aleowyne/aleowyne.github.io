@@ -43,42 +43,47 @@ let ms = 1e-6; // 0.000001
 ```
 
 Nombres hexadécimaux, binaires, octaux :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(0xFF); // Hexadécimal
 console.log(0b11111111); // Binaire
 console.log(0o377); // Octal
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 255
 255
 255
 ```
-</td></tr></table>
+</div>
+</div>
+
 
 Utilisation de `toString(base)` :
 - La base va de 2 à 36
 - Si la base choisie est 36, tous les chiffres et les caractères de l’alphabet latin sont utilisés (0-9 et a-z)
 - Deux points après le nombre ou des parenthèse autour du nombre si ce n’est pas une variable qui est utilisée
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(123456..toString(36));
 console.log((123456).toString(36));
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 2n9c
 2n9c
 ```
-</td></tr></table>
+</div>
+</div>
 
 Les fonctions mathématiques :
 - `Math.floor(n)` : Arrondi à l’entier inférieur
@@ -92,97 +97,110 @@ Les fonctions mathématiques :
 <br/>
 
 Les calculs imprécis :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let sum = 0.1 + 0.2;
 console.log(sum);
 console.log(+sum.toFixed(2)); 
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 0.30000000000000004
 0.3
 ```
-</td></tr></table>
+</div>
+</div>
 
 La fonction `isNaN(value)` contrôle si une valeur n’est pas un nombre :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(isNaN("str"));
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 ```
-</td></tr></table>
+</div>
+</div>
 
 La fonction `isFinite(value)` contrôle si une valeur est finie :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(isFinite("15"));
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 ```
-</td></tr></table>
+</div>
+</div>
 
 La fonction `parseInt(str, base)` prend une chaîne de caractères en paramètre et renvoie un entier dans une base :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(parseInt("100px"));
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 100
 ```
-</td></tr></table>
+</div>
+</div>
 
 La fonction `parseFloat(str)` prend une chaîne de caractères en paramètre et renvoie un nombre à virgule flottant :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(parseFloat("12.5em"));
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 12.5
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 2.2 Chaîne de caractères
 Les backticks permettent d’intégrer des variables et des expressions dans une chaîne :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(`Le résultat est ${1 + 2}` );
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Le résultat est 3
 ```
-</td></tr></table>
+</div>
+</div>
 
 Ils permettent également d’écrire une chaîne de caractères sur plusieurs lignes :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(`ceci
@@ -190,8 +208,8 @@ est
 un message
 sur plusieurs lignes`);
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 ceci
@@ -199,7 +217,8 @@ est
 un message
 sur plusieurs lignes
 ```
-</td></tr></table>
+</div>
+</div>
 
 Il est possible d’utiliser les guillemets simples et doubles avec des caractères spéciaux :
 - `\n` : Nouvelle ligne
@@ -232,207 +251,228 @@ Si aucun caractère trouvé, `str[index]` renvoie `undefined` et `str.charAt(ind
 Liste des méthodes : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String
 
 Pour parcourir une chaîne de caractères :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-for (let char of "Hello") {
+for (let char of "Bonjour") {
   console.log(char); 
 }
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-H
-e
-l
-l
+B
 o
+n
+j
+o
+u
+r
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 2.3 Objet
 #### 2.3.1 Propriétés
 Pour créer un objet vide :
 ```js
-let user = new Object();
-let user = {};
+let animal = new Object();
+let animal = {};
 ```
 
 Création d’un objet avec des propriétés :
 ```js
-let user = {
-  name: "John",
-  age: 30,
-  "likes birds": true 
+let animal = {
+  name: "Sidonie",
+  age: 5,
+  "aime manger": true 
 };
 ```
 
 Accès à la valeur d’une des propriétés :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-console.log(user.name);
+console.log(animal.name);
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-John
+Sidonie
 ```
-</td></tr></table>
+</div>
+</div>
 
 Ajout d’une propriété :
 ```js
-user.isAdmin = true;
+animal.isAlive = true;
 ```
 
 Suppression d’une propriété :
 ```js
-delete user.age;
+delete animal.age;
 ```
 
 Pour les propriétés multi-mots : 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {};
+let animal = {};
  
 // Alimentation de la propriété
-user["likes birds"] = true;
+animal["aime manger"] = true;
  
 // Récupération de la valeur de la propriété
-console.log(user["likes birds"]);
+console.log(animal["aime manger"]);
  
 // Suppression de la propriété
-delete user["likes birds"];
+delete animal["aime manger"];
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 ```
-</td></tr></table>
+</div>
+</div>
 
 Les propriétés calculées :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {};
-let key = "test";
-user[key] = true;
+let animal = {};
+let key = "fly";
+animal[key] = true;
+console.log(animal.fly);
  
-let fruit = "apple";
+let fruit = "banana";
 let bag = {
-  [fruit]: 5, 
+  [fruit]: 6, 
 };
-
-console.log(bag.apple);
+console.log(bag.banana);
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-5
+true
+6
 ```
-</td></tr></table>
+</div>
+</div>
 
 Pour vérifier qu’une propriété existe dans un objet :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = { name: "John", age: 30 };
-console.log("age" in user);
+let animal = { name: "Sidonie", age: 5 };
+console.log("age" in animal);
  
 let key = "age";
-console.log(key in user);
+console.log(key in animal);
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 true
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 #### 2.3.2 Boucler sur les propriétés d'un objet
 - En utilisant `… in …` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = { name: "John", age: 30 };
+let animal = { name: "Sidonie", age: 5 };
  
-for (let key in user) {
-  console.log(`${key} : ${user[key]}`);
+for (let key in animal) {
+  console.log(`${key} : ${animal[key]}`);
 }
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-name : John
-age : 30
+name : Sidonie
+age : 5
 ```
-</td></tr></table>
+</div>
+</div>
 
 - En utilisant `Object.keys(obj)` pour récupérer les clés :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-for (let key of Object.keys(user)) {
-  console.log(`${key} : ${user[key]}`);
+for (let key of Object.keys(animal)) {
+  console.log(`${key} : ${animal[key]}`);
 }
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-name : John
-age : 30
+name : Sidonie
+age : 5
 ```
-</td></tr></table>
+</div>
+</div>
 
 - En utilisant `Object.values(obj)` pour récupérer les valeurs des propriétés :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-for (let value of Object.values(user)) {
+for (let value of Object.values(animal)) {
   console.log(value);
 }
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-John
-30
+Sidonie
+5
 ```
-</td></tr></table>
+</div>
+</div>
 
 - En utilisant `Object.entries(obj)` pour récupérer les propriétés avec leurs valeurs :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-for (let [key, value] of Object.entries(user)) {
+for (let [key, value] of Object.entries(animal)) {
   console.log(`${key} : ${value}`);
 }
 ```
-
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-name : John
-age : 30
+name : Sidonie
+age : 5
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 #### 2.3.3 Copie
@@ -459,17 +499,17 @@ La syntaxe `?.` revêt trois formes :
 #### 2.3.5 Conversion d’un objet vers un type primitif
 Vers une chaîne de caractères :
 ```js
-let user = {
-  name: "Robert"
+let animal = {
+  name: "Sidonie"
 }
-
-console.log(user);
+ 
+console.log(animal);
 ```
 
 Vers un nombre :
 ```js
 let delta = date1 - date2;
-let greater = user1 > user2;
+let greater = animal1 > animal2;
 ```
 
 Vers un type "default" : Pas sûr du type.  
@@ -482,27 +522,30 @@ Pour choisir son propre traitement de conversion, il faut implémenter la métho
 
 
 Il est possible d’utiliser les méthodes des tableaux sur les données d’un objet. Il faut transformer l’objet en tableau, puis effectuer les modifications souhaitées avec les méthodes choisies, puis ensuite re-transformer le tableau en objet.
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let prices = {
-  banane: 1,
-  orange: 2,
-  viande: 4
+let nbAnimals = {
+  hen: 4,
+  sheep: 2,
+  rooster: 1
 };
  
-let doublePrices = Object.fromEntries(
-  Object.entries(prices).map(([key, value]) => [key, value * 2])
+let addAnimals = Object.fromEntries(
+  Object.entries(nbAnimals).map(([key, value]) => [key, value + 1])
 );
 
-console.log(doublePrices);
+console.log(addAnimals);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-{ banane: 2, orange: 4, viande: 8 }
+{ hen: 5, sheep: 3, rooster: 2 }
 ```
-</td></tr></table>
+</div>
+</div>
 
 Quand une méthode d’un objet est appelé comme suit : `object.method()`, le `this` correspond à `object`.
 
@@ -515,116 +558,128 @@ Quand une méthode d’un objet est appelé comme suit : `object.method()`, le `
 Les méthodes pour gérer les attributs des propriétés :
 - `Object.getOwnPropertyDescriptor(obj, propertyName)` : permet de récupérer l’information sur les attributs d’une propriété propertyName présente dans un objet.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Robert"
+let animal = {
+  name: "Sidonie"
 }
 
 console.log(
   JSON.stringify(
-    Object.getOwnPropertyDescriptor(user, 'name'), null, 2
+    Object.getOwnPropertyDescriptor(animal, 'name'), null, 2
   )
 );
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```json title="Résultat"
 {
-  "value": "Robert",
+  "value": "Sidonie",
   "writable": true,
   "enumerable": true,
   "configurable": true
 }
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `Object.defineProperty(obj, propertyName, descriptor)` : permet de modifier les attributs d’une propriété propertyName présente dans un objet.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Robert",
-  age: 35
+let animal = {
+  name: "Sidonie",
+  age: 5
 }
  
-Object.defineProperty(user, "age", {
+Object.defineProperty(animal, "age", {
   "writable": false
 });
  
-user.age = 13;
-console.log(user); 
+animal.age = 6;
+console.log(animal);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-{ name: 'Robert', age: 35 }
+{ name: 'Sidonie', age: 5 }
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `Object.getOwnPropertyDescriptors(obj)` : permet de récupérer l’information sur les attributs de toutes les propriétés présentes sur un objet.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Robert",
-  age: 35
+let animal = {
+  name: "Sidonie",
+  age: 5
 }
 
 console.log(
   JSON.stringify(
-    Object.getOwnPropertyDescriptors(user), null, 2
+    Object.getOwnPropertyDescriptors(animal), null, 2
   )
 );
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```json title="Résultat"
 {
   "name": {
-    "value": "Robert",
+    "value": "Sidonie",
     "writable": true,
     "enumerable": true,
     "configurable": true
   },
   "age": {
-    "value": 35,
+    "value": 5,
     "writable": true,
     "enumerable": true,
     "configurable": true
   }
 }
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `Object.defineProperties(obj, descriptors)` : permet de modifier les attributs des propriétés présentes dans un objet.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Robert",
-  age: 35
+let animal = {
+  name: "Sidonie",
+  age: 5
 }
  
-Object.defineProperties(user, {
+Object.defineProperties(animal, {
   name: { writable: false },
-  age: { writable: false },
+  age: { writable: true},
 });
  
-user.name = "Paul";
-user.age = 34;
-console.log(user);
+animal.name = "Aglaé";
+animal.age = 6;
+console.log(animal); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-{ name: 'Robert', age: 35 }
+{ name: 'Sidonie', age: 6 }
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `Object.preventExtensions(obj)` : permet d’interdire l’ajout de nouvelles propriétés à un objet.
 - `Object.seal(obj)` : permet d’interdire l’ajout et la suppression de propriétés dans un objet.
@@ -635,10 +690,11 @@ console.log(user);
 
 #### 2.3.7 Les getters et setters
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
+let animal = {
   get name() {
     return this._name;
   },
@@ -648,15 +704,17 @@ let user = {
   }
 };
  
-user.name = "Robert";
-console.log(user.name);
+animal.name = "Sidonie";
+console.log(animal.name); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-Robert
+Sidonie
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 2.4 Tableau
@@ -677,7 +735,8 @@ Les propriétés et méthodes :
 - `arr.toString()` : transforme le tableau en une chaîne de caractères avec tous les éléments séparés par une virgule
 - `arr.splice(start, [deleteCount, [item1, [item2 …]]])` : A partir de l’index `start` du tableau, suppression des `deleteCount` éléments (peut être égal à 0), puis insère les `item1`, `item2` … à leur place. Les index négatifs sont autorisés.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let arr = new Array(1, 2, 3);
@@ -694,14 +753,16 @@ console.log(arr);
 arr.splice(1, 2, 3, 4); 
 console.log(arr);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 [ 1, 3, 4, 2, 3 ]
 [ 1, 2, 3 ]
 [ 1, 3, 4 ]
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `arr.slice([start, [end]])` : 
   - Si au moins un index est renseigné, il copie le tableau de l’index `start` à l’index `end` non inclus. Les index négatifs sont autorisés.
@@ -711,7 +772,8 @@ console.log(arr);
 
 - `arr.forEach((item, [index, array]) => { … })` : Exécute une fonction une fois sur chaque élément du tableau.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let arr = new Array(1, 2, 3);
@@ -720,14 +782,16 @@ arr.forEach((item, index, array) => {
   console.log(`${item} is at index ${index} in ${array}`);
 });
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 1 is at index 0 in 1,2,3
 2 is at index 1 in 1,2,3
 3 is at index 2 in 1,2,3
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `arr.indexOf(item, [index])` : renvoie la position de la première occurrence de l'élément dans le tableau à partir d’un index (paramètre facultatif). Si l’élément n’est pas présent, la fonction renvoie -1.
 - `arr.lastIndexOf(item, [index])` : le même fonctionnement que `indexOf()` mais en partant de la fin du tableau.
@@ -752,7 +816,8 @@ Liste des méthodes : https://developer.mozilla.org/fr/docs/Web/JavaScript/Refer
 Boucler sur un tableau :
 - Pour avoir accès aux index et aux éléments :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let arr = new Array(1, 2, 3);
@@ -761,91 +826,105 @@ for (let i = 0; i < arr.length; i++) {
   console.log(`Index ${i} : ${arr[i]}`);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Index 0 : 1
 Index 1 : 2
 Index 2 : 3
 ```
-</td></tr></table>
+</div>
+</div>
 
 - Pour avoir accès seulement aux éléments :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let fruits = new Array("Pomme", "Poire", "Abricot");
+let animals = new Array("Sidonie", "Aglaé", "Milou");
 
-for (let fruit of fruits) {
-  console.log(fruit);
+for (let animal of animals) {
+  console.log(animal);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-Pomme
-Poire
-Abricot
+Sidonie
+Aglaé
+Milou
 ```
-</td></tr></table>
+</div>
+</div>
 
 ### 2.5 Symbole
 Un symbole est un type de données primitif représentant une donnée unique et inchangeable qui peut être utilisée afin de représenter des identifiants pour des propriétés d'un objet.
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let id = Symbol("12");
 console.log(id.toString());
 console.log(id.description);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Symbol(12)
 12
 ```
-</td></tr></table>
+</div>
+</div>
 
 Comparaison entre une propriété "id" et un symbole "id" :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let id = Symbol("id");
-let user = { name: "John" };
+let animal = { name: "Sidonie" };
  
-// Ajout d'un identifiant unique à l’objet user
-user[id] = "12";
+// Ajout d'un identifiant unique à l’objet animal
+animal[id] = "12";
  
-// Ajout d'une propriété "id" à l’objet user
-user.id = "Un identifiant";
+// Ajout d'une propriété "id" à l’objet animal
+animal.id = "Un identifiant";
  
-console.log(user[id]);
-console.log(user.id);
+console.log(animal[id]);
+console.log(animal.id);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 12
 Un identifiant
 ```
-</td></tr></table>
+</div>
+</div>
 
 Les symboles ne sont pas pris en compte lors de l'utilisation de la boucle `for … in`, `Object.keys()` et `JSON.stringify()`.
 
 Les symboles globaux :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let sym = Symbol.for("name");
 console.log(Symbol.keyFor(sym)); // Affiche : name
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 name
 ```
-</td></tr></table>
+</div>
+</div>
 
 Les méthodes pour les symboles globaux : https://tc39.es/ecma262/#sec-well-known-symbols
 
@@ -854,7 +933,8 @@ Les méthodes pour les symboles globaux : https://tc39.es/ecma262/#sec-well-know
 L’objet `Map` permet de stocker des couples (clé, valeur). Les clés peuvent être de n’importe quel type de données.
 
 La création d’un objet `Map` peut se faire ainsi :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 // Initialisation d'un objet Map
@@ -871,20 +951,23 @@ const fruitsArray = [
 let fruits = new Map(fruitsArray);
 console.log(fruits);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 Map(0) {}
 Map(3) { 1 => 'Banane', 2 => 'Poire', 3 => 'Pomme' }
 ```
-</td></tr></table>
+</div>
+</div>
 
 <br/>
 
 Les méthodes disponibles sont les suivantes :
 - `map.set(key, value)` : Stocke un nouveau couple (clé, valeur)
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let fruits = new Map();
@@ -892,12 +975,14 @@ fruits.set(1, "Pomme");
 fruits.set(2, "Poire");
 console.log(fruits);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 Map(2) { 1 => 'Pomme', 2 => 'Poire' }
 ```
-</td></tr></table>
+</div>
+</div>
 
 Il est possible de chaîner les appels de la méthode :
 ```js
@@ -909,84 +994,100 @@ fruits.set(1, "Pomme")
 
 - `map.get(key)` : Récupère la valeur à partir d'une clé
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(fruits.get(1)); 
 console.log(fruits.get(3)); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Pomme
 undefined
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `map.has(key)` : Retourne `true` si la clé existe, sinon `false`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(fruits.has(2));
 console.log(fruits.has("Poire"));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 false
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `map.size` : Retourne la taille de l'objet `Map`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(fruits.size);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 2
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `map.delete(key)` : Supprime le couple (clé, valeur) à partir d'une clé
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 fruits.delete(1);
 console.log(fruits);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 Map(1) { 2 => 'Poire' }
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `map.clear()` : Vide l'objet `Map`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 fruits.clear();
 console.log(fruits);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 Map(0) {}
 ```
-</td></tr></table>
+</div>
+</div>
 
 L’itération sur un objet `Map` peut se faire de différentes manières :
 - En utilisant `forEach()` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let fruits = new Map();
@@ -997,64 +1098,75 @@ fruits.forEach((value, key, map) => {
   console.log(`${key} : ${value}`);
 });
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 1 : Pomme
 2 : Poire
 ```
-</td></tr></table>
+</div>
+</div>
 
 - En utilisant la déstructuration d’`Array` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 for (let [key, value] of fruits) {
   console.log(`${key} : ${value}`);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 1 : Pomme
 2 : Poire
 ```
-</td></tr></table>
+</div>
+</div>
 
 - Boucle sur les clés :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 for (let key of fruits.keys()) {
   console.log(key);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 1
 2
 ```
-</td></tr></table>
+</div>
+</div>
 
 - Boucle sur les valeurs :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 for (let value of fruits.values()) {
   console.log(value);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Pomme
 Poire
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Pour transformer un objet simple vers un objet `Map` :
@@ -1072,7 +1184,8 @@ let obj = Object.fromEntries(map);
 L’objet `Set` permet de stocker un ensemble de valeurs uniques.
 
 La création d’un objet `Set` peut se faire ainsi :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 // Initialisation d'un objet Set
@@ -1084,18 +1197,21 @@ const fruitsArray = ['Banane', 'Poire', 'Pomme'];
 let fruits = new Set(fruitsArray);
 console.log(fruits);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 Set(0) {}
 Set(3) { 'Banane', 'Poire', 'Pomme' }
 ```
-</td></tr></table>
+</div>
+</div>
 
 Les méthodes disponibles sont les suivantes :
 - `set.add(value)` : Stocke une nouvelle valeur. Elle n’est pas ajoutée si elle existe déjà.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let fruits = new Set();
@@ -1104,12 +1220,14 @@ fruits.add("Poire");
 fruits.add("Pomme");
 console.log(fruits); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 Set(2) { 'Pomme', 'Poire' }
 ```
-</td></tr></table>
+</div>
+</div>
 
 Il est possible de chaîner les appels de la méthode :
 ```js
@@ -1121,69 +1239,82 @@ fruits.add("Pomme")
 
 - `set.has(value)` : Retourne `true` si la valeur existe, sinon `false`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(fruits.has("Pomme")); 
 console.log(fruits.has("Banane")); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 false
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `set.size` : Retourne la taille de l'objet `Set`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 console.log(fruits.size);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 2
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `set.delete(value)` : Supprime la valeur
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 fruits.delete("Pomme");
 console.log(fruits);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 Set(1) { 'Poire' }
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `set.clear()` : Vide l'objet `Set`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 fruits.clear();
 console.log(fruits);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Set(0) {}
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 L’itération sur un objet `Set` peut se faire de différentes manières :
 - En utilisant `forEach()` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let fruits = new Set();
@@ -1194,30 +1325,35 @@ fruits.forEach((value, valueAgain, set) => {
   console.log(value);
 })
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Pomme
 Poire
 ```
-</td></tr></table>
+</div>
+</div>
 
 - En utilisant `for … of` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 for (let fruit of fruits) {
   console.log(fruit);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Pomme
 Poire
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 2.8 WeakMap
@@ -1231,67 +1367,76 @@ let weakMap = new WeakMap();
 Les méthodes disponibles sont les suivantes :
 - `weakMap.set(key, value)` : Stocke un nouveau couple (clé, valeur)
 ```js
-let users = new WeakMap();
-let john = { name : "John" };
-let georges = { name : "Georges" };
-
-users.set(john, 1);
-users.set(georges, 4);
+let animals = new WeakMap();
+let sidonie = { name : "Sidonie" };
+let aglae = { name : "Aglaé" };
+ 
+animals.set(sidonie, 1);
+animals.set(aglae, 4);
 ```
 
 Il est possible de chaîner les appels de la méthode :
 ```js
-users.set(john, 1)
-     .set(georges, 4);
+animals.set(sidonie, 1)
+       .set(aglae, 4);
 ```
 
 - `weakMap.get(key)` : Récupère la valeur à partir d'une clé
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let usersTwo = new WeakMap();
-console.log(users.get(john)); 
-console.log(usersTwo.get(john)); 
+let animalsTwo = new WeakMap();
+console.log(animals.get(sidonie));
+console.log(animalsTwo.get(sidonie)); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 1
 undefined
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `weakMap.has(key)` : Retourne `true` si la clé existe, sinon `false`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-console.log(users.has(john));
-console.log(usersTwo.has(john));
+console.log(animals.has(sidonie)); 
+console.log(animalsTwo.has(sidonie)); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 false
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `weakMap.delete(key)` : Supprime le couple (clé, valeur) à partir d'une clé
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-users.delete(john);
-console.log(users.has(john)); 
+animals.delete(sidonie);
+console.log(animals.has(sidonie));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 false
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 2.9 WeakSet
@@ -1305,51 +1450,57 @@ let weakSet = new WeakSet();
 Les méthodes disponibles sont les suivantes :
 - `weakSet.add(value)` : Stocke une nouvelle valeur. Elle n’est pas ajoutée si elle existe déjà.
 ```js
-let users = new WeakSet();
-let john = { name : "John" };
-let georges = { name : "Georges" };
+let animals = new WeakSet();
+let sidonie = { name : "Sidonie" };
+let aglae = { name : "Aglaé" };
  
-users.add(john);
-users.add(georges);
+animals.add(sidonie);
+animals.add(aglae);
 ```
 
 Il est possible de chaîner les appels de la méthode :
 ```js
-users.add(john)
-     .add(georges);
+animals.add(sidonie)
+       .add(aglae);
 ```
 
 - `weakSet.has(value)` : Retourne `true` si la valeur existe, sinon `false`
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let usersTwo = new WeakMap();
-console.log(users.has(john));
-console.log(usersTwo.has(john));
+let animalsTwo = new WeakMap();
+console.log(animals.has(sidonie));
+console.log(animalsTwo.has(sidonie)); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 false
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `weakSet.delete(value)` : Supprime la valeur
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-users.delete(john);
-console.log(users.has(john)); 
+animals.delete(sidonie);
+console.log(animals.has(sidonie));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 false
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 
@@ -1357,33 +1508,39 @@ false
 La déstructuration permet d’extraire des données d’un tableau ou d’un objet grâce à une syntaxe dont la forme ressemble à la structure du tableau ou de l’objet.
 
 Exemple avec un tableau :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let arr = ["Paul", "Dubois"]
 let [firstname, lastname] = arr;
 console.log(`${firstname} - ${lastname}`);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Paul - Dubois
 ```
-</td></tr></table>
+</div>
+</div>
 
 Des éléments peuvent être ignorés :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let [firstname, , profession] = ["Paul", "Dubois", "Plombier", "France"];
 console.log(`${firstname} - ${profession}`);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Paul - Plombier
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 La partie droite peut être un itérable :
@@ -1393,53 +1550,63 @@ let [one, two, three] = new Set([1, 2, 3]);
 ```
 
 La partie gauche peut être n’importe quel type de données assignable :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let user = {};
 [user.firstname, user.lastname] = "Paul Dubois".split(' ');
 console.log(user); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 { firstname: 'Paul', lastname: 'Dubois' }
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Le paramètre de reste, représenté par 3 points ```...```, permet de représenter un nombre indéfini d’arguments sous forme d’un tableau :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let [firstname, lastname, ...rest] = ["Paul", "Dubois", "Plombier", "France"];
 console.log(rest);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 [ 'Plombier', 'France' ]
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Une valeur par défaut peut être utilisée :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let [firstname, lastname, profession, country = "France"] = ["Paul", "Dubois", "Plombier"];
 console.log(country);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 France
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Exemple avec un objet :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let user = {
@@ -1454,17 +1621,20 @@ for (let [key, value] of Object.entries(user)) {
   console.log(`${key} : ${value}`);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Paul - 30 - France
 name : Paul
 age : 30
 ```
-</td></tr></table>
+</div>
+</div>
 
 Exemple avec un objet `Map` :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let user = new Map();
@@ -1475,16 +1645,19 @@ for (let [key, value] of user) {
   console.log(`${key} : ${value}`);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 name : Paul
 age : 30
 ```
-</td></tr></table>
+</div>
+</div>
 
 Exemple avec les paramètres d’une fonction :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let options = {
@@ -1499,62 +1672,73 @@ function showMenu({title = "Untitled", width: w = 200, height: h = 100, items = 
  
 showMenu(options);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```bash title="Résultat"
 My menu 200 100
 [ 'Item1', 'Item2' ]
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 2.11 Date et heure
 Création d’un nouvel objet `Date` :
 - avec `new Date()` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let dateNow = new Date();
 console.log(dateNow);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 2020-08-10T15:28:36.137Z
 ```
-</td></tr></table>
+</div>
+</div>
 
 - avec `new Date(millisecondes)` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let uneDate = new Date(24 * 3600 * 1000);
 console.log(uneDate);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 1970-01-02T00:00:00.000Z
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 - avec `new Date(datestring)` :
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let uneDate = new Date("2020-01-01T00:02:00.000Z");
 console.log(uneDate); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 2020-01-01T00:02:00.000Z
 ```
-</td></tr></table>
+</div>
+</div>
 
 La méthode `parse(datestring)` a les mêmes paramètres, mais renvoie un timestamp.
 
@@ -1564,18 +1748,21 @@ La méthode `parse(datestring)` a les mêmes paramètres, mais renvoie un timest
   - `date` : jour du mois. S’il n’est pas renseigné, alors il sera alimenté automatiquement par 1.
   - `hours`, `minutes`, `seconds`, `ms` : S’ils ne sont pas renseignés, alors ils seront alimentés par 0.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let uneDate = new Date(2020,0,2,2);
 console.log(uneDate);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 2020-01-02T01:00:00.000Z
 ```
-</td></tr></table>
+</div>
+</div>
 
 Les getters :
 - `getFullYear()` : Récupère l’année sur 4 chiffres
@@ -1601,22 +1788,25 @@ Les setters :
 
 ### 2.12 Les méthodes JSON
 La méthode `JSON.stringify(value, [replacer], [space])` convertit un objet en JSON :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Paul",
-  age: 30
+let animal = {
+  name: "Sidonie",
+  age: 5
 };
  
-console.log(JSON.stringify(user)); 
+console.log(JSON.stringify(animal)); 
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```json title="Résultat"
-{"name":"Paul","age":30}
+{"name":"Sidonie","age":5}
 ```
-</td></tr></table>
+</div>
+</div>
 
 Elle peut aussi prendre en paramètre :
 - un tableau
@@ -1627,91 +1817,104 @@ Cette méthode a également deux paramètres facultatifs :
   - Tableau de propriétés qui permet d’encoder seulement les propriétés présentes dans ce tableau
   - Fonction de type `function(key, value)` qui retourne une nouvelle valeur qui remplacera la valeur originale
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Paul",
-  age: 30
+let animal = {
+  name: "Sidonie",
+  age: 5
 };
  
-console.log(JSON.stringify(user, (key, value) => {
+console.log(JSON.stringify(animal, (key, value) => {
   return (key == 'age') ? undefined : value;
 }));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```json title="Résultat"
-{"name":"Paul"}
+{"name":"Sidonie"}
 ```
-</td></tr></table>
+</div>
+</div>
 
 - `space` : Nombre d’espaces permettant de formater le résultat
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Paul",
-  age: 30
+let animal = {
+  name: "Sidonie",
+  age: 5
 };
  
-console.log(JSON.stringify(user, null, 2));
+console.log(JSON.stringify(animal, null, 2));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```json title="Résultat"
 {
-  "name": "Paul",
-  "age": 30
+  "name": "Sidonie",
+  "age": 5
 }
 ```
-</td></tr></table>
+</div>
+</div>
 
 La méthode `toJSON()` peut être utilisée comme `toString()` :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let user = {
-  name: "Paul",
-  age: 30,
+let animal = {
+  name: "Sidonie",
+  age: 5,
   
   toJSON() {
     return this.age;
   }
 };
  
-console.log(JSON.stringify(user));
+console.log(JSON.stringify(animal));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-30
+5
 ```
-</td></tr></table>
+</div>
+</div>
 
 La méthode `JSON.parse(str, [reviver])` convertit un JSON en objet :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let json = '{"name":"Paul","age":30}';
+let json = '{"name":"Sidonie","age":5}';
 console.log(JSON.parse(json).name);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-Paul
+Sidonie
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Cette méthode a également un paramètre facultatif :
 - `reviver` : Fonction de type `function(key, value)` qui retourne une nouvelle valeur qui remplacera la valeur originale
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-let json = '{"name":"Paul", "age":30, "date":"1990-05-30T12:00:00.000Z"}';
+let json = '{"name":"Sidonie", "age":5, "date":"2015-05-30T12:00:00.000Z"}';
  
 console.log(
   JSON.parse(json, function(key, value) {
@@ -1720,12 +1923,14 @@ console.log(
   })
 );
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```json title="Résultat"
-{ name: 'Paul', age: 30, date: 1990-05-30T12:00:00.000Z }
+{ name: 'Sidonie', age: 5, date: 2015-05-30T12:00:00.000Z }
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 2.13 Opérateurs
@@ -1771,7 +1976,8 @@ let getName = (id = 1) => { … }
 ```
 
 Les fonctions de rappel (callback) sont des fonctions passées en paramètre d’une autre fonction :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let ask = (id, yes, no) => {
@@ -1789,16 +1995,19 @@ showCancel = () => {
  
 ask(1, showOk, showCancel);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Validation
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Pour utiliser un nombre indéfini de paramètres sous forme d’un tableau :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let total = (...args) => {
@@ -1809,33 +2018,39 @@ let total = (...args) => {
  
 console.log(total(1,3,4));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 8
 ```
-</td></tr></table>
+</div>
+</div>
 
 Le paramètre du reste doit obligatoirement être le dernier paramètre.
 
 L’opérateur de décomposition permet de faire l’opération inverse, à savoir transformer un tableau en une liste d’arguments qui sera passée comme paramètre de fonction :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let arr1 = [1, -2, 3, 4];
 let arr2 = [8, 3, -8, 1];
 console.log(Math.max(1, ...arr1, 2, ...arr2, 25));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 25
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Il peut aussi être utilisé pour fusionner plusieurs tableaux : 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let arr = [3, 5, 1];
@@ -1843,12 +2058,14 @@ let arr2 = [8, 9, 15];
 let merged = [0, ...arr, 2, ...arr2];
 console.log(merged);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 [ 0, 3, 5, 1, 2, 8, 9, 15 ]
 ```
-</td></tr></table>
+</div>
+</div>
 
 Et aussi pour copier un objet ou un tableau :
 ```js
@@ -1879,7 +2096,8 @@ La fonction `setTimeout(func, [delay], [arg1], [arg2] ...)` permet d’exécuter
 - `delay` : le délai avant l’exécution du code, en millisecondes. Par défaut, le délai est égal à 0.
 - `arg1`, `arg2` … : les arguments de la fonction (ne fonctionne pas avec < IE9)
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 // Appelle la fonction 6 secondes après l'exécution du code
@@ -1887,17 +2105,20 @@ let timer = setTimeout(() => {
   console.log("Un autre texte");
 }, 6000);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Un autre texte
 ```
-</td></tr></table>
+</div>
+</div>
 
 La fonction `clearTimeout(timer)` permet d’annuler l’exécution.
 
 La fonction `setInterval(func, [delay], [arg1], [arg2] ...)` permet d’exécuter une fonction ou un bloc de code en boucle selon un intervalle de temps fixe entre chaque appel.
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 // Appelle la fonction toutes les secondes
@@ -1905,7 +2126,8 @@ let interval = setInterval(() => {
   console.log("Un intervalle");
 }, 1000);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Un intervalle
@@ -1914,7 +2136,8 @@ Un intervalle
 Un intervalle
 ...
 ```
-</td></tr></table>
+</div>
+</div>
 
 La fonction `clearInterval(interval)` permet d'annuler l’exécution.
 
@@ -1923,7 +2146,8 @@ La fonction `clearInterval(interval)` permet d'annuler l’exécution.
 Lorsque l'on fait appel à une propriété sur un objet, JavaScript va chercher si la propriété est présente sur l'objet puis sur son prototype, puis sur le prototype de son prototype (et ainsi de suite...). 
 
 Un objet hérite des propriétés et des méthodes de l’objet dit prototype :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let animal = {
@@ -1952,7 +2176,8 @@ rabbit.walk = () => {
  
 rabbit.walk();
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
@@ -1960,23 +2185,27 @@ true
 L'animal marche
 Le lapin marche
 ```
-</td></tr></table>
+</div>
+</div>
 
 La valeur de `this` correspond à l’objet qui appelle la méthode :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 rabbit.sleep();
 console.log(rabbit.isSleeping);
 console.log(animal.isSleeping);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 undefined
 ```
-</td></tr></table>
+</div>
+</div>
 
 La méthode `Object.keys(obj)` retourne seulement les propres clés de l’objet.  
 L’utilisation de `for...in` boucle sur les propres clés de l’objet ainsi que sur les clés héritées.
@@ -1987,22 +2216,23 @@ Il est possible de ne pas prendre en compte les clés héritées grâce à la m�
 ## 5 Classes
 ### 5.1 Syntaxe de base
 Création d’une classe, avec getter et setter, et d’une instance de classe :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-class User {
-  job = "Plombier";
+class Animal {
+  breed = "Poule";
  
   constructor(name) {
     this.name = name; // Appelle le setter
   }
  
   get name() {
-    return this.name;
+    return this._name;
   }
   
   set name(value) {
-    this.name = value;
+    this._name = value;
   }
  
   sayName() {
@@ -2010,37 +2240,41 @@ class User {
   }
 }
  
-let user = new User("Robert");
-user.sayName();
-console.log(user.name);
-console.log(user.job);
+let animal = new Animal("Sidonie");
+animal.sayName();
+console.log(animal.name);
+console.log(animal.breed);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
-Je m'appelle Robert
-Robert
-Plombier
+Je m'appelle Sidonie
+Sidonie
+Poule
 ```
-</td></tr></table>
+</div>
+</div>
 
 Dans une classe, nous avons :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 // Une classe est une fonction
-console.log(typeof User);
+console.log(typeof Animal);
  
 // La méthode "constructor"
-console.log(User === User.prototype.constructor); 
+console.log(Animal === Animal.prototype.constructor); 
  
 // Les méthodes sont dans le prototype
-console.log(User.prototype.sayName);
+console.log(Animal.prototype.sayName);
  
 // Il y a deux méthodes dans le prototype (en plus du constructeur)
-console.log(Object.getOwnPropertyNames(User.prototype));
+console.log(Object.getOwnPropertyNames(Animal.prototype));
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 function
@@ -2048,25 +2282,30 @@ true
 [Function: sayName]
 [ 'constructor', 'name', 'sayName' ]
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 L’instruction `obj instanceof class` permet de déterminer si oui ou non l’objet est une instance de la classe :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-console.log(user instanceof User);
+console.log(animal instanceof Animal);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 ```
-</td></tr></table>
+</div>
+</div>
 
 ### 5.2 Héritage
 Héritage avec surcharge de méthode et du constructeur :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 class Animal {
@@ -2108,48 +2347,54 @@ let chicken = new Chicken("Sidonie", true);
 chicken.run(10);
 chicken.haveCrest();
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Sidonie court avec une vitesse de 10.
 Sidonie vole !
 Sidonie a une crête.
 ```
-</td></tr></table>
+</div>
+</div>
 
 ### 5.3 Méthodes et propriétés static
 Les méthodes et les propriétés `static` peuvent être exécutées sans passer par une instance. Elles peuvent être utilisées dans les classes héritées d'une classe de base.
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-class User {
+class Animal {
   static planet = "Terre";
  
   static staticMethod() {
-    console.log(this === User);
+    console.log(this === Animal);
   }
 }
  
-User.staticMethod(); 
-console.log(User.planet);
+Animal.staticMethod(); 
+console.log(Animal.planet);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 true
 Terre
 ```
-</td></tr></table>
+</div>
+</div>
 
 ### 5.4 Méthodes et propriétés private et protected
 L’utilisation du caractère `#` pour définir une propriété ou une méthode `private` n’est pas encore pris en charge dans les moteurs JavaScript ou partiellement pris en charge via polyfilling.
 
 Une propriété ou méthode `private` n’est accessible qu’à l’intérieur de la classe.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
-class User {
+class Animal {
   #country;
  
   constructor(name, country) {
@@ -2162,17 +2407,18 @@ class User {
   }
 }
  
-user = new User("Paul", "France");
-user.live();
-console.log(user.#name);
-
+animal = new Animal("Sidonie", "France");
+animal.live();
+console.log(animal.#name);
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 SyntaxError: Private field '#name' must be declared in an enclosing class
 ```
-</td></tr></table>
+</div>
+</div>
 
 Une propriété ou méthode `protected` est accessible à l’intérieur de la classe de base et dans les classes héritées. Le caractère `_` est utilisé pour les identifier.
 
@@ -2181,7 +2427,8 @@ Une propriété ou méthode `protected` est accessible à l’intérieur de la c
 Une classe mixin est une classe destinée à être composée par héritage multiple avec une autre classe pour lui apporter des fonctionnalités.
 
 Utilisation d’une classe mixin :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 class Shape {
@@ -2205,16 +2452,19 @@ class DrawableShape extends Drawable(Shape) { }
 let shapeDraw = new DrawableShape(200,100);
 shapeDraw.draw();
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Dessiner une forme avec les dimensions : 200, 100
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Utilisation de plusieurs classes mixins :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let Moveable = superclass => {
@@ -2241,13 +2491,15 @@ let shapeMoveDraw = new MoveableDrawableShape(300, 200);
 shapeMoveDraw.draw();
 shapeMoveDraw.move();
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Dessiner une forme avec les dimensions : 300, 200
 Déplacement de la forme
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ## 6 Gestion d'exceptions
@@ -2273,7 +2525,8 @@ L’objet `err` dans le catch a quelques propriétés principales :
 - `message` : Message sur le détail de l’erreur.
 - `stack` : Pile d’appel en cours.
 
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 try {
@@ -2285,7 +2538,8 @@ catch (err) {
   console.log(err.stack); 
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 ReferenceError
@@ -2299,11 +2553,13 @@ ReferenceError: lalala is not defined
     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
     at internal/main/run_main_module.js:17:47
 ```
-</td></tr></table>
+</div>
+</div>
 
 ### 6.2 Créer ses propres erreurs
 Création d'erreurs avec `SyntaxError, Error, ReferenceError` … :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 let json = '{ "age": 30 }'; 
@@ -2322,12 +2578,14 @@ catch (err) {
   console.log("Erreur JSON : " + err.message);
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Erreur JSON : Données incomplètes : Pas de name
 ```
-</td></tr></table>
+</div>
+</div>
 
 ### 6.3 La syntaxe try … catch … finally
 L’utilisation de la syntaxe `try … catch … finally` :
@@ -2354,7 +2612,8 @@ Utilisation du catch global dans le cas où une erreur a lieu en dehors d’un `
 :::info Information
 Le code suivant a été testé sur Firefox et les fichiers ont dû être déposés sur un serveur local pour que cela fonctionne (à cause du CORS).
 :::
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 window.onerror = (message, url, line, col, error) => {
@@ -2367,18 +2626,21 @@ function readData() {
  
 readData();
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
  ReferenceError: unknownFunction is not defined
  A la ligne/colonne 6:3 dans http://localhost/test/index.js
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 ### 6.5 Héritage
 Création d’une classe d’erreur spécifique qui hérite d’une classe d’erreur standard :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 class ValidationError extends Error {
@@ -2399,7 +2661,8 @@ catch (err) {
   }
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Une erreur de validation
@@ -2413,11 +2676,13 @@ ValidationError: Une erreur de validation
     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
     at internal/main/run_main_module.js:17:47
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 Création d’une classe d’erreur spécifique qui hérite d’une autre classe d’erreur spécifique :
-<table class="code"><tr><td>
+<div class="container-code">
+<div class="code-left">
 
 ```js title="Code"
 // Une classe de base pour initialiser le nom de l'erreur
@@ -2459,7 +2724,8 @@ catch (err) {
   }
 }
 ```
-</td><td>
+</div>
+<div class="code-right">
 
 ```txt title="Résultat"
 Aucune propriété : name
@@ -2473,7 +2739,8 @@ PropertyRequiredError: Aucune propriété : name
     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
     at internal/main/run_main_module.js:17:47
 ```
-</td></tr></table>
+</div>
+</div>
 
 
 
