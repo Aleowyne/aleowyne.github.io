@@ -2742,7 +2742,191 @@ PropertyRequiredError: Aucune propriété : name
 </div>
 </div>
 
+## 7. Promesses
+### 7.1 Introduction
+Une promesse est un objet qui représente la complétion ou l'échec d'une opération asynchrone.  
+Une promesse peut avoir plusieurs états au cours de son existence :
+- pending (en attente) : état initial, la promesse n'est ni remplie, ni rompue
+- fulfilled (tenue) : l'opération a réussi
+- rejected (rompue) : l'opération a échoué
+- settled (acquittée) : la promesse est tenue ou rompue mais elle n'est plus en attente
 
+Création d’une promesse :
+```js
+let promise = success => {
+  return new Promise((resolve, reject) => {
+    success ? resolve("Succès") : reject("Echec");
+  });
+};
+```
+
+Les méthodes `then` et `catch` renvoient des promesses et peuvent ainsi être chaînées :
+- `then` : 
+  - Si elle n’a qu’un seul paramètre, le paramètre correspond à une fonction qui est exécuté si la promesse est tenue
+  - Si elle a deux paramètres
+    - Le premier correspond à une fonction qui est exécuté si la promesse est tenue
+    - Le second correspond à une fonction qui est exécuté si la promesse est rompue
+
+- `catch` : c’est l’équivalent du `then(null, reject)`, donc le paramètre correspond à une fonction qui est exécuté si la promesse est rompue
+
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+// Utilisation de then
+promise(true)
+  .then(resolve => console.log(resolve), 
+        reject => console.log(reject));
+ 
+// Utilisation de then et catch
+promise(false)
+  .then(resolve => console.log(resolve))
+  .catch(reject => console.log(reject));
+ 
+L’utilisation des promesses chaînées :
+promise(true)
+  .then(resolve => { 
+    console.log(resolve);
+    return "2ème succès";
+  })
+  .then (resolve => console.log(resolve));
+```
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
+Succès
+Echec
+```
+</div>
+</div>
+ 
+
+### 7.2 Méthodes des promesses
+La méthode `all()` renvoie une promesse qui est résolue lorsque l'ensemble des promesses ont été résolues ou qui échoue avec la raison de la première promesse qui échoue.
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+Promise.all([
+  new Promise((resolve, reject) => { resolve("Promesse 1") }),
+  new Promise((resolve, reject) => { resolve("Promesse 2") }),
+  new Promise((resolve, reject) => { resolve("Promesse 3") })
+])
+.then(response => { console.log(response); });
+```
+</div>
+<div class="code-right">
+
+```json title="Résultat"
+[ 'Promesse 1', 'Promesse 2', 'Promesse 3' ]
+```
+</div>
+</div>
+
+La méthode `allSettled()` renvoie une promesse qui est résolue une fois que l'ensemble des promesses sont réussies ou rejetées. La valeur de résolution de cette promesse est un tableau d'objets contenant le résultat de chaque promesse.
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+Promise.allSettled([
+  new Promise((resolve, reject) => resolve("Promesse 1")),
+  new Promise((resolve, reject) => reject("Echec promesse 2")),
+  new Promise((resolve, reject) => resolve("Promesse 3"))
+])
+.then(response => { console.log(response); });
+```
+</div>
+<div class="code-right">
+
+```json title="Résultat"
+[
+  { status: 'fulfilled', value: 'Promesse 1' },
+  { status: 'rejected', reason: 'Echec promesse 2' },
+  { status: 'fulfilled', value: 'Promesse 3' }
+]
+```
+</div>
+</div>
+
+La méthode `race()` renvoie une promesse qui est résolue ou rejetée dès qu'une des promesses est résolue ou rejetée. La valeur ou la raison utilisée est celle de la promesse qui est résolue/qui échoue. 
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+Promise.race([
+  new Promise((resolve, reject) => setTimeout(() => resolve("Promesse 1"), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve("Promesse 2"), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve("Promesse 3"), 3000)),
+])
+.then(response => { console.log(response); });
+```
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
+Promesse 2
+```
+</div>
+</div>
+
+La méthode `resolve()` renvoie une promesse qui est résolue avec la valeur donnée.
+Les deux instructions suivantes sont équivalentes :
+```js
+let promise = Promise.resolve("Promesse 1");
+let promise = new Promise(resolve => resolve("Promesse 1"));
+```
+
+La méthode `reject()` renvoie une promesse qui est rejetée à cause d'une raison donnée.
+```js
+let promise = Promise.reject("Erreur promesse 1");
+let promise = new Promise((resolve, reject) => reject("Erreur promesse 1"));
+```
+ 
+### 7.3 Async/await
+Le mot-clé `async` devant une fonction ou une méthode de classe permet d’indiquer que cette fonction retourne une promesse.
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+let resultat = async arg => {
+  return Promise.resolve(1);
+}
+ 
+resultat().then(console.log);
+```
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
+1
+```
+</div>
+</div>
+
+Le mot-clé `await` permet d’attendre la résolution d’une promesse. Il ne peut être utilisé que dans une fonction asynchrone.
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+let resultat = async arg => {
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(arg), 1000)
+  });
+ 
+  return await promise;
+}
+ 
+resultat("Test").then(console.log);
+```
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
+Test
+```
+</div>
+</div>
 
 <br/>
 
