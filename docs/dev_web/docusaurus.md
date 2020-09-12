@@ -58,7 +58,6 @@ Modification du fichier *"docusaurus.config.js"* pour que la page principale du 
       {
         docs: {
           routeBasePath: '/',
-          homePageId: 'index',
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
@@ -83,6 +82,7 @@ Le code minimal du fichier *"index.md"* :
 ```markdown title="docs/index.md"
 ---
 id: index
+slug: /
 title: Bienvenue
 sidebar_label: Bienvenue
 ---

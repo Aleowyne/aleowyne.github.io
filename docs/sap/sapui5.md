@@ -4,6 +4,9 @@ title: SAPUI5
 sidebar_label: SAPUI5
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info
 En cours de rédaction : commencé le 08/08/2020.
 :::
@@ -11,21 +14,21 @@ En cours de rédaction : commencé le 08/08/2020.
 ## 1. Bibliothèques/Namespaces
 Bibliothèque/Namespace | Description
 -----------------------|------------
-sap.ui.core | Fonctionnalités de base : charge et gère tous les ressources et contient des modèles et un gestionnaire de rendu qui s'occupe de présenter les vues, en écrivant dans le DOM.
-sap.m | Contient l'ensemble des contrôles les plus importants, à partir du plus basique (comme les entrées) jusqu'aux contrôles qui peuvent servir de conteneurs pour les vues.
-sap.ui.layout | Conçu pour aider à structurer l'affichage des éléments des vues.
-sap.ui.unified | Contient des contrôles supplémentaires pour les smartphones et les ordinateurs de bureau.
-sap.ui.table | Contient des contrôles comme `AnalyticalTable`, `Tree Table` …<br/>Ces contrôles ne sont pas conçus pour fonctionner sur les écrans de smartphones, ils ont été conçus pour les applications traitant de grands volumes de données.
-sap.viz | Contient `sap.viz.ui5.controls.VizFrame`, qui permet d’utiliser différents types de graphiques. La plupart des autres namespace sont obsolètes.
-sap.ui.comp | Contient des contrôles intelligents comme `SmartField`, `SmartFilterBar`, `SmartTable`, `SmartForm`, `ValueHelpDialog` ...
-sap.suite | Il y a trois namespaces sous cette bibliothèque : la `sap.suite.ui.commons`, qui contient encore plus de contrôles, et deux autres qui contiennent des ressources supplémentaires, comme des types et des templates.
+sap.ui.comp | Contient des contrôles composites comme `SmartField`, `SmartFilterBar`, `SmartTable`, `SmartForm`, `ValueHelpDialog` ...
+sap.m | La principale bibliothèque de contrôles, avec des contrôles responsive qui peuvent être utilisés dans les appareils tactiles ainsi que dans les applications de bureau.
+sap.f | Contient des contrôles spécialisés pour les applications SAP Fiori.
+sap.tnt | Contient des contrôles spécialisés pour les applications administratives.
+sap.suite.ui | Contient la bibliothèque `sap.suite.ui.commons` permettant de faire des opérations de calcul, des graphes ...
 sap.ushell | Sous cette bibliothèque, il existe plusieurs namespaces qui contiennent toutes les fonctionnalités liées aux services du shell unifié.
-sap.uxap | Contient davantage de contrôles, notamment des fils d’Ariane (breadcrumbs) et des entêtes de page (`ObjectPageHeader`).
-sap.ui.commons | Il s'agit d'une bibliothèque en mode maintenance : aucun nouveau contrôle ou fonctionnalité y sont développés. Cette bibliothèque a été conçue pour les ordinateurs de bureau et les tablettes uniquement. Les contrôles à l'intérieur de cette bibliothèque sont les pendants de la bibliothèque sap.m qui sont compatibles multiplateformes et s'adaptent à toutes les tailles d'écran. Cette bibliothèque n'est pas dépréciée, mais doit être utilisée avec précaution lorsqu’elle est combinée avec d'autres bibliothèques (voir schéma ci-dessous).
-sap.ui.richtexteditor | Contient toutes les fonctionnalités requises pour le contrôle `RichTextEditor` dans SAPUI5. Le contrôle utilise TinyMCE.
+sap.uxap | Contient des contrôles comme les fils d’Ariane (breadcrumbs) et les entêtes de page (`ObjectPageHeader`).
+sap.gantt | Contient des contrôles spécialisés pour les diagrammes de Gantt.
+sap.ui.core | Contient les plugins jQuery UI5 (`jQuery.sap.*`), le Core et tous ses composants, les classes de base pour les contrôles, les composants et les classes MVC.
+sap.ui.layout | Conçu pour aider à structurer l'affichage des éléments des vues.
+sap.ui.unified | Contient des contrôles supplémentaires pour les smartphones et les ordinateurs de bureau (Calendrier, Menu, Chargement de fichier ....)
+sap.ui.table | Contient des contrôles pour gérer des tableaux.<br/>Ces contrôles ne sont pas conçus pour fonctionner sur les écrans de smartphones, ils ont été conçus pour les applications traitant de grands volumes de données.
+sap.viz | Contient `sap.viz.ui5.controls.VizFrame`, qui permet d’utiliser différents types de graphiques.
+sap.ui.richtexteditor | Contient toutes les fonctionnalités requises pour le contrôle `RichTextEditor` dans SAPUI5. Le contrôle utilise `TinyMCE`.
 sap.ui.suite | Une bibliothèque de contrôles conçue pour les applications SAP Business Suite.
-sap.ui.ux3 | Contrôles conçus principalement pour les applications de bureau et de tablette.<br/>Conçu à l'origine pour fonctionner avec le thème SAP Gold Reflection, qui était le prédécesseur de Blue Crystal.
-sap.ui.vk | Contient des fonctionnalités et des contrôles permettant d'afficher des modèles en 3D.
 
 <p align="center">
   <figure>
@@ -47,9 +50,131 @@ Les vues peuvent être écrites en JavaScript, XML, JSON ou HTML. La plupart du 
   </figure>
 </p>
 
+Le cycle de vie d’une vue et de son contrôleur :
+- la fonction `onInit()` : Appelée lorsqu'une vue est instanciée. Utilisée pour modifier la vue avant qu'elle ne s'affiche pour lier les gestionnaires d'événements et effectuer une autre initialisation.
+- la fonction `onBeforeRendering()` : Appelée chaque fois avant l'affichage de la vue.
+- la fonction `onAfterRendering()` : Appelée lorsque la vue a été affichée. Utilisée pour effectuer des manipulations post-rendu du HTML.
+- la fonction `onExit()` : Appelée lorsque la vue est détruite. Utilisée pour libérer des ressources et finaliser les activités.
+
+<p align="center">
+  <figure>
+    <img alt="Cycle de vie d'une vue" src="/img/sapui5_3.png" />
+    <figcaption>Cycle de vie d'une vue et de son contrôleur</figcaption>
+  </figure>
+</p>
+
+
+Exemple sur l'utilisation des fonctions :
+<Tabs
+  defaultValue="html"
+  values={[
+    { label: 'index.html', value: 'html', },
+    { label: 'index.js', value: 'js', },
+    { label: 'view/App.view.xml', value: 'xml', },
+    { label: 'controller/App.controller.js', value: 'app_js', },
+  ]
+}>
+<TabItem value="html">
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cycle de vie d'une vue</title>
+  <script id="sap-ui-bootstrap"
+          type="text/javascript"
+          src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+          data-sap-ui-theme="sap_belize"
+          data-sap-ui-libs="sap.m"
+          data-sap-ui-resourceroots='{"Lifecycle": "./"}'
+          data-sap-ui-onInit="module:Lifecycle/index"
+          data-sap-ui-compatVersion="edge"
+          data-sap-ui-async="true">
+  </script>
+</head>
+
+<body class="sapUiBody" id="content">
+</body>
+</html>
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+sap.ui.define([
+	"sap/ui/core/mvc/XMLView"
+], function (XMLView) {
+	"use strict";
+
+	XMLView.create({viewName: "Lifecycle.view.App"}).then(function (oView) {
+		oView.placeAt("content");
+	});
+});
+```
+
+</TabItem>
+<TabItem value="xml">
+
+```xml
+<mvc:View
+	controllerName="Lifecycle.controller.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" >
+	
+	<App>
+		<Page title="Cycle de vie">
+			<Button
+				text="Destruction"
+				press="onPress"/>
+		</Page>
+	</App>
+
+</mvc:View>
+```
+
+</TabItem>
+<TabItem value="app_js">
+
+```js
+sap.ui.define([
+  "sap/ui/core/mvc/Controller"
+], function(Controller) {
+  "use strict";
+
+  return Controller.extend("Lifecycle.App", {
+
+    onInit: function() {
+      console.log("Fonction onInit() appelée");
+    },
+    
+    onBeforeRendering: function() {
+      console.log("Fonction onBeforeRendering() appelée");
+    },
+    
+    onAfterRendering: function() {
+      console.log("Fonction onAfterRendering() appelée");
+    },
+    
+    onExit: function() {
+		  console.log("Fonction onExit() appelée");
+	  },
+    
+    onPress: function(Event) {
+      this.getView().destroy();
+    }
+
+  });
+});
+```
+
+</TabItem>
+</Tabs>
 
 <br/>
 
 :::tip Sources
-Livre : SAPUI5 The Comprehensive Guide (1st edition) de Christiane Goebels, Denise Nepraunig et Thilo Seidel
+Livre : SAPUI5 The Comprehensive Guide (1st edition) de Christiane Goebels, Denise Nepraunig et Thilo Seidel  
+https://sapui5.hana.ondemand.com/
 :::

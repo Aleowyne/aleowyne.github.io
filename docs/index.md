@@ -1,5 +1,6 @@
 ---
 id: index
+slug: /
 title: A propos
 sidebar_label: A propos
 ---

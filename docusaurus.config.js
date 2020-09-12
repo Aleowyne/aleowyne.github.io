@@ -70,7 +70,6 @@ module.exports = {
       {
         docs: {
           routeBasePath: '/',
-          homePageId: 'index',
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
