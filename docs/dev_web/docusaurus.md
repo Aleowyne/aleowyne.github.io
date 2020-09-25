@@ -35,12 +35,12 @@ Le projet a la structure suivante :
 Exécution locale du site sur le serveur de développement qui affichera automatiquement le site à l'adresse http://localhost:3000 dans votre navigateur préféré : 
 ```bash
 cd mon_site
-npm run start
+npm start
 ```
 
 Création de la version statique du site dans le dossier *"build"* :
 ```bash
-npm run build
+npm build
 ```
 
 

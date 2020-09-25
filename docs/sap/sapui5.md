@@ -32,7 +32,7 @@ sap.ui.suite | Une bibliothèque de contrôles conçue pour les applications SAP
 
 <p align="center">
   <figure>
-    <img alt="Compatibilité entre bibliothèques" src="/img/sapui5_1.png" />
+    <img alt="Compatibilité entre bibliothèques" src="/img/sapui5_1.png" class="img500" />
     <figcaption>Compatibilité entre bibliothèques</figcaption>
   </figure>
 </p>
@@ -45,7 +45,7 @@ Les vues peuvent être écrites en JavaScript, XML, JSON ou HTML. La plupart du 
 
 <p align="center">
   <figure>
-    <img alt="Fonctionnement du MVC sur SAPUI5" src="/img/sapui5_2.png" />
+    <img alt="Fonctionnement du MVC sur SAPUI5" src="/img/sapui5_2.png" class="img500" />
     <figcaption>Fonctionnement du MVC sur SAPUI5</figcaption>
   </figure>
 </p>
@@ -58,7 +58,7 @@ Le cycle de vie d’une vue et de son contrôleur :
 
 <p align="center">
   <figure>
-    <img alt="Cycle de vie d'une vue" src="/img/sapui5_3.png" />
+    <img alt="Cycle de vie d'une vue" src="/img/sapui5_3.png" class="img700" />
     <figcaption>Cycle de vie d'une vue et de son contrôleur</figcaption>
   </figure>
 </p>
@@ -90,7 +90,8 @@ Exemple sur l'utilisation des fonctions :
           data-sap-ui-resourceroots='{"Lifecycle": "./"}'
           data-sap-ui-onInit="module:Lifecycle/index"
           data-sap-ui-compatVersion="edge"
-          data-sap-ui-async="true">
+          data-sap-ui-async="true"
+          data-sap-ui-logLevel="info">
   </script>
 </head>
 
@@ -104,13 +105,13 @@ Exemple sur l'utilisation des fonctions :
 
 ```js
 sap.ui.define([
-	"sap/ui/core/mvc/XMLView"
+  "sap/ui/core/mvc/XMLView"
 ], function (XMLView) {
-	"use strict";
+  "use strict";
 
-	XMLView.create({viewName: "Lifecycle.view.App"}).then(function (oView) {
-		oView.placeAt("content");
-	});
+  XMLView.create({viewName: "Lifecycle.view.App"}).then(function (oView) {
+    oView.placeAt("content");
+  });
 });
 ```
 
@@ -119,18 +120,17 @@ sap.ui.define([
 
 ```xml
 <mvc:View
-	controllerName="Lifecycle.controller.App"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc" >
-	
-	<App>
-		<Page title="Cycle de vie">
-			<Button
-				text="Destruction"
-				press="onPress"/>
-		</Page>
-	</App>
-
+  controllerName="Lifecycle.controller.App"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc" >
+    
+  <App>
+    <Page title="Cycle de vie">
+      <Button
+        text="Destruction"
+        press="onPress"/>
+    </Page>
+  </App>
 </mvc:View>
 ```
 
@@ -139,38 +139,69 @@ sap.ui.define([
 
 ```js
 sap.ui.define([
-  "sap/ui/core/mvc/Controller"
-], function(Controller) {
-  "use strict";
-
-  return Controller.extend("Lifecycle.App", {
-
-    onInit: function() {
-      console.log("Fonction onInit() appelée");
-    },
-    
-    onBeforeRendering: function() {
-      console.log("Fonction onBeforeRendering() appelée");
-    },
-    
-    onAfterRendering: function() {
-      console.log("Fonction onAfterRendering() appelée");
-    },
-    
-    onExit: function() {
-		  console.log("Fonction onExit() appelée");
-	  },
-    
-    onPress: function(Event) {
-      this.getView().destroy();
-    }
-
-  });
-});
+    "sap/ui/core/mvc/Controller",
+    "sap/base/Log"
+  ], function(Controller, Log) {
+    "use strict";
+  
+    return Controller.extend("Lifecycle.App", {
+      onInit: function() {
+        Log.info("Fonction onInit() appelée");
+      },
+      
+      onBeforeRendering: function() {
+        Log.info("Fonction onBeforeRendering() appelée");
+      },
+      
+      onAfterRendering: function() {
+        Log.info("Fonction onAfterRendering() appelée");
+      },
+      
+      onExit: function() {
+        Log.info("Fonction onExit() appelée");
+      },
+      
+      onPress: function(Event) {
+        this.getView().destroy();
+      }
+    });
+  }
+);
 ```
 
 </TabItem>
 </Tabs>
+
+## 3. Architecture d’une application SAPUI5
+
+Exemple d'une architecture de projet pouvant être utilisée :
+<p align="center">
+  <figure>
+    <img alt="Architecture d'un projet" src="/img/sapui5_4.png" />
+    <figcaption>Architecture d'un projet</figcaption>
+  </figure>
+</p>
+
+Le contenu d'un projet :
+- Répertoire `webapp/controller` : Le contenu du répertoire des contrôleurs (controller) doit correspondre au contenu du répertoire des vues (view).
+- Répertoire `webapp/css` : Le répertoire des fichiers de style de l’application.
+- Répertoire `webapp/i18n` (internationalisation) : Le répertoire contient les fichiers qui permettent d’adapter l’application à toutes les langues. Le chemin vers un des fichiers de ce répertoire ne doit pas excéder les 100 caractères.
+- Répertoire `webapp/img` : Le répertoire des images de l’application
+- Répertoire `webapp/model` : Répertoire des modèles
+- Répertoire `webapp/view` : Répertoire des vues.
+- Fichier `webapp/Component.js` : C’est le contrôleur du composant et il fournit les métadonnées d'exécution et les méthodes du composant.
+- Fichier `webapp/index.html` : Fichier d’entrée de l’application, avec les références aux bibliothèques, au thème utilisé …
+- Fichier `webapp/manifest.json` : Fichier de configuration pour définir les informations de l’application, comme le nom de l’application, l’emplacement des différents fichiers …
+- Fichier `.project.json` : Paramètres du projet.
+- Fichier `neo-app.json` : Fichier de configuration du projet pour l’IDE SAP Web.
+
+Les évènements d'une application SAPUI5 se déroulent comme suit :
+<p align="center">
+  <figure>
+    <img alt="Ordre des évènements d’une application SAPUI5" src="/img/sapui5_5.png" class="img500" />
+    <figcaption>Ordre des évènements d’une application SAPUI5</figcaption>
+  </figure>
+</p>
 
 <br/>
 

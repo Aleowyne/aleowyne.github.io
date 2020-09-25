@@ -41,6 +41,14 @@ figcaption {
   font-style: italic;
 }
 
+.img500 {
+  width: 500px;
+}
+
+.img700 {
+  width: 700px;
+}
+
 table {
   display: table;
 }
