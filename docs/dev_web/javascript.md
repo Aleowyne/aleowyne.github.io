@@ -8,7 +8,7 @@ sidebar_label: JavaScript
 En cours de rédaction : commencé le 12/07/2020.
 :::
 
-## 1 Informations en vrac
+## 1. Informations en vrac
 Les spécifications ECMA sont disponibles via ce lien : https://www.ecma-international.org/publications/standards/Ecma-262.htm  
 Il n'est plus utile d'utiliser l’attribut `type` dans la balise `<script>`.  
 La directive `"use scrict";` peut être ajoutée au début des fichiers js.  
@@ -21,7 +21,7 @@ Les règles de nommage que j'ai choisies :
 - Fonctions : camelCase
 
 
-## 2 Types de données
+## 2. Types de données
 Utiliser `null` pour écrire une valeur "vide" ou "inconnue" dans la variable, et `undefined` pour les vérifications, c'est-à-dire pour voir si la variable est affectée ou similaire.
 
 L’opérateur `typeof` permet d’indiquer le type d’une variable. Il existe 8 types de données de base :
@@ -66,7 +66,7 @@ console.log(0o377); // Octal
 Utilisation de `toString(base)` :
 - La base va de 2 à 36
 - Si la base choisie est 36, tous les chiffres et les caractères de l’alphabet latin sont utilisés (0-9 et a-z)
-- Deux points après le nombre ou des parenthèse autour du nombre si ce n’est pas une variable qui est utilisée
+- Deux points après le nombre ou des parenthèses autour du nombre si ce n’est pas une variable qui est utilisée
 
 <div class="container-code">
 <div class="code-left">
@@ -1968,7 +1968,7 @@ Les conversions d'un type vers un autre type sont effectuées avec les instructi
   - Pour les autres valeurs ⇒ Valeur d'arrivée `true`
 
 
-## 3 Fonctions
+## 3. Fonctions
 ### 3.1 Les paramètres
 Paramètre par défaut dans une fonction : 
 ```js
@@ -2142,7 +2142,7 @@ Un intervalle
 La fonction `clearInterval(interval)` permet d'annuler l’exécution.
 
 
-## 4 Prototypes
+## 4. Prototypes
 Lorsque l'on fait appel à une propriété sur un objet, JavaScript va chercher si la propriété est présente sur l'objet puis sur son prototype, puis sur le prototype de son prototype (et ainsi de suite...). 
 
 Un objet hérite des propriétés et des méthodes de l’objet dit prototype :
@@ -2213,7 +2213,7 @@ L’utilisation de `for...in` boucle sur les propres clés de l’objet ainsi qu
 Il est possible de ne pas prendre en compte les clés héritées grâce à la méthode `object.hasOwnProperty(key)`.
 
 
-## 5 Classes
+## 5. Classes
 ### 5.1 Syntaxe de base
 Création d’une classe, avec getter et setter, et d’une instance de classe :
 <div class="container-code">
@@ -2502,7 +2502,7 @@ Déplacement de la forme
 </div>
 
 
-## 6 Gestion d'exceptions
+## 6. Gestion d'exceptions
 ### 6.1 La syntaxe try … catch
 L’utilisation de la syntaxe `try … catch` :
 - Le code à l’intérieur du `try` est exécuté.
@@ -2927,6 +2927,109 @@ Test
 ```
 </div>
 </div>
+
+## 8. Les fonctions génératrices
+Une fonction génératrice permet de retourner plusieurs valeurs :
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+function* generate() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+ 
+let generator = generate();
+console.log(generator);
+console.log(generator.next());
+console.log(generator.next());
+console.log(generator.next());
+console.log(generator.next());
+```
+</div>
+<div class="code-right">
+
+```json title="Résultat"
+Object [Generator] {}
+{ value: 1, done: false }       
+{ value: 2, done: false }       
+{ value: 3, done: false }       
+{ value: undefined, done: true }
+```
+</div>
+</div>
+
+Les fonctions génératrices sont itérables :
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+function* generate() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+ 
+let generator = generate();
+ 
+for(let value of generator) {
+  console.log(value);
+}
+```
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
+1
+2
+3
+```
+</div>
+</div>
+
+
+## 9. Les modules
+Le mot-clé `export` permet d’exporter les éléments d’un module.  
+Le mot-clé `import` permet d’importer les éléments d’un module.
+
+```js
+// 1. Exporter/importer une variable :
+export let nom1; // Utilisable avec const également
+import {nom1} from 'modules.js';
+ 
+// 2. Exporter/importer une fonction :
+export function nomFonction() {...};
+import {nomFonction} from 'modules.js';
+ 
+// 3. Exporter/importer une classe :
+export class NomClasse {...};
+import {NomClasse} from 'modules.js';
+ 
+// 4. Exporter/Importer une seule entité (un seul "default" par module)
+export default class NomClasse {};
+import NomClasse from 'modules.js';
+ 
+// 5. Exporter/importer avec une liste :
+export {nom1, nom2 ...};
+import {nom1, nom2 ...} from 'modules.js';
+ 
+// 6. Exporter/importer avec renommage :
+export {variable1 as nom1, variable2 as nom2 ...};
+import {variable1 as nom1, variable2 as nom2 ...} from 'modules.js';
+ 
+// 7. Exporter/importer avec agrégation de modules :
+// Fichier moduleParent.js 
+export {maFonction, maVariable} from 'moduleFils1.js';
+export {maClasse} from 'moduleFils2.js';
+ 
+// Dans le module de plus haut niveau
+import {maFonction, maVariable, maClasse} from 'moduleParent.js';
+ 
+// 8. Exporter/Importer l'intégralité :
+export * from 'module.js';
+import * as monModule from 'modules.js';
+```
 
 <br/>
 

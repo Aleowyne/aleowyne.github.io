@@ -169,13 +169,22 @@ git remote add origin https://github.com/username/username.github.io
 ```
 
 Vérification que la connexion distante soit correcte :
-```bash
+<div class="container-code">
+<div class="code-left">
+
+```bash title="Code"
 git remote -v
 ```
-```bash
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
 origin  https://github/com/username/username.github.io (fetch)
 origin  https://github/com/username/username.github.io (push)
 ```
+</div>
+</div>
+
 
 Si l'URL n'est pas la bonne, elle peut être changée avec la commande suivante :
 ```bash
@@ -191,13 +200,23 @@ git checkout master
 git checkout -b dev
 ```
 Vérification de la création des branches : 
-```bash
+
+<div class="container-code">
+<div class="code-left">
+
+```bash title="Code"
 git branch
 ```
-```bash
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
 * dev
   master
 ```
+</div>
+</div>
+
 <br/>
 
 4. Ajout des fichiers du projet dans le répertoire de travail pour préparer le contenu du prochain commit
