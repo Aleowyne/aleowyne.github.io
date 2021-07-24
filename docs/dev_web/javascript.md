@@ -2800,6 +2800,170 @@ export * from 'module.js';
 import * as monModule from 'modules.js';
 ```
 
+## 10. Proxy
+L'objet `Proxy` est utilisé afin de définir un comportement sur mesure pour certaines opérations fondamentales (par exemple, l'accès aux propriétés, les affectations, les énumérations, les appels de fonctions, etc.).
+
+```js
+let proxy = new Proxy(target, handler);
+```
+
+Description des paramètres :
+- `target` : Une cible (qui peut être n'importe quel objet, un tableau, une fonction, ou même un autre proxy) qu'on souhaite envelopper dans un Proxy.
+- `handler` : Un objet dont les propriétés sont des fonctions qui définissent le comportement du proxy lorsqu'on utilise une opération sur celui-ci.
+
+Exemple :
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+let animal = {
+  name: "Sidonie",
+  age: 5
+}
+ 
+let proxy = new Proxy(animal, { 
+  get: function(target, property) {
+    return `Propriété "${property}" : ${target[property]}`;
+  },
+ 
+  set: function(target, property, value) {
+    console.log("Ancienne valeur :", target[property]);
+    console.log("Nouvelle valeur :", value);
+    target[property] = value;
+    return true;
+  }
+})
+ 
+console.log(proxy.name);
+console.log(proxy.age);
+proxy.age = 6;
+console.log(animal);
+```
+</div>
+<div class="code-right">
+
+```json title="Résultat"
+Propriété "name" : Sidonie
+Propriété "age" : 5
+Ancienne valeur : 5
+Nouvelle valeur : 6
+```
+</div>
+</div>
+
+Autres utilisations : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Proxy
+
+
+## 11. Le DOM
+### 11.1 Accéder aux noeuds
+Le Document Object Model ou DOM (pour modèle objet de document) est une interface de programmation pour les documents HTML, XML et SVG. Il fournit une représentation structurée du document sous forme d'un arbre et définit la façon dont la structure peut être manipulée par les programmes, en termes de style et de contenu. Le DOM représente le document comme un ensemble de nœuds et d'objets possédant des propriétés et des méthodes.
+
+Les types de noeuds du DOM :
+
+| Constante                   | Valeur | Description                                                |
+|-----------------------------|--------|------------------------------------------------------------|
+| ELEMENT_NODE                | 1      | Représente un nœud élément                                 |
+| TEXT_NODE                   | 3      | Représente un nœud de type texte                           |
+| PROCESSING_INSTRUCTION_NODE | 7      | Nœud valable dans le cas d’un document XML.                |
+| COMMENT_NODE                | 8      | Représente un nœud commentaire                             |
+| DOCUMENT_NODE               | 9      | Représente le nœud formé par le document en soi            |
+| DOCUMENT_TYPE_NODE          | 10     | Représente le nœud doctype                                 |
+| DOCUMENT_FRAGMENT_NODE      | 11     | Représente un objet document minimal qui n’a pas de parent |
+
+<br/>
+
+Les propriétés utilisées avec un exemple :
+
+```html
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="parent"><div id="previous"><p>Test1</p></div><div id="element"><p id="first">Test2</p><p id="last">Test2</p></div><div id="next"><p>Test3</p></div></div>
+</body>
+</html>
+```
+
+<p align="center">
+  <figure>
+    <img alt="Les propriétés pour accéder aux noeuds" src="/img/javascript_1.png" />
+    <figcaption>Les propriétés pour accéder aux noeuds</figcaption>
+  </figure>
+</p>
+
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+console.log(document.body.childNodes[1].childNodes[1]);
+console.log(document.body.childNodes[1].childNodes[1].parentNode);
+console.log(document.body.childNodes[1].childNodes[1].previousSibling);
+console.log(document.body.childNodes[1].childNodes[1].nextSibling);
+console.log(document.body.childNodes[1].childNodes[1].firstChild);
+console.log(document.body.childNodes[1].childNodes[1].lastChild);
+console.log(document.body.childNodes[1].childNodes[1].childNodes);
+```
+</div>
+<div class="code-right">
+<p align="center">
+  <figure>
+    <img alt="Résultat" src="/img/javascript_2.png" />
+    <figcaption>Résultat</figcaption>
+  </figure>
+</p>
+</div>
+</div>
+
+<br/>
+
+Les propriétés précédentes concernent tous les types de nœuds. Elles sont remplacées par les suivantes pour les nœuds de type élément : `parentElement, previousElementSibling, nextElementSibling, firstElementChild, lastElementChild, children`.
+
+Les propriétés `childNodes` et `children` renvoient une collection qui est itérable (utilisation de `for … of`).
+
+Et pour les autres noeuds :  
+- `<html> : document.documentElement`  
+- `<body> : document.body`  
+- `<head> : document.head`
+
+<br/>
+
+Des propriétés supplémentaires existent pour les tableaux :
+- Pour l’élément `<table>` :
+    - `table.rows` : récupère la collection des éléments `<tr>`
+    - `table.caption, table.tHead` et `table.tFoot` : récupère les éléments `<caption>, <thead>, <tfoot>`
+    - `table.tBodies` : récupère la collection des éléments `<tbody>`
+- Pour les éléments `<thead>, <tfoot>, <tbody>` :
+    - `thead.rows, tfoot.rows` et `tbody.rows` : récupère la collection des éléments `<tr>`
+- Pour l'élément `<tr>` :
+    - `tr.cells` : récupère la collection des éléments `<td>` et `<th>`
+    - `tr.sectionRowIndex` : la position de l’élément `<tr>` à l’intérieur des éléments `<thead>, <tbody>, <tfoot>`
+    - `tr.rowIndex` : la position de l’élément `<tr>` dans le tableau
+- Pour les éléments `<td>` et `<th>` :
+    - `td.cellIndex, th.cellIndex` : la position de l’élément `<td>` ou `<th>`
+
+
+### 11.2 Rechercher des éléments
+La liste des méthodes :
+- `querySelector(selectors)` : prend en paramètre des sélecteurs CSS et renvoie le premier élément trouvé. Elle peut être utilisée sur un élément ou directement sur `document`.
+- `querySelectorAll(selectors)` : prend en paramètre des sélecteurs CSS et renvoie une collection d’éléments. Elle peut être utilisée sur un élément ou directement sur `document`.
+- `getElementById(id)` : prend en paramètre un id et renvoie un élément dont la propriété id correspond au paramètre. Elle peut être utilisée sur `document`.
+- `getElementsByName(name)` : prend en paramètre un nom et renvoie une collection d’éléments dont l’attribut `name` correspond au paramètre. La collection se met à jour automatiquement à chaque changement du DOM. La méthode peut être utilisée sur `document`.
+- `getElementsByTagName(tag)` : prend en paramètre un tag et renvoie une collection d’éléments dont la balise HTML correspond au paramètre. La collection se met à jour automatiquement à chaque changement de DOM. La méthode peut être utilisée sur un élément ou directement sur `document`.
+- `getElementsByClassName(class)` : prend en paramètre une classe et renvoie une collection d’éléments dont la classe correspond au paramètre. La collection se met à jour automatiquement à chaque changement de DOM. La méthode peut être utilisée sur un élément ou directement sur `document`.
+- `matches(selectors)` : prend en paramètre des sélecteurs CSS et renvoie `true` lorsque l'élément peut être sélectionné par le sélecteur défini en paramètre, sinon elle renvoie `false`.
+- `closest(selectors)` : prend en paramètre des sélecteurs CSS et renvoie l'ancêtre le plus proche de l'élément courant (ou l'élément courant) qui correspond au sélecteur passé en paramètre.
+
+### 11.3 Les propriétés des noeuds
+La liste des propriétés principales :
+- `nodeName/tagName` : Nom du nœud courant ou de l’étiquette de l’élément. Pour les nœuds, c’est la propriété `nodeName`. Pour les éléments, c’est la propriété `tagName`. Lecture seulement.
+- `innerHTML` : Le contenu HTML de l'élément. Peut être modifié.
+- `nodeValue/data` : Le contenu d'un nœud non élémentaire (texte, commentaire). Peut être modifié.
+- `textContent` : Le texte à l'intérieur de l'élément sans les balises HTML.
+- `hidden` : Lorsqu'il est défini sur `true`, l’élément est caché.
+
 <br/>
 
 :::tip Sources

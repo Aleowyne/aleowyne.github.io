@@ -55,9 +55,13 @@ module.exports = {
               href: 'https://www.twitch.tv/lesmoulinsdudev',
             },
             {
-              label: 'JaChampagne',
-              href: 'https://www.twitch.tv/jachampagne',
+              label: 'Grafikart',
+              href: 'https://www.twitch.tv/grafikart',
             },
+            {
+              label: 'CodingGarden',
+              href: 'https://www.twitch.tv/codinggarden',
+            }
           ],
         },
       ],
