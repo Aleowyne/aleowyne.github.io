@@ -11,8 +11,8 @@ Il est particulièrement utilisé pour générer des sites de documentation, mai
 
 Le contenu de votre site est rédigé grâce à la syntaxe markdown (md et mdx).  
 Un [moteur de recherche](https://v2.docusaurus.io/docs/search/) basé sur Algolia peut être installé sur votre site.  
-Le [style](https://v2.docusaurus.io/docs/styling-layout/#styling-your-site-with-infima) du site peut également être modifié avec [Infima](https://facebookincubator.github.io/infima/). Mais j'ai l'impression que le site Infima est toujours en cours de rédaction (section "Spacing" qui est vide).  
-Le support et la gestion des langues sont en cours de développement (i18n => internationalisation). Si vous avez besoin de ces fonctionnalités, vous pouvez utiliser la version 1 de [Docusaurus](https://docusaurus.io/).
+Le [style](https://v2.docusaurus.io/docs/styling-layout/#styling-your-site-with-infima) du site peut également être modifié avec [Infima](https://facebookincubator.github.io/infima/).  
+Le support et la gestion des langues sont accessibles depuis la version 2.0.0-alpha.71 (i18n => internationalisation).
 
 
 ## 2. Installation d'un nouveau projet Docusaurus
@@ -20,7 +20,7 @@ En prérequis, il faut installer Node.js et Git. Si vous le souhaitez, vous pouv
 
 Création d'un nouveau projet *"mon_site"* sous le dossier *"mon_site"* avec le template classic proposé par Docusaurus.
 ```bash
-npx @docusaurus/init@next init mon_site classic
+npx @docusaurus/init@latest init mon_site classic
 ```
 
 Le projet a la structure suivante :
@@ -30,7 +30,7 @@ Le projet a la structure suivante :
 - Dossier *"src/pages"* qui contient les pages de premier niveau du site - [Création de pages](https://v2.docusaurus.io/docs/creating-pages/)
 - Dossier *"static/img"* qui contient les images du site
 - Fichier *"docusaurus.config.js"* qui contient la configuration du site
-- Fichier *"sidebar.js"* qui contient le menu latéral de la documentation
+- Fichier *"sidebars.js"* qui contient le menu latéral de la documentation
 
 Exécution locale du site sur le serveur de développement qui affichera automatiquement le site à l'adresse http://localhost:3000 dans votre navigateur préféré : 
 ```bash
@@ -192,11 +192,11 @@ git remote set-url origin https://github.com/username/username.github.io
 ```
 <br/>
 
-3. Création de deux branches *"master"* et *"dev"* avec la branche *"dev"* définie par défaut.
+3. Création de deux branches *"main"* et *"dev"* avec la branche *"dev"* définie par défaut.
 
-La branche *"master"* contiendra le code généré du site statique et la branche *"dev"* contiendra le code source du site statique.
+La branche *"main"* contiendra le code généré du site statique et la branche *"dev"* contiendra le code source du site statique.
 ```bash
-git checkout master
+git checkout main
 git checkout -b dev
 ```
 Vérification de la création des branches : 
@@ -212,7 +212,7 @@ git branch
 
 ```txt title="Résultat"
 * dev
-  master
+  main
 ```
 </div>
 </div>
@@ -238,7 +238,7 @@ git push -u origin dev
 <br/>
 
 
-7. Déploiement du site sur la branche *"master"* via l’invite de commande Git BASH
+7. Déploiement du site sur la branche *"main"* via l’invite de commande Git BASH
 ```bash
 GIT_USER=<username> npm run deploy
 ```

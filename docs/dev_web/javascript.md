@@ -18,7 +18,8 @@ Le mot-clé `debugger` est utilisé pour mettre un point d’arrêt.
 Les règles de nommage que j'ai choisies :
 - Variables et constantes : camelCase
 - Constantes qui seront utilisées dans tout le script et la plupart du temps créées au début du script (Exemple : COLOR_RED) : majuscule et underscore
-- Fonctions : camelCase
+- Classes : PascalCase
+- Fonctions et méthodes : camelCase
 
 
 ## 2. Types de données
@@ -27,7 +28,7 @@ Utiliser `null` pour écrire une valeur "vide" ou "inconnue" dans la variable, e
 L’opérateur `typeof` permet d’indiquer le type d’une variable. Il existe 8 types de données de base :
 - `number` pour les nombres de toute nature : entier ou virgule flottante, les nombres entiers sont limités à ±253
 - `bigint` pour des nombres entiers de longueur arbitraire
-- `string` pour les chaîne de caractères
+- `string` pour les chaînes de caractères
 - `boolean` pour true/false
 - `null` pour les valeurs inconnues
 - `undefined` pour les valeurs non attribuées
@@ -487,70 +488,17 @@ let clone = Object.assign({}, user);
 ```
 
 S’il existe un ou plusieurs objets dans un objet, utiliser la copie en profondeur : https://lodash.com/docs#cloneDeep
-
+<br/>
 
 #### 2.3.4 Chaînage optionnel `?.` 
 La syntaxe `?.` revêt trois formes :
 - `obj?.prop` : retourne `obj.prop` si l'objet existe, sinon `undefined`.
-- `obj?.[prop]` : retourne `obj[prop]` if l'objet existe, sinon `undefined`.
-- `obj?.method()` : exécute `obj.method()` si l'objet existe, sinon retourne `undefined`.
+- `obj?.[prop]` : retourne `obj[prop]` si l'objet existe, sinon `undefined`.
+- `obj?.method()` : exécute la méthode `obj.method()` si l'objet existe, sinon retourne `undefined`.
 
+<br/>
 
-#### 2.3.5 Conversion d’un objet vers un type primitif
-Vers une chaîne de caractères :
-```js
-let animal = {
-  name: "Sidonie"
-}
- 
-console.log(animal);
-```
-
-Vers un nombre :
-```js
-let delta = date1 - date2;
-let greater = animal1 > animal2;
-```
-
-Vers un type "default" : Pas sûr du type.  
-Le binaire "+" peut fonctionner à la fois avec des chaînes de caractères et des nombres.  
-Si un objet est comparé à l’aide de "==" avec une chaîne de caractères, un nombre ou un symbole, il est également difficile de savoir quelle conversion doit être effectuée.
-
-Pour choisir son propre traitement de conversion, il faut implémenter la méthode :
-- `toString()` pour une conversion vers une chaîne de caractères
-- `valueOf()` pour une conversion vers un nombre ou un type "default"
-
-
-Il est possible d’utiliser les méthodes des tableaux sur les données d’un objet. Il faut transformer l’objet en tableau, puis effectuer les modifications souhaitées avec les méthodes choisies, puis ensuite re-transformer le tableau en objet.
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-let nbAnimals = {
-  hen: 4,
-  sheep: 2,
-  rooster: 1
-};
- 
-let addAnimals = Object.fromEntries(
-  Object.entries(nbAnimals).map(([key, value]) => [key, value + 1])
-);
-
-console.log(addAnimals);
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-{ hen: 5, sheep: 3, rooster: 2 }
-```
-</div>
-</div>
-
-Quand une méthode d’un objet est appelé comme suit : `object.method()`, le `this` correspond à `object`.
-
-
-#### 2.3.6 Attributs des propriétés
+#### 2.3.5 Attributs des propriétés
 - `writable` : Si `true`, la valeur peut être modifiée
 - `enumerable` : Si `true`, la propriété peut être listée dans une boucle
 - `configurable` : Si `true`, la propriété peut être supprimée et ses attributs peuvent être modifiés
@@ -681,12 +629,8 @@ console.log(animal);
 </div>
 </div>
 
-- `Object.preventExtensions(obj)` : permet d’interdire l’ajout de nouvelles propriétés à un objet.
-- `Object.seal(obj)` : permet d’interdire l’ajout et la suppression de propriétés dans un objet.
-- `Object.freeze(obj)` : permet d’interdire l’ajout, la modification et la suppression des propriétés existantes dans un objet.
-- `Object.isExtensible(obj)` : retourne `false` si l’ajout de nouvelles propriétés est interdite, sinon `true`.
-- `Object.isSealed(obj)` : retourne `true` si l’ajout de nouvelles propriétés et la suppression des propriétés existantes est interdite, sinon `false`.
-- `Object.isFrozen(obj)` : retourne `true` si l’ajout, la modification et la suppression de propriétés est interdite, sinon `false`.
+Liste des méthodes : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object
+<br/>
 
 #### 2.3.7 Les getters et setters
 
@@ -880,54 +824,6 @@ Symbol(12)
 </div>
 </div>
 
-Comparaison entre une propriété "id" et un symbole "id" :
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-let id = Symbol("id");
-let animal = { name: "Sidonie" };
- 
-// Ajout d'un identifiant unique à l’objet animal
-animal[id] = "12";
- 
-// Ajout d'une propriété "id" à l’objet animal
-animal.id = "Un identifiant";
- 
-console.log(animal[id]);
-console.log(animal.id);
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-12
-Un identifiant
-```
-</div>
-</div>
-
-Les symboles ne sont pas pris en compte lors de l'utilisation de la boucle `for … in`, `Object.keys()` et `JSON.stringify()`.
-
-Les symboles globaux :
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-let sym = Symbol.for("name");
-console.log(Symbol.keyFor(sym)); // Affiche : name
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-name
-```
-</div>
-</div>
-
-Les méthodes pour les symboles globaux : https://tc39.es/ecma262/#sec-well-known-symbols
-
 
 ### 2.6 Map
 L’objet `Map` permet de stocker des couples (clé, valeur). Les clés peuvent être de n’importe quel type de données.
@@ -1082,6 +978,7 @@ Map(0) {}
 ```
 </div>
 </div>
+<br/>
 
 L’itération sur un objet `Map` peut se faire de différentes manières :
 - En utilisant `forEach()` :
@@ -1206,6 +1103,7 @@ Set(3) { 'Banane', 'Poire', 'Pomme' }
 ```
 </div>
 </div>
+<br/>
 
 Les méthodes disponibles sont les suivantes :
 - `set.add(value)` : Stocke une nouvelle valeur. Elle n’est pas ajoutée si elle existe déjà.
@@ -1308,7 +1206,7 @@ Set(0) {}
 ```
 </div>
 </div>
-
+<br/>
 
 L’itération sur un objet `Set` peut se faire de différentes manières :
 - En utilisant `forEach()` :
@@ -1366,77 +1264,9 @@ let weakMap = new WeakMap();
 
 Les méthodes disponibles sont les suivantes :
 - `weakMap.set(key, value)` : Stocke un nouveau couple (clé, valeur)
-```js
-let animals = new WeakMap();
-let sidonie = { name : "Sidonie" };
-let aglae = { name : "Aglaé" };
- 
-animals.set(sidonie, 1);
-animals.set(aglae, 4);
-```
-
-Il est possible de chaîner les appels de la méthode :
-```js
-animals.set(sidonie, 1)
-       .set(aglae, 4);
-```
-
 - `weakMap.get(key)` : Récupère la valeur à partir d'une clé
-
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-let animalsTwo = new WeakMap();
-console.log(animals.get(sidonie));
-console.log(animalsTwo.get(sidonie)); 
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-1
-undefined
-```
-</div>
-</div>
-
 - `weakMap.has(key)` : Retourne `true` si la clé existe, sinon `false`
-
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-console.log(animals.has(sidonie)); 
-console.log(animalsTwo.has(sidonie)); 
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-true
-false
-```
-</div>
-</div>
-
 - `weakMap.delete(key)` : Supprime le couple (clé, valeur) à partir d'une clé
-
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-animals.delete(sidonie);
-console.log(animals.has(sidonie));
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-false
-```
-</div>
-</div>
 
 
 ### 2.9 WeakSet
@@ -1449,59 +1279,8 @@ let weakSet = new WeakSet();
 
 Les méthodes disponibles sont les suivantes :
 - `weakSet.add(value)` : Stocke une nouvelle valeur. Elle n’est pas ajoutée si elle existe déjà.
-```js
-let animals = new WeakSet();
-let sidonie = { name : "Sidonie" };
-let aglae = { name : "Aglaé" };
- 
-animals.add(sidonie);
-animals.add(aglae);
-```
-
-Il est possible de chaîner les appels de la méthode :
-```js
-animals.add(sidonie)
-       .add(aglae);
-```
-
 - `weakSet.has(value)` : Retourne `true` si la valeur existe, sinon `false`
-
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-let animalsTwo = new WeakMap();
-console.log(animals.has(sidonie));
-console.log(animalsTwo.has(sidonie)); 
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-true
-false
-```
-</div>
-</div>
-
 - `weakSet.delete(value)` : Supprime la valeur
-
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-animals.delete(sidonie);
-console.log(animals.has(sidonie));
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-false
-```
-</div>
-</div>
-
 
 
 ### 2.10 Déstructuration
@@ -1568,7 +1347,7 @@ console.log(user);
 </div>
 
 
-Le paramètre de reste, représenté par 3 points ```...```, permet de représenter un nombre indéfini d’arguments sous forme d’un tableau :
+Le paramètre de reste (```...```), permet de représenter un nombre indéfini d’arguments sous forme d’un tableau :
 <div class="container-code">
 <div class="code-left">
 
@@ -1632,41 +1411,18 @@ age : 30
 </div>
 </div>
 
-Exemple avec un objet `Map` :
-<div class="container-code">
-<div class="code-left">
-
-```js title="Code"
-let user = new Map();
-user.set("name", "Paul")
-    .set("age", "30");
- 
-for (let [key, value] of user) {
-  console.log(`${key} : ${value}`);
-}
-```
-</div>
-<div class="code-right">
-
-```txt title="Résultat"
-name : Paul
-age : 30
-```
-</div>
-</div>
-
 Exemple avec les paramètres d’une fonction :
 <div class="container-code">
 <div class="code-left">
 
 ```js title="Code"
 let options = {
-  title: "My menu",
+  title: "Mon menu",
   items: ["Item1", "Item2"]
 };
  
-function showMenu({title = "Untitled", width: w = 200, height: h = 100, items = []}) {
-  console.log(`${title} ${w} ${h}`); // Affiche : My menu 200 100    
+function showMenu({title = "Pas de titre", width: w = 200, height: h = 100, items = []}) {
+  console.log(`${title} ${w} ${h}`); // Affiche : Mon menu 200 100    
   console.log(items); // Affiche : [ 'Item1', 'Item2' ]
 }
  
@@ -1676,7 +1432,7 @@ showMenu(options);
 <div class="code-right">
 
 ```bash title="Résultat"
-My menu 200 100
+Mon menu 200 100
 [ 'Item1', 'Item2' ]
 ```
 </div>
@@ -1863,6 +1619,7 @@ console.log(JSON.stringify(animal, null, 2));
 ```
 </div>
 </div>
+<br/>
 
 La méthode `toJSON()` peut être utilisée comme `toString()` :
 <div class="container-code">
@@ -1986,11 +1743,11 @@ let ask = (id, yes, no) => {
 }
  
 showOk = () => {
-  console.log( "Validation" );
+  console.log("Validation");
 }
  
 showCancel = () => {
-  console.log( "Annulation" );
+  console.log("Annulation");
 }
  
 ask(1, showOk, showCancel);
@@ -2076,7 +1833,6 @@ let obj = { a: 1, b: 2, c: 3 };
 let objCopy = {...obj};
 ```
 
-
 ### 3.2 Fonctions d'interaction
 La fonction `alert(message)` affiche une fenêtre modale avec le texte donné en paramètre.
 
@@ -2088,7 +1844,6 @@ La fonction `prompt(title, [default])` affiche une fenêtre modale avec :
 Cette fonction renvoie le contenu du champ de saisie.
 
 La fonction `confirm(question)` affiche une fenêtre modale avec une question donnée en paramètre et deux boutons Ok et Annuler. Elle renvoie true ou false en fonction du choix de l’utilisateur.
-
 
 ### 3.3 Fonctions de gestion du délai d’exécution
 La fonction `setTimeout(func, [delay], [arg1], [arg2] ...)` permet d’exécuter une fonction ou un bloc de code après une certaine période définie :
@@ -2569,7 +2324,7 @@ try {
  
   // Si la propriété "name" n'est pas dans le JSON
   if (!user.name) {
-    throw new SyntaxError("Données incomplètes : Pas de name"); 
+    throw new SyntaxError('Données incomplètes : Pas de propriété "name"'); 
   }
  
   console.log(user.name); 
@@ -2582,7 +2337,7 @@ catch (err) {
 <div class="code-right">
 
 ```txt title="Résultat"
-Erreur JSON : Données incomplètes : Pas de name
+Erreur JSON : Données incomplètes : Pas de propriété "name"
 ```
 </div>
 </div>
@@ -2762,12 +2517,12 @@ let promise = success => {
 
 Les méthodes `then` et `catch` renvoient des promesses et peuvent ainsi être chaînées :
 - `then` : 
-  - Si elle n’a qu’un seul paramètre, le paramètre correspond à une fonction qui est exécuté si la promesse est tenue
+  - Si elle n’a qu’un seul paramètre, le paramètre correspond à une fonction qui est exécutée si la promesse est tenue
   - Si elle a deux paramètres
     - Le premier correspond à une fonction qui est exécuté si la promesse est tenue
     - Le second correspond à une fonction qui est exécuté si la promesse est rompue
 
-- `catch` : c’est l’équivalent du `then(null, reject)`, donc le paramètre correspond à une fonction qui est exécuté si la promesse est rompue
+- `catch` : c’est l’équivalent du `then(null, reject)`, donc le paramètre correspond à une fonction qui est exécutée si la promesse est rompue
 
 <div class="container-code">
 <div class="code-left">
@@ -2782,14 +2537,6 @@ promise(true)
 promise(false)
   .then(resolve => console.log(resolve))
   .catch(reject => console.log(reject));
- 
-L’utilisation des promesses chaînées :
-promise(true)
-  .then(resolve => { 
-    console.log(resolve);
-    return "2ème succès";
-  })
-  .then (resolve => console.log(resolve));
 ```
 </div>
 <div class="code-right">
@@ -2800,7 +2547,29 @@ Echec
 ```
 </div>
 </div>
- 
+
+L’utilisation des promesses chaînées :
+<div class="container-code">
+<div class="code-left">
+
+```js title="Code"
+promise(true)
+  .then(resolve => { 
+    console.log(resolve);
+    return "2ème succès";
+  })
+  .then(resolve => console.log(resolve));
+```
+</div>
+<div class="code-right">
+
+```txt title="Résultat"
+Succès
+2ème succès
+```
+</div>
+</div>
+
 
 ### 7.2 Méthodes des promesses
 La méthode `all()` renvoie une promesse qui est résolue lorsque l'ensemble des promesses ont été résolues ou qui échoue avec la raison de la première promesse qui échoue.
