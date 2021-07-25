@@ -84,4 +84,14 @@ module.exports = {
       },
     ],
   ],
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr'],
+    localeConfigs: {
+      fr: {
+        label: 'Français',
+        direction: 'ltr',
+      },
+    },
+  },
 };
