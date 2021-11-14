@@ -15,5 +15,4 @@ N'hésitez pas à fouiller dans les différentes catégories pour récupérer le
 Dernières modifications :
 
 - [SAPUI5](../sap/sapui5) (en cours de rédaction)
-- [Javascript](../dev_web/javascript) (en cours de rédaction, dernière mise à jour le 25/07/2021)
 - [Docusaurus 2](../dev_web/docusaurus) (mis à jour le 24/07/2021)

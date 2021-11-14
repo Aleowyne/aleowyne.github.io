@@ -30,12 +30,10 @@ sap.viz | Contient `sap.viz.ui5.controls.VizFrame`, qui permet d’utiliser diff
 sap.ui.richtexteditor | Contient toutes les fonctionnalités requises pour le contrôle `RichTextEditor` dans SAPUI5. Le contrôle utilise `TinyMCE`.
 sap.ui.suite | Une bibliothèque de contrôles conçue pour les applications SAP Business Suite.
 
-<p align="center">
-  <figure>
-    <img alt="Compatibilité entre bibliothèques" src="/img/sapui5_1.png" class="img500" />
-    <figcaption>Compatibilité entre bibliothèques</figcaption>
-  </figure>
-</p>
+<figure>
+  <img alt="Compatibilité entre bibliothèques" src="/img/sapui5_1.png" className="img500" />
+  <figcaption>Compatibilité entre bibliothèques</figcaption>
+</figure>
 
 Les bibliothèques qui sont seulement dans le cercle de gauche ne sont pas compatibles avec les bibliothèques qui sont seulement dans le cercle de droite. Les bibliothèques qui sont à l’intersection des deux cercles sont compatibles avec toutes les autres.
 
@@ -43,12 +41,10 @@ Les bibliothèques qui sont seulement dans le cercle de gauche ne sont pas compa
 SAPUI5 utilise le MVC.
 Les vues peuvent être écrites en JavaScript, XML, JSON ou HTML. La plupart du temps, ce sont les vues XML qui sont choisies.
 
-<p align="center">
-  <figure>
-    <img alt="Fonctionnement du MVC sur SAPUI5" src="/img/sapui5_2.png" class="img500" />
-    <figcaption>Fonctionnement du MVC sur SAPUI5</figcaption>
-  </figure>
-</p>
+<figure>
+  <img alt="Fonctionnement du MVC sur SAPUI5" src="/img/sapui5_2.png" className="img500" />
+  <figcaption>Fonctionnement du MVC sur SAPUI5</figcaption>
+</figure>
 
 Le cycle de vie d’une vue et de son contrôleur :
 - la fonction `onInit()` : Appelée lorsqu'une vue est instanciée. Utilisée pour modifier la vue avant qu'elle ne s'affiche pour lier les gestionnaires d'événements et effectuer une autre initialisation.
@@ -56,12 +52,10 @@ Le cycle de vie d’une vue et de son contrôleur :
 - la fonction `onAfterRendering()` : Appelée lorsque la vue a été affichée. Utilisée pour effectuer des manipulations post-rendu du HTML.
 - la fonction `onExit()` : Appelée lorsque la vue est détruite. Utilisée pour libérer des ressources et finaliser les activités.
 
-<p align="center">
-  <figure>
-    <img alt="Cycle de vie d'une vue" src="/img/sapui5_3.png" class="img700" />
-    <figcaption>Cycle de vie d'une vue et de son contrôleur</figcaption>
-  </figure>
-</p>
+<figure>
+  <img alt="Cycle de vie d'une vue" src="/img/sapui5_3.png" className="img700" />
+  <figcaption>Cycle de vie d'une vue et de son contrôleur</figcaption>
+</figure>
 
 
 Exemple sur l'utilisation des fonctions :
@@ -95,7 +89,7 @@ Exemple sur l'utilisation des fonctions :
   </script>
 </head>
 
-<body class="sapUiBody" id="content">
+<body className="sapUiBody" id="content">
 </body>
 </html>
 ```
@@ -175,12 +169,10 @@ sap.ui.define([
 ## 3. Architecture d’une application SAPUI5
 
 Exemple d'une architecture de projet pouvant être utilisée :
-<p align="center">
-  <figure>
-    <img alt="Architecture d'un projet" src="/img/sapui5_4.png" />
-    <figcaption>Architecture d'un projet</figcaption>
-  </figure>
-</p>
+<figure>
+  <img alt="Architecture d'un projet" src="/img/sapui5_4.png" />
+  <figcaption>Architecture d'un projet</figcaption>
+</figure>
 
 Le contenu d'un projet :
 - Répertoire `webapp/controller` : Le contenu du répertoire des contrôleurs (controller) doit correspondre au contenu du répertoire des vues (view).
@@ -196,12 +188,10 @@ Le contenu d'un projet :
 - Fichier `neo-app.json` : Fichier de configuration du projet pour l’IDE SAP Web.
 
 Les évènements d'une application SAPUI5 se déroulent comme suit :
-<p align="center">
-  <figure>
-    <img alt="Ordre des évènements d’une application SAPUI5" src="/img/sapui5_5.png" class="img500" />
-    <figcaption>Ordre des évènements d’une application SAPUI5</figcaption>
-  </figure>
-</p>
+<figure>
+  <img alt="Ordre des évènements d’une application SAPUI5" src="/img/sapui5_5.png" className="img500" />
+  <figcaption>Ordre des évènements d’une application SAPUI5</figcaption>
+</figure>
 
 <br/>
 

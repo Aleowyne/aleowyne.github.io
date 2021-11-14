@@ -37,6 +37,10 @@ html[data-theme='dark'] {
   --ifm-color-content: #bbc2cf;
 }
 
+figure {
+  text-align: center;
+}
+
 figcaption {
   font-style: italic;
 }

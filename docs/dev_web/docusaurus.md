@@ -40,7 +40,7 @@ npm start
 
 Création de la version statique du site dans le dossier *"build"* :
 ```bash
-npm build
+npm run build
 ```
 
 
@@ -71,12 +71,10 @@ Modification du fichier *"docusaurus.config.js"* pour que la page principale du 
   ...
 ```
 
-<p align="center">
-  <figure>
-    <img alt="Architecture projet" src="/img/docusaurus_1.png" />
-    <figcaption>Architecture du projet</figcaption>
-  </figure>
-</p>
+<figure>
+  <img alt="Architecture projet" src="/img/docusaurus_1.png" />
+  <figcaption>Architecture du projet</figcaption>
+</figure>
 
 Le code minimal du fichier *"index.md"* :
 ```markdown title="docs/index.md"
@@ -147,6 +145,10 @@ html[data-theme='dark'] {
   --ifm-color-content: #bbc2cf; /* Couleur du texte */
 }
 
+figure {
+  text-align: center;
+}
+
 figcaption {
   font-style: italic; /* Texte des images en italique */
 }
@@ -169,14 +171,14 @@ git remote add origin https://github.com/username/username.github.io
 ```
 
 Vérification que la connexion distante soit correcte :
-<div class="container-code">
-<div class="code-left">
+<div className="container-code">
+<div className="code-left">
 
 ```bash title="Code"
 git remote -v
 ```
 </div>
-<div class="code-right">
+<div className="code-right">
 
 ```txt title="Résultat"
 origin  https://github/com/username/username.github.io (fetch)
@@ -201,14 +203,14 @@ git checkout -b dev
 ```
 Vérification de la création des branches : 
 
-<div class="container-code">
-<div class="code-left">
+<div className="container-code">
+<div className="code-left">
 
 ```bash title="Code"
 git branch
 ```
 </div>
-<div class="code-right">
+<div className="code-right">
 
 ```txt title="Résultat"
 * dev
