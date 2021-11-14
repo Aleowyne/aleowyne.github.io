@@ -242,7 +242,7 @@ git push -u origin dev
 
 7. Déploiement du site sur la branche *"main"* via l’invite de commande Git BASH
 ```bash
-GIT_USER=<username> npm run deploy
+GIT_USER=<username> DEPLOYMENT_BRANCH=main npm run deploy 
 ```
 <br/>
 
