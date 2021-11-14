@@ -6,6 +6,7 @@ module.exports = {
   favicon: 'img/logo.jpg',
   organizationName: 'aleowyne', // Usually your GitHub org/user name.
   projectName: 'aleowyne.github.io', // Usually your repo name.
+  deploymentBranch: 'main',
   themeConfig: {
     navbar: {
       title: "Blog-Notes d'Aleowyne",
