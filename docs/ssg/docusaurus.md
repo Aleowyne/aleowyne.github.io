@@ -1,12 +1,7 @@
----
-id: docusaurus
-title: Docusaurus 2
-sidebar_label: Docusaurus 2
----
-
+# Docusaurus 2
 
 ## 1. Présentation de Docusaurus
-Docusaurus 2 est un générateur de site web statique.  
+[Docusaurus 2](https://v2.docusaurus.io/) est un générateur de site web statique.  
 Il est particulièrement utilisé pour générer des sites de documentation, mais il est possible de créer n'importe quel type de site web statique. Docusaurus est construit avec React et peut être customisé selon les besoins.  
 
 Le contenu de votre site est rédigé grâce à la syntaxe markdown (md et mdx).  
@@ -18,19 +13,19 @@ Le support et la gestion des langues sont accessibles depuis la version 2.0.0-al
 ## 2. Installation d'un nouveau projet Docusaurus
 En prérequis, il faut installer Node.js et Git. Si vous le souhaitez, vous pouvez utiliser Yarn pour la gestion des packages.
 
-Création d'un nouveau projet *"mon_site"* sous le dossier *"mon_site"* avec le template classic proposé par Docusaurus.
+Création d'un nouveau projet dans le dossier `mon_site` avec le template classic proposé par Docusaurus.
 ```bash
 npx @docusaurus/init@latest init mon_site classic
 ```
 
 Le projet a la structure suivante :
-- Dossier *"blog"* qui contient tous les articles du blog au format markdown
-- Dossier *"docs"* qui contient les fichiers de la documentation au format markdown
-- Dossier *"src/css"* qui contient les fichiers de style css
-- Dossier *"src/pages"* qui contient les pages de premier niveau du site - [Création de pages](https://v2.docusaurus.io/docs/creating-pages/)
-- Dossier *"static/img"* qui contient les images du site
-- Fichier *"docusaurus.config.js"* qui contient la configuration du site
-- Fichier *"sidebars.js"* qui contient le menu latéral de la documentation
+- Dossier `blog` qui contient tous les articles du blog au format markdown
+- Dossier `docs` qui contient les fichiers de la documentation au format markdown
+- Dossier `src/css` qui contient les fichiers de style css
+- Dossier `src/pages` qui contient les pages de premier niveau du site - [Création de pages](https://v2.docusaurus.io/docs/creating-pages/)
+- Dossier `static/img` qui contient les images du site
+- Fichier `docusaurus.config.js` qui contient la configuration du site
+- Fichier `sidebars.js` qui contient le menu latéral de la documentation
 
 Exécution locale du site sur le serveur de développement qui affichera automatiquement le site à l'adresse http://localhost:3000 dans votre navigateur préféré : 
 ```bash
@@ -38,7 +33,7 @@ cd mon_site
 npm start
 ```
 
-Création de la version statique du site dans le dossier *"build"* :
+Création de la version statique du site dans le dossier `build` :
 ```bash
 npm run build
 ```
@@ -47,9 +42,9 @@ npm run build
 ## 3. Customisation du projet
 ### 3.1 Configuration globale du projet
 A la création d'un nouveau projet, 3 parties sont disponibles dans le menu du site : la page d'accueil du site, la documentation et le blog.  
-Sur mon blog-notes, la page d'accueil (fichier *"src/pages/index.js"*) et le dossier blog ont été supprimées pour n'avoir que la documentation.
+Sur mon blog-notes, la page d'accueil (fichier `src/pages/index.js`) et le dossier blog ont été supprimées pour n'avoir que la documentation.
 
-Modification du fichier *"docusaurus.config.js"* pour que la page principale du site pointe vers le contenu du fichier *"index.md"* présent dans les docs :
+Modification du fichier `docusaurus.config.js` pour que la page principale du site pointe vers le contenu du fichier `index.md` présent dans les docs :
 ```javascript {7-8} title="docusaurus.config.js"
   ...
   presets: [
@@ -70,13 +65,13 @@ Modification du fichier *"docusaurus.config.js"* pour que la page principale du 
   ],
   ...
 ```
+<p align="center">
 
-<figure>
-  <img alt="Architecture projet" src="/img/docusaurus_1.png" />
-  <figcaption>Architecture du projet</figcaption>
-</figure>
+![Architecture du projet](../../src/images/docusaurus_1.png)   
+***Architecture du projet***
+</p>
 
-Le code minimal du fichier *"index.md"* :
+Le code minimal du fichier `index.md` :
 ```markdown title="docs/index.md"
 ---
 id: index
@@ -90,10 +85,9 @@ Ceci est la page de bienvenue
 
 
 ### 3.2 Menu latéral de la documentation
-Le fichier *"sidebar.js"* permet de gérer le menu latéral de la documentation.
+Le fichier `sidebar.js` permet de gérer le menu latéral de la documentation.
 A noter qu'il peut y avoir plusieurs menus latéraux dans ce fichier. 
 
-Contenu du fichier *"sidebar.js"* :
 ```javascript title="sidebar.js"
 module.exports = {
   // Le menu latéral "docs" s'affiche que pour index.md et dev_web/docusaurus.md
@@ -156,7 +150,7 @@ figcaption {
 
 
 ## 4. Déploiement du projet avec GitHub Pages
-Le dépôt GitHub *"username.github.io"* doit être créé au préalable.
+Le dépôt GitHub `username.github.io` doit être créé au préalable.
 
 1. Dans le dossier du projet Docusaurus, initialisation d'un dépôt git
 ```bash
@@ -194,9 +188,9 @@ git remote set-url origin https://github.com/username/username.github.io
 ```
 <br/>
 
-3. Création de deux branches *"main"* et *"dev"* avec la branche *"dev"* définie par défaut.
+3. Création de deux branches `main` et `dev` avec la branche `dev` définie par défaut.
 
-La branche *"main"* contiendra le code généré du site statique et la branche *"dev"* contiendra le code source du site statique.
+La branche `main` contiendra le code généré du site statique et la branche `dev` contiendra le code source du site statique.
 ```bash
 git checkout main
 git checkout -b dev
@@ -233,19 +227,14 @@ git commit -m "Message du commit"
 ```
 <br/>
 
-6. Envoi des modifications dans la branche *"dev"* sur le dépôt GitHub
+6. Envoi des modifications dans la branche `dev` sur le dépôt GitHub
 ```bash
 git push -u origin dev
 ```
 <br/>
 
 
-7. Déploiement du site sur la branche *"main"* via l’invite de commande Git BASH
+7. Déploiement du site sur la branche `main` via l’invite de commande Git BASH
 ```bash
 GIT_USER=<username> DEPLOYMENT_BRANCH=main npm run deploy 
 ```
-<br/>
-
-:::tip Sources
-https://v2.docusaurus.io/
-:::

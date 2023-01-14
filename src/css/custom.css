@@ -23,6 +23,7 @@
   --ifm-color-primary-lighter: #82a7e3;
   --ifm-color-primary-lightest: #a8c1eb;
   --ifm-container-width: 1500px;
+  font-size: 1rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -35,14 +36,6 @@
 html[data-theme='dark'] {
   --ifm-background-color: rgb(21, 32, 43);
   --ifm-color-content: #bbc2cf;
-}
-
-figure {
-  text-align: center;
-}
-
-figcaption {
-  font-style: italic;
 }
 
 .img500 {
@@ -68,7 +61,7 @@ table.code td {
 }
 
 table.code .token-line {
-  white-space : pre-wrap !important;
+  white-space: pre-wrap !important;
 }
 
 div.container-code {
@@ -85,10 +78,10 @@ div.code-right {
 }
 
 div.container-code .token-line {
-  white-space : pre-wrap !important;
+  white-space: pre-wrap !important;
 }
 
-@media (max-width: 700px) { 
+@media (max-width: 700px) {
   div.container-code {
     display: flex;
     flex-direction: column;
@@ -97,7 +90,7 @@ div.container-code .token-line {
   div.code-left {
     width: 100%;
   }
-  
+
   div.code-right {
     width: 100%;
   }

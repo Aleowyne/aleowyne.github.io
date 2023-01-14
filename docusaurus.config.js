@@ -1,22 +1,20 @@
 module.exports = {
   title: "Blog-Notes d'Aleowyne",
   tagline: "Le blog-notes d'une développeuse",
-  url: 'https://aleowyne.github.io/',
+  url: 'https://aleowyne.github.io',
   baseUrl: '/',
   favicon: 'img/logo.jpg',
   organizationName: 'aleowyne', // Usually your GitHub org/user name.
   projectName: 'aleowyne.github.io', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
   themeConfig: {
     navbar: {
       title: "Blog-Notes d'Aleowyne",
       logo: {
         alt: 'Logo',
         src: 'img/logo.jpg',
-      },
-      items: [
-        //{to: '/', label: 'Notes', position: 'left'},
-        //{to: '/code/intro', label: 'Bouts de code', position: 'left'},
-      ],
+      }
     },
     footer: {
       style: 'dark',
