@@ -82,6 +82,16 @@ module.exports = {
       },
     ],
   ],
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      ({
+        docsRouteBasePath: "/",
+        hashed: true,
+        language: ["fr"],
+      }),
+    ],
+  ],
   i18n: {
     defaultLocale: 'fr',
     locales: ['fr'],

@@ -15,7 +15,7 @@ La documentation peut être synchronisée avec les différentes versions d’un 
 ## 2. Installation d'un nouveau projet Docusaurus
 En prérequis, Node.js, avec une version 16.14 ou supérieure, doit être installé. Si vous le souhaitez, vous pouvez utiliser Yarn pour la gestion des packages.
 
-Création d'un nouveau projet avec le template classic proposé par Docusaurus.
+Création d'un nouveau projet avec le template classic proposé par Docusaurus :
 ```bash
 npm init docusaurus
 ```
@@ -127,6 +127,34 @@ Un fond bleu nuit et un texte grisonnant ont également été ajoutés quand le 
 html[data-theme='dark'] {
   --ifm-background-color: rgb(21, 32, 43);
   --ifm-color-content: #bbc2cf;
+}
+```
+
+<br/>
+
+### 3.4 Mise en place d’une recherche locale
+Sur le blog-notes, une recherche locale a été mise en place avec le plugin [@easyops-cn/docusaurus-search-local](https://github.com/easyops-cn/docusaurus-search-local).
+
+Installation du plugin :
+```bash
+npm install --save @easyops-cn/docusaurus-search-local
+```
+
+Modification du fichier `docusaurus.config.js` :
+```javascript title="docusaurus.config.js"
+module.exports = {
+  ...
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      ({
+        docsRouteBasePath: "/",
+        hashed: true,
+        language: ["fr"],
+      }),
+    ],
+  ],
+  ...
 }
 ```
 
