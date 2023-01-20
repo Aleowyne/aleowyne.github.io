@@ -7,13 +7,6 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  /*--ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);*/
   --ifm-code-font-size: 95%;
   --ifm-color-primary: #5c8cda;
   --ifm-color-primary-dark: #437ad4;
@@ -23,7 +16,6 @@
   --ifm-color-primary-lighter: #82a7e3;
   --ifm-color-primary-lightest: #a8c1eb;
   --ifm-container-width: 1500px;
-  font-size: 1rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -36,62 +28,4 @@
 html[data-theme='dark'] {
   --ifm-background-color: rgb(21, 32, 43);
   --ifm-color-content: #bbc2cf;
-}
-
-.img500 {
-  width: 500px;
-}
-
-.img700 {
-  width: 700px;
-}
-
-table {
-  display: table;
-}
-
-table.code {
-  --ifm-table-border-width: 0px;
-  --ifm-table-stripe-background: none;
-}
-
-table.code td {
-  width: 60%;
-  vertical-align: top;
-}
-
-table.code .token-line {
-  white-space: pre-wrap !important;
-}
-
-div.container-code {
-  display: flex;
-  justify-content: space-between;
-}
-
-div.code-left {
-  width: 59%;
-}
-
-div.code-right {
-  width: 40%;
-}
-
-div.container-code .token-line {
-  white-space: pre-wrap !important;
-}
-
-@media (max-width: 700px) {
-  div.container-code {
-    display: flex;
-    flex-direction: column;
-  }
-
-  div.code-left {
-    width: 100%;
-  }
-
-  div.code-right {
-    width: 100%;
-  }
 }
