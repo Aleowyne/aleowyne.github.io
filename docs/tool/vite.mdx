@@ -55,11 +55,11 @@ Le contenu du fichier `package.json` en fonction du projet :
 
 ```json title="package.json"
 {
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview"
-	}
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
 }
 ```
 
@@ -73,11 +73,11 @@ Le contenu du fichier `package.json` en fonction du projet :
 
 ```json title="package.json"
 {
-	"scripts": {
-		"dev": "vite",
-		"build": "tsc && vite build",
-		"preview": "vite preview"
-	}
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  }
 }
 ```
 
@@ -94,7 +94,7 @@ Le fichier de configuration est souvent nommé `vite.config.js` :
 import { defineConfig } from 'vite';
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
-	...
+  ...
 })
 ```
 
@@ -137,7 +137,7 @@ Ou alors, l’option `base` peut être ajoutée directement dans le script du fi
 
 ```json {4} title="package.json"
 {
-	"scripts": {
+  "scripts": {
     "dev": "vite",
     "build": "vite build --base=/repo/",
     "preview": "vite preview"
@@ -218,6 +218,8 @@ jobs:
 Documentation : [Guide Vite](https://vitejs.dev/guide/)
 
 <div hidden>
+
+For Docusaurus : 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

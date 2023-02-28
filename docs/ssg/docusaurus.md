@@ -187,7 +187,7 @@ git checkout -b dev
 <br/>
 
 4. Création d’un fichier `deploy.yml` dans le dossier `.github/workflows`
-```yaml
+```yaml title="deploy.yml"
 name: Deploy to GitHub Pages
 
 on:
