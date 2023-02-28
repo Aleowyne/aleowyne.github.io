@@ -5,6 +5,7 @@
 
 ### Outils
 - [Git](./docs/tool/git.md)
+- [Vite](.docs/tool/vite.mdx)
 
 ### Node.js
 - [npm](./docs/node/npm.md)
