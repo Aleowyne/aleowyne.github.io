@@ -100,33 +100,32 @@ module.exports = {
 <br/>
 
 ### 3.3 Modification du fichier de style
-Sur le blog-notes, les couleurs primaires du site ont été modifiées pour qu’elles s’orientent sur du bleu plutôt que du vert. Vous pouvez utiliser l'[outil](https://v2.docusaurus.io/docs/styling-layout#styling-your-site-with-infima) proposé sur le site de docusaurus pour générer les couleurs primaires.
+Pour générer les couleurs primaires du site, un [outil](https://v2.docusaurus.io/docs/styling-layout#styling-your-site-with-infima) est disponible sur le site de Docusaurus.
 
-Un fond bleu nuit et un texte grisonnant ont également été ajoutés quand le site est avec le thème “Dark”, afin de ne pas agresser les yeux.
-
+Sur le blog-notes, en mode clair, la couleur primaire est orientée vers le bleu. En mode sombre, la couleur primaire est plutôt orientée vers le vert et la couleur du fond est grise plutôt que noire.
 ```css title="src/css/custom.css"
 :root {
   --ifm-code-font-size: 95%;
-  --ifm-color-primary: #5c8cda;
-  --ifm-color-primary-dark: #437ad4;
-  --ifm-color-primary-darker: #3671d1;
-  --ifm-color-primary-darkest: #285cb1;
-  --ifm-color-primary-light: #759ee0;
-  --ifm-color-primary-lighter: #82a7e3;
-  --ifm-color-primary-lightest: #a8c1eb;
   --ifm-container-width: 1500px;
-}
-
-.docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
+  --ifm-color-primary: #1c5b9b;
+  --ifm-color-primary-dark: #19528b;
+  --ifm-color-primary-darker: #184d84;
+  --ifm-color-primary-darkest: #14406d;
+  --ifm-color-primary-light: #1f64aa;
+  --ifm-color-primary-lighter: #2069b2;
+  --ifm-color-primary-lightest: #2476ca;
 }
 
 html[data-theme='dark'] {
-  --ifm-background-color: rgb(21, 32, 43);
   --ifm-color-content: #bbc2cf;
+  --ifm-color-primary: #2ede32;
+  --ifm-color-primary-dark: #21d025;
+  --ifm-color-primary-darker: #1fc523;
+  --ifm-color-primary-darkest: #1aa21d;
+  --ifm-color-primary-light: #45e249;
+  --ifm-color-primary-lighter: #51e354;
+  --ifm-color-primary-lightest: #73e976;
+  --ifm-background-color: #15202b;
 }
 ```
 
