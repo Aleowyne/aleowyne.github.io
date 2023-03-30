@@ -142,14 +142,14 @@ Ils sont découpés en 3 parties de 3 caractères :
 
 Chaque partie est composé comme suit :
 - Le premier caractère concerne les droits de lecture `r`.
-    - Pour un fichier, il permet de le lire et de le copier.
-    - Pour un répertoire, il permet de lister son contenu.
+  - Pour un fichier, il permet de le lire et de le copier.
+  - Pour un répertoire, il permet de lister son contenu.
 - Le second caractère concerne les droits d’écriture `w`.
-    - Pour un fichier, il permet de modifier le contenu.
-    - Pour un répertoire, il permet d’ajouter, de renommer et de supprimer les fichiers présents à l’intérieur.
+  - Pour un fichier, il permet de modifier le contenu.
+  - Pour un répertoire, il permet d’ajouter, de renommer et de supprimer les fichiers présents à l’intérieur.
 - Le troisième caractère concerne les droits d’exécution `x`.
-    - Pour un fichier, il permet de l’exécuter, s’il est exécutable.
-    - Pour un répertoire, il permet de se positionner à l’intérieur (avec `cd`)
+  - Pour un fichier, il permet de l’exécuter, s’il est exécutable.
+  - Pour un répertoire, il permet de se positionner à l’intérieur (avec `cd`)
 
 > 💡 Si un droit n’est pas actif, le caractère est remplacé par `-`.
 
@@ -158,51 +158,49 @@ Chaque partie est composé comme suit :
 La commande `chmod` permet de modifier les droits d’accès d’un fichier ou d’un répertoire. L’option `-R` permet d’appliquer les droits aux fichiers/répertoires à l’intérieur d’un répertoire.
 
 - Première notation `chmod <public><operation><auth> <file_or_repository>` avec :
-    - `public` qui peut prendre les valeurs suivantes :
-        - `u` : propriétaire
-        - `g` : groupe du propriétaire
-        - `o` : autres utilisateurs
-        - `a` : toutes les valeurs (=`ugo`)
-    - `operation` qui peut prendre l’une des valeurs suivantes :
-        - `+` : ajout d’un droit
-        - `-` : suppression d’un droit
-        - `=` : affectation d’un droit
-    - `auth` qui peut prendre les valeurs suivantes :
-        - `r` : droit en lecture
-        - `w` : droit en écriture
-        - `x` : droit en exécution
+  - `public` qui peut prendre les valeurs suivantes :
+    - `u` : propriétaire
+    - `g` : groupe du propriétaire
+    - `o` : autres utilisateurs
+    - `a` : toutes les valeurs (=`ugo`)
+  - `operation` qui peut prendre l’une des valeurs suivantes :
+    - `+` : ajout d’un droit
+    - `-` : suppression d’un droit
+    - `=` : affectation d’un droit
+  - `auth` qui peut prendre les valeurs suivantes :
+    - `r` : droit en lecture
+    - `w` : droit en écriture
+    - `x` : droit en exécution
 
-Exemple : 
-
-```bash
-# Droits en écriture pour le groupe et les autres utilisateurs sur le fichier file.txt
-chmod go+w file.txt 
-```
+  Exemple : 
+  ```bash
+  # Droits en écriture pour le groupe et les autres utilisateurs sur le fichier file.txt
+  chmod go+w file.txt 
+  ```
 
 <br/>
 
 - Seconde notation (sert à affecter directement des droits) `chmod <octal_owner><octal_group><octal_other> <file_or_repository>`.
 
-    Les valeurs octales sont représentées comme suit :
+  Les valeurs octales sont représentées comme suit :
 
-| Valeur octale | Droits |
-| --- | --- |
-| 0 | `---` |
-| 1 | `--x` |
-| 2 | `-w-` |
-| 3 | `-wx` |
-| 4 | `r--` |
-| 5 | `r-x` |
-| 6 | `rw-` |
-| 7 | `rwx` |
+  | Valeur octale | Droits |
+  | --- | --- |
+  | 0 | `---` |
+  | 1 | `--x` |
+  | 2 | `-w-` |
+  | 3 | `-wx` |
+  | 4 | `r--` |
+  | 5 | `r-x` |
+  | 6 | `rw-` |
+  | 7 | `rwx` |
 
-Exemple : 
-
-```bash
-# Tous les droits pour le propriétaire, les droits en lecture et écriture pour le groupe et 
-# les autres utilisateurs sur le fichier file.txt (équivalent à rwxrw-rw-)
-chmod 766 file.txt
-```
+  Exemple : 
+  ```bash
+  # Tous les droits pour le propriétaire, les droits en lecture et écriture pour le groupe et 
+  # les autres utilisateurs sur le fichier file.txt (équivalent à rwxrw-rw-)
+  chmod 766 file.txt
+  ```
 
 <br/>
 
@@ -239,7 +237,6 @@ La commande `head` permet d’afficher les 10 premières lignes d’un fichier.
 La commande `tail` permet d’afficher les 10 dernières lignes d’un fichier.
 
 Pour ces 2 commandes, des options sont disponibles :
-
 - `-n` : Nombre de lignes affichées
 - `-c` : Nombre de caractères affichés
 - `-f` (pour `tail`) : Attend de nouvelles modifications à la fin du fichier pour les afficher
@@ -634,8 +631,8 @@ sort -nk 2 -t ";" file.txt
 
 La commande `cut` permet d’extraire les colonnes d’un fichier. Les options suivantes peuvent être utilisées :
 - `-f <num_column>` : permet de sélectionner une colonne. Si plusieurs colonnes doivent être extraites, les séparer par une virgule ou un tiret.
-    - Pour extraire les colonnes 1 et 3 : `-f 1,3`
-    - Pour extraire les colonnes de 1 à 3 : `-f 1-3`
+  - Pour extraire les colonnes 1 et 3 : `-f 1,3`
+  - Pour extraire les colonnes de 1 à 3 : `-f 1-3`
 - `-d <char>` : permet de définir le séparateur de colonnes. Par défaut, c’est la tabulation.
 
 Un exemple permettant d'afficher les colonnes 1 et 3 du fichier "file.txt". Les colonnes sont séparées par un espace.
@@ -910,12 +907,12 @@ La structure conditionnelle avec `if` est sous la forme suivante :
 ```bash
 if <test>
 then
-	...
+  ...
 elif <other_test>
 then
-	...
+  ...
 else
-	...
+  ...
 fi
 ```
 
@@ -925,11 +922,11 @@ La structure de branchement conditionnel avec `case` est sous la forme suivante 
 ```bash
 case <expression> in
 <pattern1>)
-	...;;
+  ...;;
 <pattern2>)
-	...;;
+  ...;;
 <pattern3> | <pattern4>)
-	...;;
+  ...;;
 esac
 ```
 
@@ -941,7 +938,7 @@ La structure itérative avec `while` est sous la forme suivante :
 ```bash
 while <test>
 do
-	...
+  ...
 done
 ```
 
@@ -951,7 +948,7 @@ La structure itérative avec `for` est sous la forme suivante :
 ```bash
 for <variable> in <list>
 do
-	...
+  ...
 done
 ```
 
@@ -966,7 +963,7 @@ La boucle `for` est également présente sous la forme suivante :
 ```bash
 for ((i=1; i<=10; i++))
 do
-	...
+  ...
 done
 ```
 
@@ -976,7 +973,7 @@ Pour lire les lignes une par une d’un fichier donné en argument du script :
 ```bash
 while read <variable>
 do
-	...
+  ...
 done <$1
 ```
 
@@ -993,7 +990,7 @@ La commande `break` permet de sortir directement de la boucle.
 La déclaration d’une fonction se fait sous la forme suivante :
 ```bash
 function <name> {
-	...
+  ...
 }
 ```
 
@@ -1018,12 +1015,12 @@ Pour retourner autre chose, le résultat doit être envoyé sur la sortie standa
 
 ```bash
 get_max() {
-	if [[ $1 -gt $2 ]]
-	then
-		echo $1;
-	else
-		echo $2;
-	fi
+  if [[ $1 -gt $2 ]]
+  then
+    echo $1;
+  else
+    echo $2;
+  fi
 }
 
 echo $(get_max 2 3); # Affiche 3
