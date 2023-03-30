@@ -5,31 +5,6 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-code-font-size: 95%;
-  --ifm-container-width: 1500px;
-  --ifm-color-primary: #1c5b9b;
-  --ifm-color-primary-dark: #19528b;
-  --ifm-color-primary-darker: #184d84;
-  --ifm-color-primary-darkest: #14406d;
-  --ifm-color-primary-light: #1f64aa;
-  --ifm-color-primary-lighter: #2069b2;
-  --ifm-color-primary-lightest: #2476ca;
-}
-
-html[data-theme='dark'] {
-  --ifm-color-content: #bbc2cf;
-  --ifm-color-primary: #2ede32;
-  --ifm-color-primary-dark: #21d025;
-  --ifm-color-primary-darker: #1fc523;
-  --ifm-color-primary-darkest: #1aa21d;
-  --ifm-color-primary-light: #45e249;
-  --ifm-color-primary-lighter: #51e354;
-  --ifm-color-primary-lightest: #73e976;
-  --ifm-background-color: #15202b;
-}
-
 .hide_for_docusaurus {
   display: none;
 }

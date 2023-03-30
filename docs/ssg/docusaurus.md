@@ -102,7 +102,10 @@ module.exports = {
 ### 3.3 Modification du fichier de style
 Pour générer les couleurs primaires du site, un [outil](https://v2.docusaurus.io/docs/styling-layout#styling-your-site-with-infima) est disponible sur le site de Docusaurus.
 
-Sur le blog-notes, en mode clair, la couleur primaire est orientée vers le bleu. En mode sombre, la couleur primaire est plutôt orientée vers le vert et la couleur du fond est grise plutôt que noire.
+Exemple :
+- En mode clair, la couleur primaire est orientée vers le bleu
+- En mode sombre, la couleur primaire est plutôt orientée vers le vert et la couleur du fond est grise plutôt que noire.
+
 ```css title="src/css/custom.css"
 :root {
   --ifm-code-font-size: 95%;
