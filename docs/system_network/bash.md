@@ -787,9 +787,9 @@ Des variables spéciales peuvent être utilisées dans ce script pour les consul
 | Variables | Description |
 | --- | --- |
 | `$0` | Le nom du script |
-| `$1` `$2` `$3` … | Pour lire le premier, deuxième, troisième … argument. Pour les variables avec plus d’un chiffre, il faut utiliser les accolades : `${12}` |
+| `$1` `$2` `$3` ... | Pour lire le premier, deuxième, troisième ... argument. Pour les variables avec plus d’un chiffre, il faut utiliser les accolades : `${12}` |
 | `$#` | Nombre d’arguments |
-| `$*` et `$@` | Liste des arguments : { arg1, arg2, arg3 … } |
+| `$*` et `$@` | Liste des arguments : arg1, arg2, arg3 ... |
 | `${$1:-default}` | Permet d’indiquer une valeur par défaut à un argument non renseigné |
 | `${$1:?"message"}` | Permet d’afficher un message si l’argument n’est pas renseigné |
 
