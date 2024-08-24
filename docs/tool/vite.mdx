@@ -1,21 +1,24 @@
 # Vite
 
 ## 1. Création d’un projet
+
 Création d’un nouveau projet en utilisant Vite :
+
 ```bash
 npm create vite@latest
 npm cd <projet>
 npm i
 ```
 
-<br/>
+<br />
 
 ## 2. Installation de Vite dans un projet existant
+
 Dans un projet existant, il suffit d’installer le module Vite. D’autres modules peuvent être nécessaires en fonction de l’environnement du projet.
 
 <Tabs groupId="framework">
   <TabItem value="vanilla" label="Vanilla JS" default>
-<div class="hide_for_docusaurus">
+<div className="hide_for_docusaurus">
 
 - Projet Vanilla JS :
 
@@ -27,7 +30,7 @@ npm i -D vite
 
   </TabItem>
   <TabItem value="react" label="React & Typescript">
-<div class="hide_for_docusaurus">
+<div className="hide_for_docusaurus">
 
 - Projet React & Typescript :
 
@@ -40,14 +43,15 @@ npm i -D vite @vitejs/plugin-react typescript @types/react @types/react-dom
   </TabItem>
 </Tabs>
 
-<br/>
+<br />
 
 ## 3. Les scripts
+
 Le contenu du fichier `package.json` en fonction du projet :
 
 <Tabs groupId="framework">
   <TabItem value="vanilla" label="Vanilla JS" default>
-<div class="hide_for_docusaurus">
+<div className="hide_for_docusaurus">
 
 - Projet Vanilla JS :
 
@@ -65,7 +69,7 @@ Le contenu du fichier `package.json` en fonction du projet :
 
   </TabItem>
   <TabItem value="react" label="React & Typescript">
-<div class="hide_for_docusaurus">
+<div className="hide_for_docusaurus">
 
 - Projet React & Typescript :
 
@@ -84,7 +88,7 @@ Le contenu du fichier `package.json` en fonction du projet :
   </TabItem>
 </Tabs>
 
-<br/>
+<br />
 
 ## 4. Le fichier de configuration
 
@@ -100,7 +104,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 Pour connaitre les options disponibles : [Configuration Vite](https://vitejs.dev/config/)
 
-<br/>
+<br />
 
 > 💡 Pour permettre d'exécuter le projet sans serveur et donc localement sur son ordinateur, les attributs `type` et `crossorigin` ne doivent pas être générés au niveau des scripts JS dans les fichiers html. Tout cela se passe dans le fichier de configuration :
 
@@ -109,19 +113,19 @@ import { defineConfig } from 'vite';
 
 const noAttr = () => {
   return {
-    name: "no-attribute",
+    name: 'no-attribute',
     transformIndexHtml(html) {
-      return html.replace(`type="module" crossorigin`, "");
-    }
-  }
+      return html.replace('type="module" crossorigin', '');
+    },
+  };
 };
 
 export default defineConfig({
-  plugins: [noAttr()]
-})
+  plugins: [noAttr()],
+});
 ```
 
-<br/>
+<br />
 
 ## 5. Déploiement d’un site statique avec GitHub Pages
 
@@ -129,8 +133,8 @@ Si le déploiement du projet n’est pas à la racine du site (exemple : `https:
 
 ```javascript title="vite.config.js"
 export default {
-  base: '/repo/'
-}
+  base: '/repo/',
+};
 ```
 
 Ou alors, l’option `base` peut être ajoutée directement dans le script du fichier `package.json` :
@@ -145,15 +149,17 @@ Ou alors, l’option `base` peut être ajoutée directement dans le script du fi
 }
 ```
 
-<br/>
+<br />
 
 Dans l’option "Pages" du projet sur GitHub, choisir la source "GitHub Actions".
-<p align="center">
 
-![GitHub Actions](../../src/images/vite_1.png)   
-</p>
+<div align="center">
 
-<br/>
+![GitHub Actions](../../src/images/vite_1.png)
+
+</div>
+
+<br />
 
 Ensuite, le fichier `deploy.yml` est à créer dans le sous-dossier `.github/workflows`. Lors du push des modifications sur GitHub, le déploiement se fera automatique.
 
@@ -211,7 +217,7 @@ jobs:
         uses: actions/deploy-pages@v1
 ```
 
-<br/>
+<br />
 
 ## 6. Liens utiles
 
@@ -219,7 +225,7 @@ Documentation : [Guide Vite](https://vitejs.dev/guide/)
 
 <div hidden>
 
-For Docusaurus : 
+For Docusaurus :
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
